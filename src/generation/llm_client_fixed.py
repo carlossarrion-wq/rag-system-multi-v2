@@ -28,7 +28,7 @@ class LLMClient:
     Features:
     - Claude 4 Sonnet integration via Bedrock
     - Confidence scoring extraction
-    - RAG-optimized prompting with GADEA specialization
+    - RAG-optimized prompting with multi-application support
     - Streaming support with confidence
     - FIXED: Multimodal support (images) in both streaming and non-streaming methods
     - Full compatibility with EC2 infrastructure
@@ -77,56 +77,229 @@ class LLMClient:
         if self.caching_enabled:
             logger.info(f"Prompt caching enabled with TTL: {self.default_ttl}")
 
-    def _dump_llm_response(self, query: str, raw_answer: str, request_info: Dict[str, Any] = None) -> None:
+    def _dump_llm_request_and_response(
+        self, 
+        query: str, 
+        raw_answer: str, 
+        full_request_body: Dict[str, Any] = None,
+        request_info: Dict[str, Any] = None,
+        context_data: Dict[str, Any] = None
+    ) -> None:
         """
-        Dump LLM response to file for analysis.
+        Dump complete LLM request and response to file for comprehensive analysis.
+        ENHANCED: Now includes ALL content sent to LLM including document chunks.
         
         Args:
             query: User query
             raw_answer: Raw LLM response
+            full_request_body: Complete request body sent to Bedrock
             request_info: Additional request information
+            context_data: Context and document data
         """
         try:
-            # Create logs directory if it doesn't exist
-            logs_dir = "/home/ec2-user/rag-system-multi/logs"
-            os.makedirs(logs_dir, exist_ok=True)
+            # Create logs directory if it doesn't exist - try both local and EC2 paths
+            logs_dirs = ["logs", "/home/ec2-user/rag-system-multi/logs"]
+            logs_dir = None
+            
+            for dir_path in logs_dirs:
+                try:
+                    os.makedirs(dir_path, exist_ok=True)
+                    # Test write access
+                    test_file = os.path.join(dir_path, "test_write.tmp")
+                    with open(test_file, 'w') as f:
+                        f.write("test")
+                    os.remove(test_file)
+                    logs_dir = dir_path
+                    break
+                except:
+                    continue
+            
+            if not logs_dir:
+                logger.error("Could not create or access logs directory")
+                return
             
             # Generate timestamp and filename
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:-3]  # Include milliseconds
-            filename = f"llm_response_{timestamp}.txt"
+            filename = f"llm_complete_dump_{timestamp}.txt"
             filepath = os.path.join(logs_dir, filename)
             
-            # Prepare dump content
+            # Extract system prompt and user content from request body
+            system_prompt = ""
+            user_content = ""
+            images_info = []
+            
+            if full_request_body:
+                system_prompt = full_request_body.get('system', 'No system prompt')
+                messages = full_request_body.get('messages', [])
+                
+                for message in messages:
+                    if message.get('role') == 'user':
+                        content = message.get('content', '')
+                        
+                        # Handle multimodal content (list of content blocks)
+                        if isinstance(content, list):
+                            for block in content:
+                                if block.get('type') == 'text':
+                                    user_content = block.get('text', '')
+                                elif block.get('type') == 'image':
+                                    source = block.get('source', {})
+                                    images_info.append({
+                                        'media_type': source.get('media_type', 'unknown'),
+                                        'data_length': len(source.get('data', '')),
+                                        'type': source.get('type', 'unknown')
+                                    })
+                        else:
+                            # Simple text content
+                            user_content = content
+            
+            # Prepare comprehensive dump content
             dump_content = f"""
-=== LLM RESPONSE DUMP ===
+{'='*80}
+=== COMPLETE LLM REQUEST AND RESPONSE DUMP ===
+{'='*80}
 Timestamp: {datetime.now().isoformat()}
 Model: {self.model_id}
-Query: {query}
+Log File: {filename}
 
-=== REQUEST INFO ===
-{json.dumps(request_info or {}, indent=2)}
+{'='*80}
+=== USER QUERY ===
+{'='*80}
+{query}
 
+{'='*80}
+=== REQUEST METADATA ===
+{'='*80}
+{json.dumps(request_info or {}, indent=2, ensure_ascii=False)}
+
+{'='*80}
+=== CONTEXT DATA ===
+{'='*80}
+"""
+            
+            # Add context data if available
+            if context_data:
+                dump_content += f"""
+Sources Count: {context_data.get('sources_count', 0)}
+Images Count: {context_data.get('images_count', 0)}
+Context Length: {context_data.get('context_length', 0)} characters
+Total Documents: {context_data.get('total_documents', 0)}
+
+Document Sources:
+"""
+                sources = context_data.get('sources', [])
+                for i, source in enumerate(sources, 1):
+                    dump_content += f"""
+--- SOURCE {i} ---
+ID: {source.get('id', 'N/A')}
+Document Title: {source.get('document_title', 'N/A')}
+File Name: {source.get('file_name', 'N/A')}
+Doc ID: {source.get('doc_id', 'N/A')}
+Chunk ID: {source.get('chunk_id', 'N/A')}
+Score: {source.get('score', 'N/A')}
+Content Length: {len(source.get('text', ''))} characters
+Content Preview: {source.get('text', '')[:200]}{'...' if len(source.get('text', '')) > 200 else ''}
+Metadata: {json.dumps(source.get('metadata', {}), indent=2, ensure_ascii=False)}
+"""
+            else:
+                dump_content += "No context data available\n"
+            
+            dump_content += f"""
+{'='*80}
+=== SYSTEM PROMPT SENT TO LLM ===
+{'='*80}
+{system_prompt}
+
+{'='*80}
+=== COMPLETE USER CONTENT SENT TO LLM ===
+{'='*80}
+{user_content}
+"""
+            
+            # Add image information if present
+            if images_info:
+                dump_content += f"""
+{'='*80}
+=== IMAGES SENT TO LLM ===
+{'='*80}
+Total Images: {len(images_info)}
+
+"""
+                for i, img_info in enumerate(images_info, 1):
+                    dump_content += f"""Image {i}:
+  - Media Type: {img_info['media_type']}
+  - Data Length: {img_info['data_length']} bytes
+  - Source Type: {img_info['type']}
+
+"""
+            
+            dump_content += f"""
+{'='*80}
+=== COMPLETE REQUEST BODY (JSON) ===
+{'='*80}
+{json.dumps(full_request_body or {}, indent=2, ensure_ascii=False)}
+
+{'='*80}
 === RAW LLM RESPONSE ===
+{'='*80}
 {raw_answer}
 
+{'='*80}
 === RESPONSE ANALYSIS ===
-Length: {len(raw_answer)} characters
-Lines: {len(raw_answer.splitlines())} lines
+{'='*80}
+Response Length: {len(raw_answer)} characters
+Response Lines: {len(raw_answer.splitlines())} lines
 Starts with JSON: {raw_answer.strip().startswith('{')}
 Ends with JSON: {raw_answer.strip().endswith('}')}
 Contains JSON: {'{' in raw_answer and '}' in raw_answer}
 
-=== END DUMP ===
+{'='*80}
+=== TOKEN ANALYSIS ===
+{'='*80}
+"""
+            
+            # Add token analysis
+            if request_info:
+                usage = request_info.get('usage', {})
+                dump_content += f"""Input Tokens: {usage.get('input_tokens', 'N/A')}
+Output Tokens: {usage.get('output_tokens', 'N/A')}
+Total Tokens: {usage.get('input_tokens', 0) + usage.get('output_tokens', 0)}
+
+System Prompt Length: {request_info.get('system_prompt_length', 'N/A')} chars
+Context Length: {request_info.get('context_length', 'N/A')} chars
+Sources Count: {request_info.get('sources_count', 'N/A')}
+Images Count: {request_info.get('images_count', 'N/A')}
+
+Cache Metrics: {json.dumps(request_info.get('cache_metrics', {}), indent=2)}
+"""
+            
+            dump_content += f"""
+{'='*80}
+=== END COMPLETE DUMP ===
+{'='*80}
 """
             
             # Write to file
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(dump_content)
             
-            logger.info(f"LLM response dumped to: {filepath}")
+            logger.info(f"Complete LLM request/response dumped to: {filepath}")
+            logger.info(f"Dump includes: System prompt, User content, {len(images_info)} images, Full request body, Response")
             
         except Exception as e:
-            logger.error(f"Failed to dump LLM response: {e}")
+            logger.error(f"Failed to dump complete LLM request/response: {e}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
+
+    def _dump_llm_response(self, query: str, raw_answer: str, request_info: Dict[str, Any] = None) -> None:
+        """
+        Legacy method for backward compatibility.
+        Now calls the enhanced _dump_llm_request_and_response method.
+        """
+        self._dump_llm_request_and_response(
+            query=query,
+            raw_answer=raw_answer,
+            request_info=request_info
+        )
 
     def _load_config(self, config_path: str) -> Dict:
         """Load AWS configuration."""
@@ -143,8 +316,6 @@ Contains JSON: {'{' in raw_answer and '}' in raw_answer}
         Returns:
             Dictionary with confidence_score (0.0-1.0) and rationale text
         """
-        # Debug: Log the end of the answer to see what we're working with
-        logger.info(f"Extracting confidence from answer ending: ...{answer[-200:]}")
         
         # Look for pattern: CONFIDENCE: XX% followed by rationale
         # More flexible pattern that captures everything after CONFIDENCE: XX%
@@ -155,26 +326,17 @@ Contains JSON: {'{' in raw_answer and '}' in raw_answer}
             confidence_percent = int(match.group(1))
             rationale = match.group(2).strip() if match.group(2) else ""
             
-            # Debug: Log what we extracted
-            logger.info(f"Regex matched - Confidence: {confidence_percent}%, Rationale length: {len(rationale)}")
-            if rationale:
-                logger.info(f"Rationale preview: {rationale[:100]}...")
-            else:
-                logger.warning("No rationale text found after CONFIDENCE: XX%")
             
             # Validate range
             if 0 <= confidence_percent <= 100:
                 confidence_decimal = confidence_percent / 100.0
-                logger.info(f"Extracted confidence score: {confidence_percent}% with rationale")
                 return {
                     'confidence_score': confidence_decimal,
                     'confidence_rationale': rationale
                 }
             else:
-                logger.warning(f"Confidence score out of range: {confidence_percent}%")
                 return {'confidence_score': None, 'confidence_rationale': ''}
         else:
-            logger.warning("No confidence score found in answer")
             # Try alternative patterns
             alt_patterns = [
                 r'CONFIDENCE:\s*(\d+)%',
@@ -185,7 +347,6 @@ Contains JSON: {'{' in raw_answer and '}' in raw_answer}
                 alt_match = re.search(alt_pattern, answer, re.IGNORECASE)
                 if alt_match:
                     confidence_percent = int(alt_match.group(1))
-                    logger.info(f"Found confidence with alternative pattern: {confidence_percent}%")
                     if 0 <= confidence_percent <= 100:
                         return {
                             'confidence_score': confidence_percent / 100.0,
@@ -251,27 +412,22 @@ ANSWER:"""
         sources: Optional[List[Dict[str, Any]]] = None
     ) -> str:
         """
-        Build a completely JSON-structured prompt to encourage consistent JSON responses.
+        Build a clean JSON-structured prompt with optimized architecture.
+        IMPROVED: Eliminates redundancy by using simplified structure with direct system prompt injection.
         
         Args:
             query: User query
             context: Retrieved context
-            system_prompt: System prompt instructions
+            system_prompt: System prompt instructions (Darwin/SAP specific)
             memory_context: Conversation memory
             sources: Source documents metadata
             
         Returns:
-            JSON-structured prompt
+            JSON-structured prompt with optimized architecture
         """
-        # Structure everything as JSON to create a pattern for the LLM
+        # Clean, non-redundant structure - system prompt goes directly into your_duty
         structured_input = {
-            "system_instructions": {
-                "role": "document_assistant",
-                "task": "analyze_documents_and_respond_in_json",
-                "instructions": system_prompt or "Analyze the provided documents and respond in JSON format",
-                "output_format": "json_only",
-                "language": "spanish"
-            },
+            "your_duty": system_prompt or "Analyze the provided documents and respond in JSON format",
             "conversation_context": {
                 "previous_interactions": memory_context or "No previous context",
                 "current_session": "active"
@@ -279,6 +435,9 @@ ANSWER:"""
             "document_sources": [
                 {
                     "source_id": source.get('id', f'[{i+1}]'),
+                    "document_title": source.get('title', source.get('file_name', source.get('source_file', 'Documento sin título'))),
+                    "file_name": source.get('file_name', source.get('title', source.get('source_file', 'N/A'))),
+                    "source_file": source.get('source_file', source.get('title', source.get('file_name', 'N/A'))),
                     "content": source.get('text', ''),
                     "metadata": source.get('metadata', {}),
                     "relevance_score": source.get('score', 0.0)
@@ -299,7 +458,7 @@ ANSWER:"""
             }
         }
         
-        # Create the JSON-structured prompt
+        # Create the optimized JSON-structured prompt
         json_prompt = f"""INPUT_DATA:
 {json.dumps(structured_input, indent=2, ensure_ascii=False)}
 
@@ -582,7 +741,12 @@ Where XX is a number between 0 and 100 representing your confidence in the answe
                 'doc_id': result.get('doc_id'),
                 'chunk_id': result.get('chunk_id'),
                 'score': result.get('rrf_score', result.get('score')),
-                'metadata': result.get('metadata', {})
+                'metadata': result.get('metadata', {}),
+                # FIXED: Include title and filename fields from expanded_results
+                'title': result.get('title', ''),
+                'file_name': result.get('file_name', ''),
+                'source_file': result.get('source_file', ''),
+                'text': result.get('text', '')
             })
 
         context = "\n\n".join(context_parts)
@@ -754,7 +918,76 @@ Where XX is a number between 0 and 100 representing your confidence in the answe
             # Extract cache metrics if available and tracking is enabled
             cache_metrics = self._extract_cache_metrics(response_body.get('usage', {}))
 
-            # Dump LLM response for analysis
+            # FIXED: Simplified and corrected source mapping
+            # The problem was that sources and expanded_results have the same order (1:1 mapping)
+            enhanced_sources = []
+            logger.debug("Processing sources for metadata mapping")
+            
+            for i, source in enumerate(sources):
+                # Direct mapping - sources[i] corresponds to expanded_results[i]
+                expanded_result = expanded_results[i] if i < len(expanded_results) else None
+                
+                if expanded_result:
+                    # Extract title and filename directly from expanded_result (which has the correct data)
+                    document_title = (
+                        expanded_result.get('title') or 
+                        expanded_result.get('source_file') or 
+                        expanded_result.get('file_name') or 
+                        'Documento sin título'
+                    )
+                    
+                    file_name = (
+                        expanded_result.get('source_file') or 
+                        expanded_result.get('file_name') or 
+                        expanded_result.get('title') or 
+                        'N/A'
+                    )
+
+                    # TO_BE_DELETED: Debug log for LLM client source processing
+                    print(f"TO_BE_DELETED - LLM_CLIENT processing source {i+1}:")
+                    print(f"TO_BE_DELETED - expanded_result keys: {list(expanded_result.keys())}")
+                    print(f"TO_BE_DELETED - expanded_result.title: {expanded_result.get('title', 'NONE')}")
+                    print(f"TO_BE_DELETED - expanded_result.source_file: {expanded_result.get('source_file', 'NONE')}")
+                    print(f"TO_BE_DELETED - expanded_result.file_name: {expanded_result.get('file_name', 'NONE')}")
+                    print(f"TO_BE_DELETED - FINAL document_title: {document_title}")
+                    print(f"TO_BE_DELETED - FINAL file_name: {file_name}")
+                    
+                    enhanced_source = {
+                        'id': source.get('id', f'[{i+1}]'),
+                        'doc_id': expanded_result.get('doc_id', 'N/A'),
+                        'chunk_id': expanded_result.get('chunk_id', 'N/A'),
+                        'score': source.get('score', expanded_result.get('score', 0.0)),
+                        'metadata': expanded_result.get('metadata', {}),
+                        'text': expanded_result.get('text', ''),
+                        'document_title': document_title,
+                        'file_name': file_name
+                    }
+                else:
+                    # Fallback if no expanded_result
+                    enhanced_source = {
+                        'id': source.get('id', f'[{i+1}]'),
+                        'doc_id': source.get('doc_id', 'N/A'),
+                        'chunk_id': source.get('chunk_id', 'N/A'),
+                        'score': source.get('score', 0.0),
+                        'metadata': source.get('metadata', {}),
+                        'text': source.get('text', ''),
+                        'document_title': source.get('title', 'Documento sin título'),
+                        'file_name': source.get('file_name', 'N/A')
+                    }
+                
+                enhanced_sources.append(enhanced_source)
+            
+            logger.debug(f"Enhanced {len(enhanced_sources)} sources with proper filename mapping")
+            
+            context_data = {
+                'sources_count': len(sources),
+                'images_count': len(images_data),
+                'context_length': len(context),
+                'total_documents': len(expanded_results),
+                'sources': enhanced_sources
+            }
+
+            # Dump complete LLM request and response for analysis
             request_info = {
                 'model': self.model_id,
                 'max_tokens': self.max_tokens,
@@ -767,7 +1000,14 @@ Where XX is a number between 0 and 100 representing your confidence in the answe
                 'stop_reason': stop_reason,
                 'cache_metrics': cache_metrics
             }
-            self._dump_llm_response(query, raw_answer, request_info)
+            
+            self._dump_llm_request_and_response(
+                query=query,
+                raw_answer=raw_answer,
+                full_request_body=request_body,
+                request_info=request_info,
+                context_data=context_data
+            )
 
             # Prepare metadata for structured parsing
             parsing_metadata = {
@@ -827,182 +1067,6 @@ Where XX is a number between 0 and 100 representing your confidence in the answe
             logger.error(f"Error generating answer: {e}")
             raise
 
-    def generate_with_citations_streaming(
-        self,
-        query: str,
-        expanded_results: List[Dict[str, Any]],
-        max_tokens: Optional[int] = None,
-        temperature: Optional[float] = None
-    ):
-        """
-        Generate answer with source citations using streaming.
-        Already has proper image support.
-
-        Args:
-            query: User query
-            expanded_results: Results with expanded context
-            max_tokens: Maximum tokens to generate
-            temperature: Sampling temperature
-
-        Yields:
-            Streaming response chunks
-        """
-        try:
-            # Format context with source markers and collect images
-            context_parts = []
-            sources = []
-            images_data = self._extract_images_from_results(expanded_results)
-
-            for i, result in enumerate(expanded_results, 1):
-                source_id = f"[{i}]"
-                context_parts.append(f"{source_id} {result['text']}")
-
-                sources.append({
-                    'id': source_id,
-                    'doc_id': result.get('doc_id'),
-                    'chunk_id': result.get('chunk_id'),
-                    'score': result.get('rrf_score', result.get('score')),
-                    'metadata': result.get('metadata', {})
-                })
-
-            context = "\n\n".join(context_parts)
-            logger.info(f"Formatted context with {len(sources)} sources, {len(images_data)} images")
-
-            # If images are present, add note to context
-            if images_data:
-                context += f"\n\n[NOTA: Se han incluido {len(images_data)} imagen(es) visual(es) para análisis]"
-
-            # Get system prompt
-            system_prompt = self._get_system_prompt()
-
-            # Build prompt
-            prompt = self._build_rag_prompt(query, context, system_prompt)
-
-            # Use provided parameters or defaults
-            max_tokens = max_tokens or self.max_tokens
-            temperature = temperature or self.temperature
-
-            # Build message content (text + optional images)
-            if images_data:
-                message_content = self._build_multimodal_content(prompt, images_data)
-            else:
-                message_content = prompt
-
-            # Prepare Claude streaming request
-            request_body = {
-                "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": max_tokens,
-                "temperature": temperature,
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": message_content
-                    }
-                ]
-            }
-
-            logger.info(f"Calling Bedrock streaming API with model: {self.model_id} (Images: {len(images_data)})")
-
-            # Call Bedrock with streaming
-            response = self.bedrock_client.invoke_model_with_response_stream(
-                modelId=self.model_id,
-                body=json.dumps(request_body),
-                contentType='application/json',
-                accept='application/json'
-            )
-
-            # Track full response for confidence extraction
-            full_text = []
-            usage_data = {}
-            stop_reason = None
-            chunks_received = 0
-
-            # Stream response
-            stream = response.get('body')
-            if not stream:
-                logger.error("No stream body in Bedrock response")
-                raise RuntimeError("No stream body received from Bedrock")
-
-            logger.info("Processing streaming events...")
-
-            for event in stream:
-                chunk = event.get('chunk')
-                if chunk:
-                    try:
-                        chunk_data = json.loads(chunk.get('bytes').decode())
-
-                        # Handle Claude streaming format
-                        if chunk_data['type'] == 'content_block_delta':
-                            delta = chunk_data.get('delta', {})
-                            if delta.get('type') == 'text_delta':
-                                text = delta.get('text', '')
-                                full_text.append(text)
-                                chunks_received += 1
-
-                                # Yield text chunk
-                                yield {
-                                    'type': 'chunk',
-                                    'text': text
-                                }
-
-                        elif chunk_data['type'] == 'message_delta':
-                            # Capture usage and stop reason
-                            usage_data = chunk_data.get('usage', {})
-                            stop_reason = chunk_data.get('delta', {}).get('stop_reason')
-
-                        elif chunk_data['type'] == 'message_stop':
-                            logger.info(f"Streaming completed successfully. Chunks received: {chunks_received}")
-
-                            # Extract confidence score and rationale from full text
-                            full_response = ''.join(full_text)
-                            confidence_data = self._extract_confidence_score_and_rationale(full_response)
-                            confidence_score = confidence_data['confidence_score']
-                            confidence_rationale = confidence_data['confidence_rationale']
-
-                            # Yield completion metadata with confidence score and rationale
-                            yield {
-                                'type': 'complete',
-                                'metadata': {
-                                    'model': self.model_id,
-                                    'usage': {
-                                        'input_tokens': usage_data.get('input_tokens', 0),
-                                        'output_tokens': usage_data.get('output_tokens', 0)
-                                    },
-                                    'stop_reason': stop_reason or 'end_turn',
-                                    'full_text': full_response,
-                                    'chunks_received': chunks_received,
-                                    'confidence_score': confidence_score,
-                                    'confidence_rationale': confidence_rationale,
-                                    'sources': sources,
-                                    'num_sources': len(sources),
-                                    'images_processed': len(images_data)
-                                }
-                            }
-                            break
-
-                    except json.JSONDecodeError as e:
-                        logger.error(f"Failed to parse chunk JSON: {e}")
-                        continue
-                    except Exception as e:
-                        logger.error(f"Error processing chunk: {e}")
-                        continue
-
-                # Handle error events
-                elif event.get('error'):
-                    error_data = event.get('error')
-                    logger.error(f"Stream error event: {error_data}")
-                    raise RuntimeError(f"Stream error: {error_data}")
-
-            logger.info(f"Stream processing completed. Total chunks: {chunks_received}, Images processed: {len(images_data)}")
-
-        except ClientError as e:
-            error_code = e.response.get('Error', {}).get('Code', 'Unknown')
-            error_message = e.response.get('Error', {}).get('Message', str(e))
-            logger.error(f"Bedrock API error [{error_code}]: {error_message}")
-            raise RuntimeError(f"Bedrock API error: {error_message}")
-        except Exception as e:
-            logger.error(f"Error in streaming generation: {e}", exc_info=True)
-            raise RuntimeError(f"Streaming generation failed: {str(e)}")
 
     def get_stats(self) -> Dict[str, Any]:
         """Get LLM client statistics."""
