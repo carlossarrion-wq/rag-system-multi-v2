@@ -17,6 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.utils.multi_app_config_manager import MultiAppConfigManager
 from src.utils.connection_manager import ConnectionManager
+from src.indexing.semantic_chunker import SemanticChunker
 
 
 class MultiAppOpenSearchIndexer:
@@ -80,10 +81,17 @@ class MultiAppOpenSearchIndexer:
         self.chunk_overlap = chunking_config.get('chunk_overlap', 225)
         self.separators = chunking_config.get('separators', ["\n\n", "\n", " ", ""])
         
+        # Initialize Semantic Chunker with table preservation
+        self.semantic_chunker = SemanticChunker(
+            chunk_size=self.chunk_size,
+            chunk_overlap=self.chunk_overlap
+        )
+        
         logger.info(f"MultiAppOpenSearchIndexer initialized for application: {self.application_info['name']}")
         logger.info(f"Index: {self.index_name}")
         logger.info(f"S3 Bucket: {self.s3_config['bucket']}")
         logger.info(f"Chunk size: {self.chunk_size}, Overlap: {self.chunk_overlap}")
+        logger.info(f"Semantic chunking with table preservation: ENABLED")
         
     def create_index(self) -> bool:
         """Create the application-specific OpenSearch index with proper mapping"""
@@ -335,36 +343,49 @@ class MultiAppOpenSearchIndexer:
                 return True
                 
             else:
-                # Regular text document processing
-                chunks = self.chunk_text(document['content'])
-                logger.info(f"Created {len(chunks)} chunks for {document['file_name']} in {self.app_name}")
+                # Regular text document processing with semantic chunking
+                semantic_chunks = self.semantic_chunker.chunk_with_table_preservation(
+                    document['content'], 
+                    document_metadata
+                )
+                logger.info(f"Created {len(semantic_chunks)} semantic chunks for {document['file_name']} in {self.app_name}")
                 
-                # Index each chunk
-                for i, chunk in enumerate(chunks):
+                # Index each semantic chunk
+                for i, semantic_chunk in enumerate(semantic_chunks):
                     chunk_id = f"{self.app_name}_{document['file_hash']}_{i}"
+                    chunk_text = semantic_chunk['text']
+                    chunk_metadata = semantic_chunk['metadata']
                     
                     # Generate text embedding
-                    embedding = self.generate_embedding(chunk)
+                    embedding = self.generate_embedding(chunk_text)
                     if not embedding:
-                        logger.error(f"Failed to generate embedding for chunk {i} in {self.app_name}")
+                        logger.error(f"Failed to generate embedding for semantic chunk {i} in {self.app_name}")
                         continue
+                    
+                    # Merge document metadata with chunk-specific metadata
+                    merged_metadata = {
+                        **document_metadata,
+                        **chunk_metadata,
+                        "file_size": document.get('file_size', 0),
+                        "file_extension": document.get('file_extension', ''),
+                        "total_chunks": len(semantic_chunks),
+                        "is_multimodal": False,
+                        "semantic_chunk_index": semantic_chunk.get('chunk_index', i),
+                        "chunk_position": semantic_chunk.get('position', 0),
+                        "chunk_length": semantic_chunk.get('length', len(chunk_text)),
+                        "chunk_type": semantic_chunk.get('chunk_type', 'text')
+                    }
                     
                     # Prepare document for indexing
                     doc_to_index = {
-                        "content": chunk,
+                        "content": chunk_text,
                         "title": document.get('file_name', ''),
                         "file_path": document.get('file_path', ''),
                         "file_name": document.get('file_name', ''),
                         "chunk_id": chunk_id,
                         "chunk_index": i,
                         "embedding": embedding,
-                        "metadata": {
-                            **document_metadata,
-                            "file_size": document.get('file_size', 0),
-                            "file_extension": document.get('file_extension', ''),
-                            "total_chunks": len(chunks),
-                            "is_multimodal": False
-                        },
+                        "metadata": merged_metadata,
                         "timestamp": datetime.now().isoformat(),
                         "document_type": document.get('file_extension', '').replace('.', ''),
                         "has_images": has_images,
@@ -383,9 +404,23 @@ class MultiAppOpenSearchIndexer:
                         body=doc_to_index
                     )
                     
-                    logger.debug(f"Indexed chunk {i} for {document['file_name']} in {self.app_name}: {response['result']}")
+                    # Log table chunks with more detail
+                    if semantic_chunk.get('chunk_type') == 'table':
+                        table_info = chunk_metadata.get('table_rows_count', 0)
+                        codes_count = len(chunk_metadata.get('technical_codes', []))
+                        logger.info(f"Indexed TABLE chunk {i} for {document['file_name']} in {self.app_name}: {table_info} rows, {codes_count} codes")
+                    else:
+                        logger.debug(f"Indexed semantic chunk {i} for {document['file_name']} in {self.app_name}: {response['result']}")
                 
-                logger.info(f"Successfully indexed {len(chunks)} chunks for {document['file_name']} in {self.app_name}")
+                # Log summary of chunk types
+                table_chunks = sum(1 for chunk in semantic_chunks if chunk.get('chunk_type') == 'table')
+                text_chunks = len(semantic_chunks) - table_chunks
+                total_codes = sum(len(chunk['metadata'].get('technical_codes', [])) for chunk in semantic_chunks)
+                
+                logger.info(f"Successfully indexed {len(semantic_chunks)} semantic chunks for {document['file_name']} in {self.app_name}")
+                logger.info(f"  - {table_chunks} table chunks (preserved intact)")
+                logger.info(f"  - {text_chunks} text chunks")
+                logger.info(f"  - {total_codes} technical codes detected")
                 return True
             
         except Exception as e:
