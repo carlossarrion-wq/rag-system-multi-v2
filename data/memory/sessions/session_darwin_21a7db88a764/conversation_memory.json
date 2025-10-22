@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué información muestra el carrito de Darwin durante el proceso de contratación?",
+      "assistant_response": "Según la información en los documentos proporcionados, durante el proceso de contratación en Darwin, los precios de energía no se muestran en el carrito [2]. Los documentos no contienen más detalles sobre la información que se muestra en el carrito de Darwin durante la contratación.",
+      "timestamp": "2025-10-22T22:54:34.194674",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.8,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:54:34.194835"
+}

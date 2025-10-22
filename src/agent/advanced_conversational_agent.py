@@ -10,9 +10,8 @@ Este módulo implementa un agente conversacional completo que integra:
 """
 
 import logging
-from typing import Dict, List, Any, Optional, Iterator, Tuple
+from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass
-import asyncio
 import time
 
 from .reasoning_agent_fixed import FixedReasoningAgent, ReasoningResult
@@ -52,7 +51,8 @@ class AdvancedConversationalAgent:
         citation_manager: CitationManager,
         memory_file: Optional[str] = None,
         acronym_dict_path: Optional[str] = None,
-        config_path: str = "config/aws_config_production.yaml"
+        config_path: str = "config/aws_config_production.yaml",
+        session_id: Optional[str] = None
     ):
         """
         Inicializa el agente conversacional avanzado.
@@ -63,9 +63,12 @@ class AdvancedConversationalAgent:
             citation_manager: Gestor de citas y fuentes
             memory_file: Archivo para persistir memoria
             acronym_dict_path: Ruta al diccionario de acrónimos
+            config_path: Ruta al archivo de configuración
+            session_id: ID de sesión para aislamiento de conversaciones (opcional)
         """
         self.llm_client = llm_client
         self.citation_manager = citation_manager
+        self.session_id = session_id
         
         # Inicializar componentes
         self.reasoning_agent = FixedReasoningAgent(
@@ -84,7 +87,8 @@ class AdvancedConversationalAgent:
             llm_client=llm_client,
             max_short_term_turns=10,
             max_long_term_turns=100,
-            memory_file=memory_file
+            memory_file=memory_file,
+            session_id=session_id
         )
         
         # Configuración de confidence scoring
@@ -94,24 +98,22 @@ class AdvancedConversationalAgent:
                            # < 60% - Baja confianza 🔴
         }
         
-        logger.info("AdvancedConversationalAgent initialized with all components")
+        logger.info("AdvancedConversationalAgent initialized")
     
     def process_query(
         self,
         query: str,
-        stream: bool = False,
         max_results: int = 10
     ) -> ConversationResponse:
         """
-        Procesa una consulta del usuario con análisis completo.
-        
+        Procesa una consulta del usuario y genera una respuesta.
+
         Args:
             query: Consulta del usuario
-            stream: Si usar streaming (para futuras implementaciones)
             max_results: Máximo número de resultados de búsqueda
-        
+
         Returns:
-            ConversationResponse con respuesta completa y confidence scoring
+            ConversationResponse con la respuesta generada
         """
         start_time = time.time()
         
@@ -126,7 +128,6 @@ class AdvancedConversationalAgent:
                 conversation_history=conversation_history
             )
             
-            logger.info(f"Reasoning complete: {reasoning_result.search_strategy} with {len(reasoning_result.tools_to_use)} tools")
             
             # PASO 3: Verificar si necesita clarificación
             if self.reasoning_agent.should_ask_clarification(reasoning_result):
@@ -140,7 +141,6 @@ class AdvancedConversationalAgent:
                 top_k=max_results
             )
             
-            logger.info(f"Search complete: {len(orchestration_result.final_results)} results found")
             
             # PASO 5: Generar respuesta con LLM
             response_data = self._generate_response_with_confidence(
@@ -170,7 +170,14 @@ class AdvancedConversationalAgent:
                     'tools_used': reasoning_result.tools_to_use,
                     'results_found': len(orchestration_result.final_results),
                     'memory_confidence': memory_context.memory_confidence,
-                    'reasoning_confidence': reasoning_result.confidence
+                    'reasoning_confidence': reasoning_result.confidence,
+                    # Pass through structured response data from LLM client
+                    'structured_response': response_data.get('structured_response'),
+                    'confidence_rationale': response_data.get('confidence_rationale'),
+                    'key_points': response_data.get('key_points', []),
+                    'follow_up_questions': response_data.get('follow_up_questions', []),
+                    'related_topics': response_data.get('related_topics', []),
+                    'warnings': response_data.get('warnings', [])
                 }
             )
             
@@ -185,7 +192,7 @@ class AdvancedConversationalAgent:
                 }
             )
             
-            logger.info(f"Query processed successfully in {final_response.execution_time:.2f}s with confidence {final_response.confidence_score:.2f}")
+            logger.info(f"Query processed in {final_response.execution_time:.2f}s (confidence: {final_response.confidence_score:.2f})")
             
             return final_response
             
@@ -222,7 +229,13 @@ class AdvancedConversationalAgent:
                 'text': result.get('text', result.get('content', '')),
                 'source': result.get('source_file', result.get('title', result.get('source', 'Fuente desconocida'))),
                 'score': result.get('score', 0.0),
-                'metadata': result.get('metadata', {})
+                'metadata': result.get('metadata', {}),
+                # FIXED: Pass through title and filename fields from HybridRetrieverFixed
+                'title': result.get('title', ''),
+                'file_name': result.get('file_name', ''),
+                'source_file': result.get('source_file', ''),
+                'chunk_id': result.get('chunk_id', ''),
+                'doc_id': result.get('doc_id', '')
             }
             expanded_results.append(expanded_result)
 
@@ -248,7 +261,14 @@ class AdvancedConversationalAgent:
                 'answer': answer,
                 'confidence_score': confidence_score,
                 'confidence_level': confidence_level,
-                'confidence_emoji': confidence_emoji
+                'confidence_emoji': confidence_emoji,
+                # Pass through all structured response data from LLM client
+                'structured_response': result.get('structured_response'),
+                'confidence_rationale': result.get('confidence_rationale'),
+                'key_points': result.get('key_points', []),
+                'follow_up_questions': result.get('follow_up_questions', []),
+                'related_topics': result.get('related_topics', []),
+                'warnings': result.get('warnings', [])
             }
             
         except Exception as e:
@@ -358,7 +378,6 @@ class AdvancedConversationalAgent:
         """Limpia la memoria conversacional"""
         
         self.memory.clear_memory()
-        logger.info("Conversation memory cleared")
     
     def set_confidence_thresholds(self, high: float, medium: float) -> None:
         """Configura los umbrales de confianza"""
@@ -368,5 +387,3 @@ class AdvancedConversationalAgent:
         
         self.confidence_thresholds['high'] = high
         self.confidence_thresholds['medium'] = medium
-        
-        logger.info(f"Confidence thresholds updated: high={high}, medium={medium}")

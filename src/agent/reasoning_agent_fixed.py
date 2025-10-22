@@ -70,7 +70,7 @@ class FixedReasoningAgent:
         """
         self.llm_client = llm_client
         self.acronym_dict = self._load_acronym_dictionary(acronym_dict_path)
-        logger.info(f"FixedReasoningAgent initialized with {len(self.acronym_dict)} acronyms")
+        logger.debug(f"FixedReasoningAgent initialized with {len(self.acronym_dict)} acronyms")
 
     def _load_acronym_dictionary(self, path: Optional[str]) -> Dict[str, str]:
         """Carga el diccionario de acrónimos"""
@@ -213,7 +213,7 @@ class FixedReasoningAgent:
             '  * "información del documento X"',
             '  * "busca en el documento X"',
             '  * "contenido del documento X"',
-            '  * Cualquier mención de nombres como "DF_Gadea2.0_X.X", "ECOFI - X", etc.',
+            '  * Cualquier mención de nombres de documentos específicos del sistema',
             "",
             "- Cuando detectes estos patrones:",
             '  1. Extraer el nombre del documento completo en "extracted_identifiers"',

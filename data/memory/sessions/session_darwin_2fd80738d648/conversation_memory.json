@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué son los productos ECO en Darwin y cómo se identifican?",
+      "assistant_response": "Los productos ECO en Darwin son una categoría de productos de energía (electricidad y gas) para clientes pymes [4][6]. Estos productos se identifican con un icono específico en el paso 2 del proceso de contratación, así como en el carrito de compra [4].\n\nLos productos ECO se configuran en el módulo de Administración de productos de Darwin, donde se marca el atributo 'Eco' para indicar que se trata de un producto de la línea ECO [4]. Estos productos ECO para pymes tienen características específicas que los diferencian de otros productos, como por ejemplo el tipo de pedido (C-Captación, A-Alta, M-Media, B-Baja) [6].",
+      "timestamp": "2025-10-22T22:55:34.021437",
+      "entities": [
+        "clientes",
+        "Darwin",
+        "compra"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "clientes": 1,
+    "Darwin": 1,
+    "compra": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:55:34.021692"
+}

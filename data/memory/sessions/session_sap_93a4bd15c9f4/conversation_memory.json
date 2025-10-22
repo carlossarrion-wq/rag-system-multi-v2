@@ -1,0 +1,51 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "hablame de los procesos de contratación y switching",
+      "assistant_response": "Lamentablemente, la información proporcionada en los DATOS_DE_ENTRADA no contiene detalles sobre los procesos de contratación y switching. El único documento recuperado [1] se enfoca en describir el diseño funcional de la sincronización de datos entre los sistemas Salesforce y SAP, pero no aborda específicamente los procesos de contratación y cambio de proveedor. Para poder responder a tu pregunta, sería necesario contar con documentación adicional que detalle los flujos y configuraciones relacionados con dichos procesos en el sistema SAP. [1]",
+      "timestamp": "2025-10-22T22:05:06.618760",
+      "entities": [
+        "SAP"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.6,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    },
+    {
+      "user_message": "hablame de la integración entre SAp y salesforce",
+      "assistant_response": "La integración entre SAP y Salesforce se basa en un modelo de sincronización por procesos funcionales [3]. Todos los datos maestros y transaccionales se gestionan en el sistema Salesforce, que actúa como front-end, y se sincronizan con el sistema SAP, que actúa como back-end [4].\n\nLos principales servicios que SAP ofrece para la integración son [3]:  \n1) Servicio de Punto de Suministro, para crear y actualizar la estructura técnica [3]\n2) Servicio de Cliente, para crear y actualizar clientes y datos asociados (direcciones, cuentas bancarias, contactos) [3][5]\n3) Servicio de Cuenta Contrato, para crear y actualizar la cuenta contrato y datos de pago [3]\n4) Servicio de Contrato Energía, para crear y actualizar contratos y líneas de contrato de energía [3]\n5) Servicio de Contrato SVA, para crear y actualizar contratos de servicios asociados [3]\n6) Servicio de Contrato SD, para crear y actualizar contratos no energéticos [3]\n\nLa sincronización se realiza a través de Mulesoft, que actúa como middleware y orquestador de los procesos [5]. Mulesoft llama a los servicios SAP según se vayan ejecutando los procesos en Salesforce [5].\n\nLas premisas clave de este modelo de integración son [4][8]:\n- Toda la información maestra y transaccional se gestiona en Salesforce, SAP solo replica lo necesario\n- Salesforce realiza todas las validaciones de integridad y negocio, SAP solo valida consistencia de datos\n- La relación entre un contrato SAP y un contrato Salesforce es 1:1 [8]",
+      "timestamp": "2025-10-22T22:05:42.947719",
+      "entities": [
+        "SAP",
+        "pago",
+        "Cliente",
+        "clientes",
+        "SAp"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "SAP": 2,
+    "pago": 1,
+    "Cliente": 1,
+    "clientes": 1,
+    "SAp": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:05:42.948461"
+}

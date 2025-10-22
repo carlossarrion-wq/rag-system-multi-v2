@@ -31,18 +31,15 @@ class MultiAppConfigManager:
         self.config_path = config_path
         self.config = self._load_config()
         self.applications = self.config.get('applications', {})
-        self.default_app = self.config.get('default_application', 'gadea')
+        self.default_app = self.config.get('default_application', 'sap')
         
-        logger.info(f"MultiAppConfigManager initialized with {len(self.applications)} applications")
-        logger.info(f"Available applications: {list(self.applications.keys())}")
-        logger.info(f"Default application: {self.default_app}")
+        logger.info(f"MultiAppConfigManager initialized: {len(self.applications)} applications ({', '.join(self.applications.keys())})")
     
     def _load_config(self) -> Dict[str, Any]:
         """Load the multi-application configuration file."""
         try:
             with open(self.config_path, 'r', encoding='utf-8') as f:
                 config = yaml.safe_load(f)
-            logger.info(f"Configuration loaded from {self.config_path}")
             return config
         except FileNotFoundError:
             logger.error(f"Configuration file not found: {self.config_path}")
@@ -85,7 +82,6 @@ class MultiAppConfigManager:
         """
         if app_name is None:
             app_name = self.default_app
-            logger.info(f"No application specified, using default: {app_name}")
         
         if not self.validate_application(app_name):
             available_apps = ', '.join(self.get_available_applications())
@@ -124,7 +120,6 @@ class MultiAppConfigManager:
             }
         }
         
-        logger.info(f"Configuration loaded for application: {app_name}")
         return merged_config
     
     def get_opensearch_index_name(self, app_name: Optional[str] = None) -> str:
@@ -181,11 +176,9 @@ class MultiAppConfigManager:
         # Fallback to inline system prompt
         inline_prompt = app_config.get('system_prompt', '')
         if inline_prompt:
-            logger.info(f"Using inline system prompt for application: {app_name}")
             return inline_prompt
         
         # No system prompt found
-        logger.warning(f"No system prompt found for application: {app_name}")
         return ""
     
     def _load_system_prompt_from_file(self, file_path: str, app_name: str) -> str:
@@ -221,20 +214,16 @@ class MultiAppConfigManager:
                     
                     # If it's a structured JSON prompt (like SAP), convert to string representation
                     if isinstance(json_data, dict):
-                        logger.info(f"Loaded structured JSON system prompt from {file_path} for application: {app_name}")
                         return json.dumps(json_data, indent=2, ensure_ascii=False)
                     else:
                         # If it's a simple JSON string, return the string value
-                        logger.info(f"Loaded JSON string system prompt from {file_path} for application: {app_name}")
                         return str(json_data)
                         
                 except json.JSONDecodeError:
                     # If JSON parsing fails, treat as plain text
-                    logger.info(f"JSON parsing failed, treating as plain text: {file_path} for application: {app_name}")
                     return content
             else:
                 # Plain text file
-                logger.info(f"Loaded text system prompt from {file_path} for application: {app_name}")
                 return content
                 
         except Exception as e:
@@ -342,7 +331,6 @@ class MultiAppConfigManager:
             'environment': app_config['environment']
         }
         
-        logger.info(f"Legacy configuration created for application: {app_name or self.default_app}")
         return legacy_config
     
     def get_app_name_from_index(self, index_name: str) -> Optional[str]:

@@ -22,7 +22,7 @@ class ImageSummaryRetriever:
         Initialize image summary retriever.
         
         Args:
-            app_name: Application name (e.g., 'pds', 'gadea')
+            app_name: Application name (e.g., 'sap', 'darwin')
             config_path: Path to configuration file
         """
         self.app_name = app_name
@@ -38,9 +38,9 @@ class ImageSummaryRetriever:
             config = yaml.safe_load(f)
         
         # Get S3 bucket for this application
-        self.s3_bucket = config['applications'][app_name]['services']['s3']['bucket']
+        self.s3_bucket = config['applications'][app_name]['s3']['bucket']
         
-        logger.info(f"ImageSummaryRetriever initialized for app: {app_name}, bucket: {self.s3_bucket}")
+        logger.debug(f"ImageSummaryRetriever initialized for app: {app_name}, bucket: {self.s3_bucket}")
     
     def get_image_summary(self, image_metadata: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         """
@@ -164,12 +164,12 @@ class ImageSummaryRetriever:
             key_elements = ['diagrama de flujo', 'usuario 900', 'gestión de servicios', 'contratos', 'incidencias', 'pagos']
         elif '700' in file_name:
             summary_text = f"Diagrama de flujo del usuario 700 - {file_name}"
-            description = f"Diagrama de flujo para el usuario 700, representando procesos importantes de la plataforma PDS relacionados con servicios al cliente"
-            key_elements = ['diagrama de flujo', 'usuario 700', 'servicios al cliente', 'plataforma PDS']
+            description = f"Diagrama de flujo para el usuario 700, representando procesos importantes de la plataforma relacionados con servicios al cliente"
+            key_elements = ['diagrama de flujo', 'usuario 700', 'servicios al cliente', 'plataforma']
         elif 'NIF' in file_name:
             summary_text = f"Diagrama de flujo de identificación NIF - {file_name}"
-            description = f"Diagrama de flujo relacionado con la identificación y verificación de clientes mediante NIF dentro de la plataforma PDS"
-            key_elements = ['diagrama de flujo', 'identificación NIF', 'verificación de clientes', 'plataforma PDS']
+            description = f"Diagrama de flujo relacionado con la identificación y verificación de clientes mediante NIF dentro de la plataforma"
+            key_elements = ['diagrama de flujo', 'identificación NIF', 'verificación de clientes', 'plataforma']
         
         return {
             'summary_text': summary_text,

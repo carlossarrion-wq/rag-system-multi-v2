@@ -1,0 +1,42 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es sap newco ?",
+      "assistant_response": "NEWCO es el nombre de la nueva solución de sistemas de Naturgy que integra el nuevo sistema facturador en SAP con un CRM externo en Salesforce. [2]\n\nLos principales aspectos de NEWCO son: [2]\n\n1) Existirá un proceso de sincronización de datos maestros entre SAP y Salesforce para garantizar que la información esté actualizada y sea veraz. [1]\n\n2) SAP ofrecerá servicios web para la actualización de datos maestros, que serán llamados desde Mulesoft (middleware) según los procesos funcionales requeridos. [1]\n\n3) Se definirán los siguientes sectores de suministro para las instalaciones: Gas, Electricidad, Servicios, ServiGas, ServiElectric, ServiHogar, ServiSolar y ServiSeguros. En un mismo punto de suministro se podrán crear N instalaciones (1 Gas, 1 Electricidad, N Servicios). [2]",
+      "timestamp": "2025-10-22T21:21:58.139208",
+      "entities": [
+        "SAP",
+        "sap"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "que es sap ?",
+      "assistant_response": "SAP (Systems, Applications, and Products in Data Processing) is a comprehensive enterprise resource planning (ERP) software suite developed by the German company SAP SE [1]. SAP is designed to manage and integrate a company's core business processes, such as finance, human resources, supply chain, and customer relationship management, into a single, centralized system [1].\n\nThe SAP system is widely used by large and medium-sized organizations across various industries, including manufacturing, retail, healthcare, and telecommunications [1]. It provides a range of modules and applications that can be tailored to the specific needs of an organization, allowing for efficient data management, process automation, and decision-making support [1].\n\nSome of the key features and capabilities of the SAP system include financial accounting, controlling, materials management, sales and distribution, production planning, human resources, and project management [1]. The system also offers advanced reporting and analytics tools, enabling organizations to gain insights into their business performance and make informed decisions [1].",
+      "timestamp": "2025-10-22T21:22:41.630826",
+      "entities": [
+        "SAP",
+        "sap"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "SAP": 2,
+    "sap": 2
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T21:22:41.631366"
+}

@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué información se necesita y qué pasos se siguen para dar de alta una agencia en Darwin?",
+      "assistant_response": "Según el documento 'Alta Agencia - Checklist (plantilla) v01.xlsx' [1], los pasos a seguir para dar de alta una agencia en Darwin son los siguientes:\n\n1) En el entorno DEV y PRE, Darwin ya realiza automáticamente el alta de la agencia al recibir los datos de la misma, por lo que no es necesario hacerlo manualmente en un paso posterior [1].\n\n2) Los pasos requeridos son:\n   - Creación de un nuevo grupo de usuarios vinculado al canal y agencia (canal-oferta), al que debe tener acceso la agencia. Dar de alta a los nuevos usuarios asociados a este grupo [1].\n   - Asociación de productos a la agencia [1].\n\nEstas tareas de creación de grupo de usuarios y asociación de productos a la agencia son gestionadas por el equipo de Negocio, no por el equipo de Darwin [1].",
+      "timestamp": "2025-10-22T22:51:21.080688",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:51:21.080966"
+}

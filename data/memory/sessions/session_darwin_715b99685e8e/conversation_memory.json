@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo funciona el proceso de portabilidad masiva en Darwin?",
+      "assistant_response": "El proceso de portabilidad masiva en Darwin funciona de la siguiente manera [2][4][6][8]:\n\n1) NAPI realiza una extracción de datos de contratos de Naturgy Iberia a migrar y deja el fichero generado en el FTP de Darwin en la ruta /intercambio/Portabilidad [2].\n\n2) Darwin dispone de un nuevo módulo de \"Portabilidad masiva\" al que solo tiene acceso el rol de usuario ROLE_PORTABILITY [4][6]. Este módulo permite consultar y exportar la tabla de control de la carga y creación de pedidos desde Darwin [4].\n\n3) Desde este módulo se puede ver el estado del proceso en Darwin (carga, creación del pedido, errores, envío a MuleSoft), pero para consultar el estado del pedido en Salesforce se debe acceder a la trastienda habitual y filtrar por el nuevo canal \"Portabilidad masiva\" [4].\n\n4) Darwin envía los pedidos a MuleSoft, quien a su vez los procesa y envía a Salesforce. Darwin no tiene visibilidad directa del estado en Salesforce, solo en su propio sistema [4].",
+      "timestamp": "2025-10-22T22:50:40.585327",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:50:40.585641"
+}

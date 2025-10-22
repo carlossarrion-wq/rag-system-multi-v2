@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué significa Darwin en el contexto de Naturgy y cuál es su función principal?",
+      "assistant_response": "Darwin (también referido como Funnel Único de Ventas) es el sistema desarrollado por Naturgy para gestionar los procesos de venta a través de todos sus canales: contratación asistida (con agente) y contratación no asistida (autoservicio) [4]. \n\nLa función principal de Darwin es centralizar y automatizar estos procesos de venta, permitiendo a Naturgy ofrecer una experiencia de contratación unificada a sus clientes, independientemente del canal utilizado [4]. Darwin da soporte a los principales canales de venta de Naturgy: oficinas físicas, Service Home, venta telefónica y venta online [4].\n\nAdicionalmente, Darwin permite la integración con otros sistemas clave como Siebel, Salesforce, MuleSoft, Aviva y SIPS para sincronizar información y automatizar flujos [6][8].",
+      "timestamp": "2025-10-22T22:45:14.353862",
+      "entities": [
+        "clientes",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "clientes": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:45:14.354334"
+}

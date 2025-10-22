@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué familias de servicios ofrece Darwin y cuáles son sus características principales?",
+      "assistant_response": "Darwin ofrece cuatro familias principales de servicios [2][6]:\n\n1. Servielectric (código SVE): Agrupa los servicios relacionados con electricidad [2].\n2. Servigas (código SVG): Incluye servicios asociados al gas [2]. \n3. Servihogar (código SVH): Comprende servicios generales del hogar [2].\n4. Solar: Incluye dos servicios: Batería Virtual (código OTR) y Servisolar (código SVS para Naturgy Clientes), aunque para Naturgy Iberia solo está disponible Batería Virtual [2][8].\n\nEl sistema permite contratar hasta 5 servicios de forma simultánea, pudiendo combinar servicios de diferentes familias [4][6]. Existe una limitación configurable de cambio de producto por sociedad y canal que impide contratar servicios de familias ya contratadas en la misma dirección de suministro [2].",
+      "timestamp": "2025-10-22T22:48:49.397555",
+      "entities": [
+        "Clientes",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Clientes": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:48:49.397813"
+}

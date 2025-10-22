@@ -386,10 +386,10 @@ Cache Metrics: {json.dumps(request_info.get('cache_metrics', {}), indent=2)}
             Formatted prompt
         """
         if system_prompt is None:
-            system_prompt = """You are a helpful AI assistant that answers questions based on the provided context.
-Your task is to provide accurate, detailed answers using ONLY the information from the context.
-If the context doesn't contain enough information to answer the question, say so clearly.
-Always cite which parts of the context you used to formulate your answer."""
+            system_prompt = """Eres un asistente de IA útil que responde preguntas basándose en el contexto proporcionado.
+Tu tarea es proporcionar respuestas precisas y detalladas usando ÚNICAMENTE la información del contexto.
+Si el contexto no contiene suficiente información para responder la pregunta, dilo claramente.
+Siempre cita qué partes del contexto usaste para formular tu respuesta."""
 
         prompt = f"""{system_prompt}
 
@@ -425,9 +425,9 @@ ANSWER:"""
         Returns:
             JSON-structured prompt with optimized architecture
         """
-        # Clean, non-redundant structure - system prompt goes directly into your_duty
+        # Clean, non-redundant structure - system prompt goes directly into tu_tarea
         structured_input = {
-            "your_duty": system_prompt or "Analyze the provided documents and respond in JSON format",
+            "tu_tarea": system_prompt or "Analiza los documentos proporcionados y responde en formato JSON",
             "conversation_context": {
                 "previous_interactions": memory_context or "No previous context",
                 "current_session": "active"
@@ -459,32 +459,34 @@ ANSWER:"""
         }
         
         # Create the optimized JSON-structured prompt
-        json_prompt = f"""INPUT_DATA:
+        json_prompt = f"""DATOS_DE_ENTRADA:
 {json.dumps(structured_input, indent=2, ensure_ascii=False)}
 
-TASK: Analyze the INPUT_DATA and provide a comprehensive response in JSON format following this exact structure:
+TAREA: Analiza ÚNICAMENTE los documentos proporcionados en "document_sources" y responde en formato JSON siguiendo exactamente esta estructura.
+
+IMPORTANTE: Solo puedes usar información de los documentos listados en "document_sources". NO inventes ni uses información de fuentes externas.
 
 {{
   "response_type": "document_based",
-  "answer": "Your detailed answer with citations [N]",
+  "answer": "Tu respuesta detallada con citas [N] usando SOLO los documentos proporcionados",
   "confidence": {{
     "score": 0.85,
     "level": "high",
-    "rationale": "Explanation of confidence level"
+    "rationale": "Explicación del nivel de confianza basada en los documentos disponibles"
   }},
   "sources": [
     {{
       "id": "[1]",
-      "title": "Document title",
+      "title": "Título del documento (debe coincidir con document_sources)",
       "relevance_score": 0.90,
-      "excerpt": "Relevant excerpt from document"
+      "excerpt": "Fragmento relevante del documento proporcionado"
     }}
   ],
-  "key_points": ["Key point 1", "Key point 2"],
-  "related_topics": ["Topic 1", "Topic 2"]
+  "key_points": ["Punto clave 1", "Punto clave 2"],
+  "related_topics": ["Tema relacionado 1", "Tema relacionado 2"]
 }}
 
-RESPONSE:"""
+RESPUESTA:"""
 
         return json_prompt
 
@@ -493,15 +495,15 @@ RESPONSE:"""
         Get system prompt. This method can be overridden by multi-app system.
         Default fallback prompt for standalone usage.
         """
-        return """You are a helpful AI assistant that answers questions based on the provided context.
-Your task is to provide accurate, detailed answers using ONLY the information from the context.
-If the context doesn't contain enough information to answer the question, say so clearly.
-Always cite which parts of the context you used to formulate your answer.
+        return """Eres un asistente de IA útil que responde preguntas basándose en el contexto proporcionado.
+Tu tarea es proporcionar respuestas precisas y detalladas usando ÚNICAMENTE la información del contexto.
+Si el contexto no contiene suficiente información para responder la pregunta, dilo claramente.
+Siempre cita qué partes del contexto usaste para formular tu respuesta.
 
-At the end of your response, include a confidence assessment in the format:
-CONFIDENCE: XX%
+Al final de tu respuesta, incluye una evaluación de confianza en el formato:
+CONFIANZA: XX%
 
-Where XX is a number between 0 and 100 representing your confidence in the answer."""
+Donde XX es un número entre 0 y 100 que representa tu confianza en la respuesta."""
 
     def _extract_images_from_results(self, expanded_results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """
@@ -772,24 +774,43 @@ Where XX is a number between 0 and 100 representing your confidence in the answe
             # Prepare sources data for JSON structure
             sources_for_json = []
             for i, result in enumerate(expanded_results, 1):
+                # Extract document title and filename from expanded_results
+                document_title = (
+                    result.get('title') or 
+                    result.get('source_file') or 
+                    result.get('file_name') or 
+                    'Documento sin título'
+                )
+                
+                file_name = (
+                    result.get('source_file') or 
+                    result.get('file_name') or 
+                    result.get('title') or 
+                    'N/A'
+                )
+                
                 sources_for_json.append({
                     'id': f'[{i}]',
                     'text': result['text'],
                     'metadata': result.get('metadata', {}),
-                    'score': result.get('rrf_score', result.get('score', 0.0))
+                    'score': result.get('rrf_score', result.get('score', 0.0)),
+                    # FIXED: Properly extract and include document names
+                    'title': document_title,
+                    'file_name': file_name,
+                    'source_file': result.get('source_file', document_title)
                 })
             
-            # Build JSON-structured prompt
+            # Build JSON-structured prompt - FIXED: Explicitly disable memory context to prevent contamination
             json_structured_prompt = self._build_json_structured_prompt(
                 query=query,
                 context=context,
                 system_prompt=system_prompt,
-                memory_context=None,  # TODO: Add memory context if available
+                memory_context=None,  # Explicitly disabled to prevent source contamination
                 sources=sources_for_json
             )
             
             # Use minimal system prompt for JSON approach
-            json_system_prompt = "You are a document analysis assistant. Analyze the provided JSON input and respond with a valid JSON object following the specified structure."
+            json_system_prompt = "Eres un asistente de análisis documental. Analiza la entrada JSON proporcionada y responde con un objeto JSON válido siguiendo la estructura especificada."
             system_messages = self._build_system_message_with_cache(json_system_prompt)
 
             # Build message content (text + optional images)
@@ -943,14 +964,6 @@ Where XX is a number between 0 and 100 representing your confidence in the answe
                         'N/A'
                     )
 
-                    # TO_BE_DELETED: Debug log for LLM client source processing
-                    print(f"TO_BE_DELETED - LLM_CLIENT processing source {i+1}:")
-                    print(f"TO_BE_DELETED - expanded_result keys: {list(expanded_result.keys())}")
-                    print(f"TO_BE_DELETED - expanded_result.title: {expanded_result.get('title', 'NONE')}")
-                    print(f"TO_BE_DELETED - expanded_result.source_file: {expanded_result.get('source_file', 'NONE')}")
-                    print(f"TO_BE_DELETED - expanded_result.file_name: {expanded_result.get('file_name', 'NONE')}")
-                    print(f"TO_BE_DELETED - FINAL document_title: {document_title}")
-                    print(f"TO_BE_DELETED - FINAL file_name: {file_name}")
                     
                     enhanced_source = {
                         'id': source.get('id', f'[{i+1}]'),

@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "hablame de los procesos de contratación y switching",
+      "assistant_response": "Los procesos de contratación y switching en Darwin abarcan diferentes tipos de canales y flujos de venta [6]:\n\n1. Contratación asistida:\n   - Venta presencial en agencia: el agente realiza el proceso de contratación con el cliente de forma presencial [6].\n   - Venta telefónica: el agente realiza el proceso de contratación por teléfono con el cliente [6].\n\n2. Contratación no asistida:\n   - Venta online: el cliente realiza el proceso de contratación de forma autoservicio a través de la web de Darwin [6].\n   - Portabilidad: el cliente inicia el proceso de cambio de comercializadora a través de la web de Darwin [6].\n\nAdicionalmente, Darwin cuenta con un proceso específico de switching o cambio de comercializadora [2][6]:\n   - El cliente solicita el cambio de comercializadora a través de Darwin, ya sea de forma presencial, telefónica u online.\n   - Darwin valida la elegibilidad del cliente y realiza las gestiones necesarias con el distribuidor y la antigua comercializadora [2][6].\n   - Una vez completado el cambio, Darwin activa el nuevo contrato y envía los datos al sistema transaccional Siebel [6].\n\nTodos estos procesos de contratación y switching cuentan con validaciones y configuraciones específicas por canal, sociedad (Naturgy Iberia o Naturgy Clientes) y tipo de producto [2][6].",
+      "timestamp": "2025-10-22T22:06:12.452546",
+      "entities": [
+        "cliente",
+        "Clientes",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Clientes": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:06:12.453209"
+}

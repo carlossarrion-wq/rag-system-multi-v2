@@ -1,0 +1,43 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo funciona el cron de envío de contratos a Mulesoft y qué validaciones realiza?",
+      "assistant_response": "Los documentos recuperados ([1]) no contienen información específica sobre el cron de envío de contratos a Mulesoft ni las validaciones que realiza. El único documento proporcionado trata sobre el proceso de alta de agencias, pero no aborda el flujo de envío de contratos a sistemas externos.",
+      "timestamp": "2025-10-22T22:52:28.939054",
+      "entities": [],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.6,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    },
+    {
+      "user_message": "hablame del cron de darwin hacia mulesoft",
+      "assistant_response": "Darwin tiene un proceso cron que se ejecuta cada 5 minutos y procesa pedidos de contratación en lotes de 500 en orden ascendente por fecha [8]. Este proceso realiza las siguientes acciones:\n\n1) Recupera los pedidos más antiguos que aún no se han enviado a Mulesoft [8]\n2) Ejecuta validaciones y recupera los datos necesarios de cada pedido [8]\n3) Envía los pedidos (menos de 500) a la integración con Mulesoft para su procesamiento [8]\n\nLuego, el cron hace una copia del contrato en formato PDF y lo sube a la ubicación definitiva en el SFTP de Mulesoft, en la carpeta /intercambio/Pxx/Contratos [6].",
+      "timestamp": "2025-10-22T22:52:57.741045",
+      "entities": [
+        "Darwin",
+        "darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:52:57.741291"
+}

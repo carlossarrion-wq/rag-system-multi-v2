@@ -1,0 +1,33 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es darwin ?",
+      "assistant_response": "Darwin es un sistema diseñado para gestionar todo el ciclo de contratación de servicios energéticos y complementarios para clientes residenciales y pymes de Naturgy [2][4][6]. Algunas de las principales funcionalidades de Darwin son:\n\n- Procesos de contratación asistida (con agente) y no asistida (autoservicio online) [4]\n- Integración con sistemas externos como Siebel, Salesforce, MuleSoft, Aviva y SIPS para sincronizar información [6]\n- Módulos funcionales como scoring, alianzas, locución y gestión de fallidos [6]\n- Configuración de canales, agencias y productos de energía y servicios complementarios [2][4]\n- Flujos de venta a través de múltiples canales: presencial, telefónica, online [4]\n- Documentación técnica y operativa, así como procedimientos de administración y configuración [2]\n- Infraestructura desplegada en AWS y arquitectura del sistema [2]",
+      "timestamp": "2025-10-22T21:52:51.627263",
+      "entities": [
+        "Darwin",
+        "clientes",
+        "darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "clientes": 1,
+    "darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T21:52:51.627719"
+}

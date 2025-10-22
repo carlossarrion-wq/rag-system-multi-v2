@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "Procesos de contratación y switching hablame sobre ellos",
+      "assistant_response": "Los documentos recuperados no contienen información específica sobre los procesos de contratación y switching en el sistema DARWIN. Sin embargo, se menciona que DARWIN gestiona los flujos de venta, incluyendo contratación asistida (con agente) y no asistida (autoservicio) a través de diferentes canales como presencial, telefónica y online [1]. Además, se indica que DARWIN realiza integraciones con sistemas externos como Siebel y Salesforce para la sincronización de pedidos y contratación [1]. Por lo tanto, es posible que información más detallada sobre estos procesos se encuentre en documentos relacionados con las integraciones y flujos de venta de DARWIN, que no han sido recuperados en esta búsqueda.",
+      "timestamp": "2025-10-22T22:04:09.582007",
+      "entities": [
+        "DARWIN"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.6,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "DARWIN": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:04:09.582455"
+}

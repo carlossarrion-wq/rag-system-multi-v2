@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo gestiona Darwin la protección de datos personales en pedidos no firmados?",
+      "assistant_response": "Darwin gestiona la protección de datos personales en pedidos no firmados de la siguiente manera [2][6][8]:\n\nCuando un pedido no ha sido firmado y tiene una antigüedad superior a 1 mes (30 días) desde que se aceptó el Retargeting, Darwin realiza un encriptado de los campos personales de cliente asociados a ese pedido [2]. Esto significa que en la trastienda y en las exportaciones de Darwin, los datos personales de dichos pedidos aparecerán encriptados y no en texto plano [8]. \n\nLa eventual necesidad de recuperar esta información encriptada requerirá una petición específica al equipo de soporte de Darwin [8].",
+      "timestamp": "2025-10-22T22:53:06.188966",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:53:06.189208"
+}

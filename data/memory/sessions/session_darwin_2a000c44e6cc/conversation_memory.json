@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué validaciones específicas realiza Darwin para nuevos suministros (NNSS) de electricidad?",
+      "assistant_response": "Según la información disponible en los documentos, Darwin realiza las siguientes validaciones específicas para nuevos suministros (NNSS) de electricidad [2][8]:\n\n1. Validación de CUPS: Se verifica que el CUPS sea válido y contratable. Si el CUPS no es válido, se marca el pedido en estado 0 (validaciones no superadas) [8].\n\n2. Validación de datos técnicos: Se consultan los datos técnicos del CUPS a través de las fuentes SIPS, P0 y A5_29, obteniendo información como consumos, potencias contratadas, tarifa de acceso, distribuidora y datos del titular. Estos datos técnicos son necesarios para completar el proceso de alta [2][8].\n\n3. Validación de límites: Existen límites configurados en Darwin, como un máximo de 40 CUPS por cliente en electricidad, que se validan durante el proceso de alta [2].",
+      "timestamp": "2025-10-22T22:49:52.055035",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.85,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:49:52.055457"
+}

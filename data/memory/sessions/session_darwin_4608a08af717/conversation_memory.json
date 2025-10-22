@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuál es la lógica de búsqueda de direcciones en Darwin y qué sistemas de callejero utiliza?",
+      "assistant_response": "Según la información disponible en el documento [1], Darwin utiliza una lógica de búsqueda jerárquica de direcciones. El proceso comienza con el widget de Emergya, que permite validar CUPS y obtener direcciones mediante dos métodos: búsqueda por CUPS o búsqueda por dirección [1]. Este widget consulta tanto SIPS como Google para localizar direcciones [1]. Si Emergya no encuentra la dirección completa pero sí recupera la horizontal (ID_VIA), Darwin muestra el callejero GoogleMaps para que el usuario complete los datos verticales (escalera, piso, puerta) [1]. Si la dirección no se encuentra en ninguno de los sistemas anteriores, se utiliza el callejero 'Norma' que consulta el maestro de direcciones Newco [1]. El objetivo final de este proceso es obtener dos identificadores clave: el placeId (correspondiente a la dirección horizontal) y el masterId (dirección completa), necesarios para la sincronización con los sistemas transaccionales Siebel y Salesforce [1].",
+      "timestamp": "2025-10-22T22:47:44.844177",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.85,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:47:44.844595"
+}

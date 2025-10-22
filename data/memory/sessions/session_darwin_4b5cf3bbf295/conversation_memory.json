@@ -1,0 +1,69 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué es Darwin?",
+      "assistant_response": "Darwin is a system developed by Naturgy to manage the sales and contracting processes for energy and home services [2]. According to the provided context, Darwin has the following key characteristics:\n\n1) Role: Darwin is a document analysis assistant designed to understand, analyze and synthesize information contained in a set of technical documents related to the Darwin system, stored in a vector repository [1].\n\n2) Mission: The objective of this assistant is to provide accurate, complete, and well-grounded responses based on the available Darwin documents, integrating dispersed information when necessary and avoiding unsupported inferences [1].\n\n3) Context: Darwin (also referred to as DARWIN or darwin) is the name of the system, which includes various document types such as sales processes, channel and product configurations, integrations with external systems, functional modules, and technical/operational documentation [1].\n\n4) Language: The assistant is configured to communicate in European Spanish [1].\n\n5) Data Sources: In addition to the original documents, the assistant has access to explanatory summaries that describe the content of each file. These summaries serve only as contextual support, and the responses must be based on the original documents whenever possible [1].",
+      "timestamp": "2025-10-22T21:20:06.282559",
+      "entities": [
+        "DARWIN",
+        "darwin",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "¿Cómo funciona el sistema de compras?",
+      "assistant_response": "The documents provided do not contain any information about the purchasing system in the DARWIN system. The documents mention details about integrations with external systems, product and channel configurations, and some contracting processes, but do not cover the purchasing functionality. Without relevant information in the documents, I am unable to provide a comprehensive response about how the purchasing system works in DARWIN. [1][2][3]",
+      "timestamp": "2025-10-22T21:20:17.660388",
+      "entities": [
+        "DARWIN",
+        "compras"
+      ],
+      "topics": [
+        "compras"
+      ],
+      "confidence_score": 0.8,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "Explícame los procesos de aprovisionamiento",
+      "assistant_response": "Lamentablemente, los documentos proporcionados no contienen información detallada sobre los procesos de aprovisionamiento en el sistema DARWIN. Las referencias a estos procesos son limitadas y se encuentran dispersas en diferentes contextos. \n\nLos documentos mencionan algunos aspectos relacionados con el aprovisionamiento, como la entrega de documentación a las agencias [3], la actualización de Terraform para habilitar nuevas carpetas en el SFTP [3], y la creación de usuarios de acceso a estas carpetas [3]. Sin embargo, no se proporciona una descripción completa de los pasos, validaciones y sistemas involucrados en los procesos de aprovisionamiento.\n\nPor lo tanto, con la información disponible, no es posible reconstruir y explicar de forma detallada los procesos de aprovisionamiento en DARWIN. Sería necesario acceder a documentación adicional, posiblemente de carácter más técnico y operativo, para poder responder esta pregunta de manera más completa.",
+      "timestamp": "2025-10-22T21:20:27.258408",
+      "entities": [
+        "DARWIN",
+        "aprovisionamiento"
+      ],
+      "topics": [
+        "compras",
+        "documentación"
+      ],
+      "confidence_score": 0.6,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "DARWIN": 3,
+    "darwin": 1,
+    "Darwin": 1,
+    "compras": 1,
+    "aprovisionamiento": 1
+  },
+  "recurring_topics": {
+    "compras": 2,
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T21:20:27.258910"
+}

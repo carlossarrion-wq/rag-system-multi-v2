@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo funciona el sistema de reintentos en Darwin para errores en el proceso de validar y firmar?",
+      "assistant_response": "Lamentablemente, los documentos proporcionados no contienen información específica sobre el sistema de reintentos en Darwin para errores en el proceso de validar y firmar. Los documentos recuperados se enfocan principalmente en la integración de agencias y el proceso de alta de nuevas agencias en el sistema, pero no abordan detalles técnicos sobre el manejo de errores o reintentos durante la contratación. [1][2][3][4][5][6][7][8]",
+      "timestamp": "2025-10-22T22:54:25.682793",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.7,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:54:25.683005"
+}

@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo gestiona Darwin los datos bancarios según el tipo de contratación?",
+      "assistant_response": "Los documentos recuperados [1] no contienen información específica sobre cómo gestiona Darwin los datos bancarios según el tipo de contratación. El documento menciona aspectos relacionados con la alta de agencias y usuarios, pero no aborda el tema de la gestión de datos bancarios.",
+      "timestamp": "2025-10-22T22:55:10.380916",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.4,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:55:10.381111"
+}

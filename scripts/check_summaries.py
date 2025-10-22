@@ -112,16 +112,16 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python3 scripts/check_summaries.py gadea
-  python3 scripts/check_summaries.py pds
-  python3 scripts/check_summaries.py --app gadea
+  python3 scripts/check_summaries.py sap
+  python3 scripts/check_summaries.py darwin
+  python3 scripts/check_summaries.py --app sap
         """
     )
     
     parser.add_argument(
         'app_name',
         nargs='?',
-        help='Application name to check (e.g., gadea, pds)'
+        help='Application name to check (e.g., sap, darwin)'
     )
     
     parser.add_argument(

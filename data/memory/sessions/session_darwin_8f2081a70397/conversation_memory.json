@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son los pasos principales del proceso de contratación en Darwin?",
+      "assistant_response": "Según la información proporcionada en los documentos, los principales pasos del proceso de contratación en Darwin son:\n\n1) Validación de datos del cliente y CUPS [6]: Se verifica que el CUPS del cliente no esté en una blacklist, consultando la base de datos de CUPS. Si el CUPS es válido, se obtienen los datos técnicos del punto de suministro a través de las integraciones con SIPS y otros sistemas [6].\n\n2) Configuración de la contratación [4]: Se configura el tipo de contratación (CC, CCT, CCP, CCPT, FIDE, NNSS, ALTA) y el canal de venta (presencial, telefónica, online, portabilidad) [4].\n\n3) Verificación de elegibilidad [2]: Se validan las condiciones de elegibilidad del cliente para los productos y servicios solicitados. Esto incluye comprobaciones de scoring, límites, y otras restricciones [2].\n\n4) Generación y firma de documentos legales [2]: El sistema AVIVA se encarga de generar y gestionar la firma de los contratos y documentación legal por parte del cliente [2].\n\n5) Activación del servicio [6]: Una vez firmado el contrato, se procede a la activación del servicio en los sistemas transaccionales como Siebel o Salesforce, sincronizando la información a través de integraciones [6].",
+      "timestamp": "2025-10-22T22:46:59.497711",
+      "entities": [
+        "Darwin",
+        "cliente"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:46:59.498087"
+}

@@ -49,7 +49,7 @@ class ConnectionManager:
                     connection_class=RequestsHttpConnection,
                     timeout=30
                 )
-                logger.info("OpenSearch client initialized successfully")
+                logger.debug("OpenSearch client initialized successfully")
             except Exception as e:
                 logger.error(f"Error initializing OpenSearch client: {e}")
                 raise
@@ -66,7 +66,7 @@ class ConnectionManager:
                     user=pg_config['user'],
                     password=os.getenv('POSTGRES_PASSWORD')
                 )
-                logger.info("PostgreSQL connection established successfully")
+                logger.debug("PostgreSQL connection established successfully")
             except Exception as e:
                 logger.error(f"Error connecting to PostgreSQL: {e}")
                 raise
@@ -79,7 +79,7 @@ class ConnectionManager:
                     's3',
                     region_name=self.config['aws']['region']
                 )
-                logger.info("S3 client initialized successfully")
+                logger.debug("S3 client initialized successfully")
             except Exception as e:
                 logger.error(f"Error initializing S3 client: {e}")
                 raise
@@ -92,7 +92,7 @@ class ConnectionManager:
                     'bedrock-runtime',
                     region_name=self.config['bedrock']['region']
                 )
-                logger.info("Bedrock client initialized successfully")
+                logger.debug("Bedrock client initialized successfully")
             except Exception as e:
                 logger.error(f"Error initializing Bedrock client: {e}")
                 raise

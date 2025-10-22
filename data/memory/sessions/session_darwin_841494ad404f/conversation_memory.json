@@ -1,0 +1,33 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo trata Darwin el bono social en las contrataciones?",
+      "assistant_response": "Darwin trata el bono social de la siguiente manera en las contrataciones [2][6][8]:\n\nEl bono social es un descuento en la factura eléctrica del que puede beneficiarse el consumidor que tenga contratado el Precio Voluntario para el Pequeño Consumidor (PVPC). Sin embargo, el bono social solo aplica a Comercializadora Regulada y no a las contrataciones con Naturgy Iberia (NI) o Naturgy Clientes (NC) en Darwin [2].\n\nEn el Paso 5 de la contratación no asistida en Darwin, si el cliente tiene un bono social activo, se muestra una modal donde debe renunciar al bono social para poder continuar con la contratación [2]. Si el cliente no acepta la renuncia, no se puede completar la contratación [2].\n\nPor otro lado, en la contratación asistida a través de agentes en Darwin, no se menciona el bono social en ningún momento [6].",
+      "timestamp": "2025-10-22T22:56:00.425920",
+      "entities": [
+        "Darwin",
+        "cliente",
+        "activo",
+        "factura",
+        "Clientes"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "cliente": 1,
+    "activo": 1,
+    "factura": 1,
+    "Clientes": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:56:00.426738"
+}

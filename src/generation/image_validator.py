@@ -38,7 +38,7 @@ class ImageValidator:
             'images_rejected': 0,
             'format_corrections': 0
         }
-        logger.info("ImageValidator initialized")
+        logger.debug("ImageValidator initialized")
     
     def validate_and_fix_image(self, image_data: Dict[str, Any]) -> Tuple[bool, Dict[str, Any], str]:
         """

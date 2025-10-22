@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo funciona el proceso de limpieza automática de usuarios en Darwin?",
+      "assistant_response": "{\n  \"response_type\": \"document_based\",\n  \"answer\": \"Darwin tiene definido un proceso cron para proceder a la desactivación y borrado lógico (soft_delete) de los usuarios en función de su tiempo de inactividad (90 días parametrizable) [2]. Las características de este proceso de limpieza automática de usuarios son:\n\n- Como máximo un parent user puede tener 1000 usuarios \"hijo\" [2].\n- Se desactivan y borran lógicamente (soft_delete) los usuarios que llevan 90 días de inactividad (este parámetro de tiempo es configurable) [2].\n- Este proceso cron se ejecuta automáticamente para mantener la base de datos de usuarios actualizada [2].\",\n  \"confidence\": {\n    \"score\": 0.95,\n    \"level\": \"high\",\n    \"rationale\": \"La información sobre el proceso de limpieza automática de usuarios está detallada en los documentos proporcionados, especialmente en el documento [2] que describe las características clave de este proceso.\"\n  },\n  \"sources\": [\n    {\n      \"id\": \"[2]\",\n      \"title\": \"FD-Darwin_Funcional0_v2.9.docx\",\n      \"relevance_score\": 0.95,\n      \"excerpt\": \"Como máximo un parent user puede tener 1000 usuarios \\\"hijo\\\".\\nLimpieza de usuarios\\n\\nSe ha definido un proceso cron para proceder a la desactivación y borrado lógico (soft_delete) de los usuarios en función de su tiempo de inactividad (90 días parametrizable).\"\n    }\n  ],\n  \"key_points\": [\n    \"Darwin tiene un proceso cron para desactivar y borrar lógicamente usuarios inactivos durante 90 días (parámetro configurable)\",\n    \"Existe un límite de 1000 usuarios \"hijo\" por cada parent user\",\n    \"El proceso de limpieza se ejecuta automáticamente para mantener actualizada la base de datos de usuarios\"\n  ],\n  \"related_topics\": [\n    \"Administración de usuarios en Darwin\",\n    \"Procesos automáticos en Darwin\"\n  ]\n}",
+      "timestamp": "2025-10-22T22:56:59.965085",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "activos",
+        "documentación"
+      ],
+      "confidence_score": 0.7,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "activos": 1,
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:56:59.965552"
+}

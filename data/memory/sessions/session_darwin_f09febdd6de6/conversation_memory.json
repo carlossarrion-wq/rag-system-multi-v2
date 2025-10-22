@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuándo y cómo se gestiona la locución en Darwin?",
+      "assistant_response": "Según la información proporcionada en los documentos, la gestión de la locución en Darwin se realiza de la siguiente manera [6][8]:\n\n1) Darwin envía a la agencia de venta a distancia (VT) la información necesaria para generar la locución, a través de una llamada POST a un API Rest expuesto por la agencia [8].\n\n2) La agencia utiliza esa información para grabar la locución [6].\n\n3) Una vez finalizada la locución, la agencia deposita el audio en el SFTP facilitado por Darwin [6].\n\n4) Posteriormente, el cliente completa la toma de datos en el Frontal Único de Ventas (FUV) de Darwin [6].",
+      "timestamp": "2025-10-22T22:54:45.486977",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:54:45.487203"
+}

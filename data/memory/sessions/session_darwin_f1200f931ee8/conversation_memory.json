@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué tipos de documentación puede adjuntar Darwin y cuál es su nomenclatura?",
+      "assistant_response": "Según los documentos proporcionados, Darwin permite adjuntar varios tipos de documentación al proceso de contratación [2][6]:\n\n1) Contratos: Los contratos firmados por el cliente se almacenan en una carpeta específica en el SFTP de Darwin [3][5]. La nomenclatura de estos documentos sigue un formato específico que incluye información como el código de la agencia, fecha, número secuencial, etc. [2]\n\n2) Audios: Las grabaciones de las llamadas de contratación se almacenan en otra carpeta del SFTP de Darwin [3][5]. Al igual que los contratos, estos archivos de audio tienen una nomenclatura definida.\n\n3) Documentación adicional: Además de los contratos y audios, Darwin también permite adjuntar otro tipo de documentación complementaria, como por ejemplo en el caso de contrataciones NNSS (No Necesita Solicitud) donde se consulta documentación adicional del SFTP de Aviva [8].",
+      "timestamp": "2025-10-22T22:52:39.263524",
+      "entities": [
+        "Darwin",
+        "cliente"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:52:39.263805"
+}

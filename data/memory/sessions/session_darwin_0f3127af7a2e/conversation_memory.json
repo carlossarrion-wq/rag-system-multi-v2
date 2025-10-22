@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son los principales sistemas con los que Darwin se integra en el mapa de integración?",
+      "assistant_response": "Según la información disponible en los documentos, los principales sistemas con los que Darwin se integra son [6][8]:\n\n- Siebel: Darwin envía información de pedidos y contratos a Siebel a través de un funnel masivo tras la firma [6].\n- Salesforce: MuleSoft procesa la información de Darwin y la envía a Salesforce [4][6].\n- MuleSoft: Darwin se integra con MuleSoft para enviar información de pedidos y contratos a otros sistemas como Salesforce [6].\n- Aviva: Darwin se integra con Aviva, aunque no se especifica el propósito de esta integración [6].\n- SIPS: Darwin consulta SIPS (base de datos Elastic) para obtener datos técnicos como CUPS, potencias, tarifas, etc. [8].",
+      "timestamp": "2025-10-22T22:46:45.147027",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:46:45.147287"
+}

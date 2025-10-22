@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué funcionalidades ofrece el módulo de Gestión de Fallidos en Darwin?",
+      "assistant_response": "El módulo de Gestión de Fallidos (NU_11) en Darwin ofrece las siguientes funcionalidades [2][6][8]:\n\n1) Contiene una nueva opción de menú \"Gestión de Fallidos\" que solo es visible para usuarios con el rol ROLE_FAILED_MGMT [2][6].\n\n2) En esta opción de menú, se muestra un listado de pedidos fallidos que pueden ser editados por los usuarios con el rol ROLE_FAILED_MGMT [2][6][8].\n\n3) Se aplican los filtros existentes en la trastienda de Darwin, y se añaden nuevos filtros como Agencia (con valores como Solvion, Konecta, etc.) [8].\n\n4) La información necesaria para la gestión de estos pedidos fallidos se muestra en este módulo, permitiendo a los usuarios revisar y gestionar los casos de pedidos que no pudieron ser procesados correctamente [2][6].",
+      "timestamp": "2025-10-22T22:50:26.672895",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:50:26.673165"
+}

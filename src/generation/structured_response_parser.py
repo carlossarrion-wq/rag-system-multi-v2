@@ -42,13 +42,11 @@ class StructuredResponseParser:
         structured_data = self._try_parse_json_response(raw_response)
         
         if structured_data:
-            logger.info("Successfully parsed structured JSON response")
             # Validate and enhance the structured data
             enhanced_data = self._enhance_structured_data(structured_data, metadata)
             return enhanced_data, True
         
         # Fallback to legacy parsing
-        logger.info("JSON parsing failed, falling back to legacy parsing")
         fallback_data = self._fallback_parse(raw_response, metadata)
         return fallback_data, False
     
@@ -71,18 +69,13 @@ class StructuredResponseParser:
             
             # First, try to parse the cleaned response as JSON
             parsed = json.loads(cleaned_json)
-            logger.debug(f"Successfully parsed JSON with keys: {list(parsed.keys())}")
             # Validate that it looks like our structured response
             if self._validate_json_structure(parsed):
-                logger.debug("JSON structure validation passed")
                 return parsed
             else:
-                logger.warning(f"JSON structure validation failed. Missing required fields. Available keys: {list(parsed.keys())}")
+                logger.debug(f"JSON structure validation failed for cleaned response")
         except json.JSONDecodeError as e:
-            logger.warning(f"Initial JSON parsing failed: {e}")
-            logger.debug(f"Error position: {getattr(e, 'pos', 'unknown')}")
-            logger.debug(f"Preprocessed response (first 200 chars): {preprocessed_response[:200]}")
-            logger.debug(f"Preprocessed response (last 200 chars): ...{preprocessed_response[-200:]}")
+            logger.debug(f"JSON decode failed for cleaned response: {e}")
         
         # Try to find JSON within code blocks or extract the largest JSON object
         json_patterns = [
@@ -99,15 +92,13 @@ class StructuredResponseParser:
                     # Also preprocess matches from patterns
                     preprocessed_match = self._preprocess_response(match)
                     parsed = json.loads(preprocessed_match.strip())
-                    logger.debug(f"Pattern match parsed JSON with keys: {list(parsed.keys())}")
                     # Validate that it looks like our structured response
                     if self._validate_json_structure(parsed):
-                        logger.debug("Pattern match JSON structure validation passed")
                         return parsed
                     else:
-                        logger.debug(f"Pattern match JSON structure validation failed. Available keys: {list(parsed.keys())}")
+                        logger.debug(f"JSON structure validation failed for pattern match")
                 except json.JSONDecodeError as e:
-                    logger.debug(f"Pattern match JSON parsing failed: {e}")
+                    logger.debug(f"JSON decode failed for pattern match: {e}")
                     continue
         
         # Try to extract JSON by finding balanced braces
@@ -128,16 +119,13 @@ class StructuredResponseParser:
                 if brace_count == 0:  # Found balanced JSON
                     json_str = preprocessed_response[start_idx:end_idx]
                     parsed = json.loads(json_str)
-                    logger.debug(f"Balanced brace extraction parsed JSON with keys: {list(parsed.keys())}")
                     if self._validate_json_structure(parsed):
-                        logger.debug("Balanced brace JSON structure validation passed")
                         return parsed
                     else:
-                        logger.debug(f"Balanced brace JSON structure validation failed. Available keys: {list(parsed.keys())}")
+                        logger.debug(f"JSON structure validation failed for balanced braces")
         except (json.JSONDecodeError, Exception) as e:
-            logger.debug(f"Balanced brace extraction failed: {e}")
+            logger.debug(f"Balanced braces extraction failed: {e}")
         
-        logger.warning("All JSON parsing attempts failed")
         return None
     
     def _preprocess_response(self, response: str) -> str:

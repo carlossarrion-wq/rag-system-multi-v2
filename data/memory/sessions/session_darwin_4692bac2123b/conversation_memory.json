@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son los requisitos y limitaciones para contratar la Batería Virtual en Darwin?",
+      "assistant_response": "La Batería Virtual es un servicio que se ofrece al cliente mediante el cual se almacenan en una cuenta del cliente los € que el cliente no ha podido compensar en la factura de luz para que pueda utilizarlos para pagar facturas posteriores de la misma vivienda o de otras viviendas del mismo titular [8].\n\nLos requisitos y limitaciones para contratar la Batería Virtual en Darwin son los siguientes:\n\n1. La Batería Virtual solo aplica a un contrato de luz con autoconsumo con compensación de excedentes activa [8]. No obstante, Darwin permite la contratación de la Batería Virtual para luz con cualquier tipo de autoconsumos e incluso sin autoconsumos [8].\n\n2. En las siguientes casuísticas no se puede contratar la Batería Virtual [6]:\n   - No existe contrato de Luz en Naturgy\n   - Tarifa Plana o Tarifa Mes\n   - Batería Virtual ya contratada\n\n3. En la contratación no asistida, la opción Solar con el servicio Batería Virtual siempre aparece habilitada [6]. Al finalizar el paso 5 del proceso, se lanza un endpoint de validación para verificar si aplica o no la contratación de la Batería Virtual [6].",
+      "timestamp": "2025-10-22T22:49:03.820768",
+      "entities": [
+        "factura",
+        "facturas",
+        "Darwin",
+        "cliente"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "factura": 1,
+    "facturas": 1,
+    "Darwin": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:49:03.821133"
+}

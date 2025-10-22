@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué validaciones realiza Darwin para direcciones duales y cambio de titular?",
+      "assistant_response": "Darwin realiza varias validaciones relacionadas con direcciones duales (luz y gas) y cambio de titular en el proceso de contratación [2][6]:\n\n1. Validación de Código Postal (CP) [2][6]\n   - Si los CPs de luz y gas son distintos, Darwin mostrará una modal bloqueante indicando que no es posible continuar con la contratación dual.\n   - Este mensaje contempla casos tanto de contratación dual como de contratación de la otra energía en un punto de suministro (PS) existente.\n\n2. Validación de dirección [2][6]\n   - Si las direcciones de luz y gas son distintas, aunque los CPs coincidan, Darwin mostrará un mensaje informativo, pero no bloqueará el proceso.\n   - Al igual que con la validación de CP, este mensaje se aplica tanto a contrataciones duales como a contrataciones de la otra energía en un PS existente.\n\n3. Validación de cambio de titular [2][4][6]\n   - Al realizar la consulta de datos técnicos de luz (P0) y/o gas (A5_29), si se detecta un cambio de titular, Darwin mostrará una ventana modal informativa indicando que el titular de la distribuidora es distinto al titular de la contratación.\n   - Este mensaje se muestra tanto en el proceso de Tarifa Plana como en otros flujos de contratación.\n   - Cuando se identifica un cambio de titular, además de mostrar el mensaje, Darwin marcará un flag en la base de datos (campo validation_client_node) para indicar que se trata de un Cambio de Titular (CCT).",
+      "timestamp": "2025-10-22T22:49:40.445936",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:49:40.446369"
+}

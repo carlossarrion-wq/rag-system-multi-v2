@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son los pasos principales para dar de alta un nuevo canal en Darwin?",
+      "assistant_response": "Según la información proporcionada en los documentos, los principales pasos para dar de alta un nuevo canal en Darwin son los siguientes:\n\n1. Configurar el nuevo canal en la sección de 'Administración - Grupo de usuarios' para agregarlo al grupo 'TODOS' [1].\n\n2. Asignar el nuevo canal a los productos correspondientes en 'Administración - Productos' [2][4][6].\n\n3. Asignar el nuevo canal a las campañas relevantes en 'Administración - Campañas' [2][4][6].\n\n4. Actualizar la estructura de carpetas en el SFTP para que la nueva agencia pueda almacenar los contratos y audios [3][5][7].\n\n5. Proporcionar a la agencia la información de conexión al SFTP (protocolo, endpoint, usuario, clave) para que puedan subir la documentación [3][5][7].\n\n6. Dar de alta la nueva agencia vinculando el endpoint proporcionado y asociándola al nuevo canal en los entornos de DEV y PRE [7].",
+      "timestamp": "2025-10-22T22:51:09.906590",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:51:09.906873"
+}

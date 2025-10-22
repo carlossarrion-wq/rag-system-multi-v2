@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué tipos de contratación soporta Darwin y qué significan las siglas CC, CCT, CCP, CCPT, FIDE, NNSS y ALTA?",
+      "assistant_response": "Darwin soporta los siguientes tipos de contratación [1]:\n\nCC (Cambio de comercializadora): Cuando el cliente cambia de comercializadora manteniendo el mismo titular y CUPS.\nCCT (Cambio de comercializadora con cambio de titular): Cuando el cliente cambia de comercializadora y también de titular.\nCCP (Cambio de comercializadora con cambio de potencia): Cuando el cliente cambia de comercializadora y también de potencia contratada.\nCCPT (Cambio de comercializadora con cambio de potencia y de titular): Cuando el cliente cambia de comercializadora, potencia y titular.\nFIDE (Fidelización): Cuando el cliente renueva el contrato con su actual comercializadora.\nNNSS (Nuevo suministro): Cuando el cliente solicita un nuevo punto de suministro.\nALTA: Cuando se da de alta un nuevo cliente o servicio.",
+      "timestamp": "2025-10-22T22:47:10.675596",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:47:10.675878"
+}

@@ -6,6 +6,7 @@ import os
 import yaml
 from pathlib import Path
 from typing import Dict, Any
+from loguru import logger
 
 
 class ConfigLoader:
@@ -38,7 +39,7 @@ class ConfigLoader:
         for config_file in config_files:
             config_path = self.base_path / config_file
             if config_path.exists():
-                print(f"Loading AWS config from: {config_file}")
+                logger.debug(f"Loading AWS config from: {config_file}")
                 with open(config_path, 'r', encoding='utf-8') as f:
                     return yaml.safe_load(f)
         

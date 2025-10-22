@@ -1,0 +1,44 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es darwin  ?",
+      "assistant_response": "Darwin is the system developed by Naturgy to manage the sales and contracting processes for energy services. According to the documentation, Darwin has the following key characteristics [2][4][6]:\n\n1) Darwin is a multi-functional system that supports various sales channels (assisted, unassisted, telephone, in-person, online) and contract types (CC/CCT/CCP/CCPT/FIDE/NNSS/ALTA) for both residential and SME customers of Naturgy Iberia and Naturgy Clientes [4][6].\n\n2) The system integrates with various external systems such as Siebel, Salesforce, MuleSoft, Aviva, and SIPS to exchange data and synchronize information [6][8].\n\n3) Darwin has specific functional modules for features like scoring, alliances, audio recordings, and failed contract management [6].\n\n4) The system manages the complete sales process flow, from data capture to contract activation, including validations, configurations, and integrations with other systems [4][6].\n\n5) Darwin supports multi-language capabilities, allowing users to select their preferred language (Spanish, Catalan, Galician) and automatically adapting the interface and communications [6].",
+      "timestamp": "2025-10-22T21:44:40.148911",
+      "entities": [
+        "darwin",
+        "Clientes",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "cuáles son las integraciones entre darwin y Salesforce ?",
+      "assistant_response": "Darwin integrates with Salesforce in several ways [6][8]:\n\n1. Sending orders: Darwin sends order data to Salesforce via a mass funnel process after the order is signed [6]. This synchronizes the order information between the two systems.\n\n2. Portability process: Darwin has a 'Mass Portability' backend view that allows monitoring the status of the portability order process, including loading, creation, errors, and sending to MuleSoft [6]. The actual order status in Salesforce can be checked through the regular Salesforce backend.\n\n3. Roles and permissions: Darwin has a specific user role called ROLE_PORTABILITY that can access the Mass Portability view to consult the state of the portability order process [6].",
+      "timestamp": "2025-10-22T21:46:19.468365",
+      "entities": [
+        "darwin",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "darwin": 2,
+    "Clientes": 1,
+    "Darwin": 2
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T21:46:19.468806"
+}

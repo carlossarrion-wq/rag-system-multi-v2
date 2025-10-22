@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es SAP ?",
+      "assistant_response": "SAP (also referred to as Sap or sap) is an enterprise resource planning (ERP) software system developed by the German company SAP SE. It is a comprehensive software solution that integrates various business processes and functions within an organization, such as finance, accounting, human resources, supply chain management, and customer relationship management. [1]\n\nThe SAP system is widely used by large and medium-sized companies across different industries to streamline their operations, improve efficiency, and make data-driven decisions. It provides a centralized platform for managing and processing various types of business data, including customer information, financial transactions, inventory levels, and production schedules. [2]\n\nSome of the key modules and components of the SAP system include:\n\n1. Financial Accounting (FI): Handles financial transactions, general ledger, accounts payable, and accounts receivable. [2]\n2. Controlling (CO): Supports cost accounting, cost center accounting, and profitability analysis. [2]\n3. Materials Management (MM): Manages procurement, inventory, and logistics. [2]\n4. Sales and Distribution (SD): Handles sales, distribution, and customer relationship management. [2]\n5. Human Resources (HR): Manages personnel-related processes such as payroll, time management, and talent management. [2]\n6. Industry-specific modules (IS-U, IS-H, etc.): Provide specialized functionality for different industries like utilities, healthcare, and more. [2]",
+      "timestamp": "2025-10-22T21:38:19.534534",
+      "entities": [
+        "Sap",
+        "sap",
+        "SAP"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Sap": 1,
+    "sap": 1,
+    "SAP": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T21:38:19.535203"
+}

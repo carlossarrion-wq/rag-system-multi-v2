@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué es el multipunto en Darwin y cuáles son sus limitaciones?",
+      "assistant_response": "Según los documentos proporcionados, el multipunto en Darwin se refiere a la contratación de servicios de energía (electricidad y/o gas) para múltiples puntos de suministro (CUPS) de un mismo cliente, generalmente en el contexto de pymes [2][4][8].\n\nLas principales características y limitaciones del multipunto en Darwin son:\n\n1. No se permite la contratación de Batería Virtual (BV) cuando hay contratación multipunto [4]. En este caso, la opción de BV aparece deshabilitada y se muestra un mensaje indicando que no es compatible con la contratación multipunto.\n\n2. En el caso de contrataciones multipunto, Darwin obtiene un CNAE (Clasificación Nacional de Actividades Económicas) independiente para cada punto de suministro (CUPS) de luz y gas [8]. Esto es necesario para poder gestionar adecuadamente la contratación de cada CUPS.\n\n3. Los documentos no mencionan otras limitaciones específicas del multipunto, por lo que se entiende que el sistema Darwin soporta la contratación de múltiples CUPS para un mismo cliente sin mayores restricciones, siempre y cuando no se combine con la contratación de Batería Virtual [4].",
+      "timestamp": "2025-10-22T22:51:59.559616",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:51:59.559949"
+}

@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "hablame de los procesos de contratación y switching",
+      "assistant_response": "Los procesos de contratación y switching en Darwin abarcan diferentes canales y tipos de operación [2][6]:\n\n1) Contratación asistida [2][6]:\n- Realizada a través de agentes (presencial o telefónica)\n- Incluye validaciones de datos, scoring crediticio, firma de contrato\n- Flujos específicos para cada canal (presencial, telefónica, portabilidad)\n- Estados: draft (borrador), signed (firmado), submitted (enviado), succeeded (completado), failed (fallido) [2]\n\n2) Contratación no asistida [2][6]:\n- Realizada por el cliente de forma autosuficiente a través de canales online\n- No incluye intervención de agente\n- Flujos simplificados sin algunas validaciones de la contratación asistida\n- Estados: draft, submitted, succeeded, failed [2]\n\nLos principales tipos de contratación son [2][6]:\n- Cambio de comercializadora (CC)\n- Cambio de comercializadora con cambio de titular (CCT)\n- Cambio de producto (CCP)\n- Cambio de producto con cambio de titular (CCPT)\n- Fidelización (FIDE)\n- Nuevos suministros (NNSS)\n- Alta de servicio (ALTA)\n\nLa información sobre el tipo de contratación y el canal se sincroniza con los sistemas transaccionales como Siebel y Salesforce [6].",
+      "timestamp": "2025-10-22T22:07:44.694424",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:07:44.695012"
+}

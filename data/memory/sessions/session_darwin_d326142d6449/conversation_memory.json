@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué limitaciones antifraude implementa Darwin en el proceso de contratación?",
+      "assistant_response": "Darwin implementa varias limitaciones antifraude en el proceso de contratación [2][4][6][8]:\n\n1. Limitación de teléfono: Darwin puede limitar el número de teléfonos asociados a un cliente, evitando que una misma persona pueda contratar con múltiples teléfonos [8].\n\n2. Limitación de email: Darwin también puede limitar el número de emails asociados a un cliente, evitando que una misma persona pueda contratar con múltiples emails [8].\n\n3. Blacklist de CUPS: Darwin mantiene una blacklist de CUPS que no pueden ser contratados, por ejemplo, CUPS ya vinculados a un cliente existente [8].\n\n4. Limitaciones por canal: Darwin permite configurar limitaciones específicas por cada combinación de sociedad y canal de venta (presencial, telefónica, online, etc.) [6]. Estas limitaciones pueden incluir:\n   - Permitir o no permitir la contratación de un cliente existente [6]\n   - Permitir o no permitir el cambio de producto [6]\n\n5. Motivos de fallidos: Darwin registra los motivos por los cuales una contratación puede fallar, como dirección no válida, CUPS no contratables, scoring rechazado, etc. [8]",
+      "timestamp": "2025-10-22T22:52:24.560294",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:52:24.560785"
+}

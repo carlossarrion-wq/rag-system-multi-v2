@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué significa Darwin en el contexto de Naturgy y cuál es su función principal?",
+      "assistant_response": "Darwin (también referido como Funnel Único de Ventas o FUV) es el aplicativo de Naturgy encargado de los procesos de venta a través de todos sus canales, tanto contratación asistida (con agente) como contratación no asistida (autoservicio) [4]. Darwin da soporte a los canales de Venta en Oficinas, Service Home, Venta en Remoto (VT) y Ventas Online [4].\n\nLa función principal de Darwin es centralizar y unificar la experiencia de contratación de productos y servicios de Naturgy bajo un mismo sistema, permitiendo a los clientes y agentes acceder a los flujos de venta de forma homogénea independientemente del canal utilizado [4].",
+      "timestamp": "2025-10-22T22:46:32.810228",
+      "entities": [
+        "Darwin",
+        "clientes"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "clientes": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:46:32.810468"
+}

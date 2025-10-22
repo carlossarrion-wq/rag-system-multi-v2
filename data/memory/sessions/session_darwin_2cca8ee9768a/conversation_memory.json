@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son las diferencias entre el cálculo de Tarifa Plana para Naturgy Iberia y Naturgy Clientes?",
+      "assistant_response": "Existen diferencias significativas en el cálculo de Tarifa Plana entre Naturgy Iberia (NI) y Naturgy Clientes (NC) [2][4]:\n\nPara Naturgy Iberia (NI), el cálculo de Tarifa Plana se realiza considerando tanto impuestos reducidos como impuestos normales, pero el envío a Siebel se hace con impuestos normales para permitir una regularización posterior [2].\n\nEn contraste, para Naturgy Clientes (NC) con el nuevo cálculo en SAP, no se consideran IVA, IGIC ni IPSI en el cálculo base, aunque sí se aplican impuestos especiales [2]. Específicamente para NC, se aplica financiación del bono social en electricidad, los precios se expresan en €/KW mes para las potencias P1 y P2, y en €/mes para el alquiler del contador [2]. Además, se aplica redondeo al entero superior en la cuota mensual [2]. El sistema calcula dos versiones del precio: una sin impuestos (redondeada al entero) y otra con impuestos completos (con 2 decimales), enviándose a Salesforce únicamente la cuota sin impuestos [2].",
+      "timestamp": "2025-10-22T22:48:13.977714",
+      "entities": [
+        "Clientes",
+        "SAP"
+      ],
+      "topics": [
+        "impuestos"
+      ],
+      "confidence_score": 0.85,
+      "metadata": {
+        "sources_count": 4,
+        "search_strategy": "comparative"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Clientes": 1,
+    "SAP": 1
+  },
+  "recurring_topics": {
+    "impuestos": 1
+  },
+  "saved_at": "2025-10-22T22:48:13.978037"
+}

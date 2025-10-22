@@ -1,0 +1,35 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es sap ?",
+      "assistant_response": "SAP (también referido como Sap o sap) es un sistema integrado de software empresarial que ayuda a las organizaciones a gestionar sus negocios de forma eficiente. Algunas de las características principales de SAP incluyen [1]:\n\n1) Es un sistema modular que cubre diversas áreas funcionales como finanzas, contabilidad, recursos humanos, logística, producción, ventas, etc. [1]\n2) Integra y automatiza los procesos de negocio a través de una base de datos centralizada [1]\n3) Permite la toma de decisiones basada en información en tiempo real [1]\n4) Ofrece funcionalidades específicas para diferentes industrias como manufactura, servicios públicos, banca, retail, etc. [1]\n\nLos módulos SAP más comunes incluyen FI-CA (Facturación y Cobros), IS-U (Utilities), FI (Finanzas), CO (Controlling), MM (Gestión de Materiales), SD (Ventas y Distribución), HR (Recursos Humanos), entre otros [2].",
+      "timestamp": "2025-10-22T21:52:17.982536",
+      "entities": [
+        "contabilidad",
+        "SAP",
+        "Sap",
+        "sap"
+      ],
+      "topics": [
+        "finanzas"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "contabilidad": 1,
+    "SAP": 1,
+    "Sap": 1,
+    "sap": 1
+  },
+  "recurring_topics": {
+    "finanzas": 1
+  },
+  "saved_at": "2025-10-22T21:52:17.983018"
+}

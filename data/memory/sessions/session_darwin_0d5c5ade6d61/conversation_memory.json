@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué acciones principales se pueden realizar sobre un pedido desde la trastienda de Darwin?",
+      "assistant_response": "Según la información disponible en los documentos, algunas de las principales acciones que se pueden realizar sobre un pedido desde la trastienda de Darwin son:\n\n1. Consultar las líneas de pedido [2]. Se puede acceder a los detalles de cada línea del pedido creado.\n\n2. Validar el pedido. Una vez que un pedido está en estado \"Firmado/Pte. Validación\" (pending_verification), el usuario de la trastienda no puede validarlo, ya que no le aparece el botón \"Validar\" [6]. \n\n3. Exportar pedidos. En la trastienda, los usuarios no pueden exportar pedidos [6].\n\nLos usuarios con el rol ROLE_CHANNEL (canal) tienen acceso a la trastienda de Darwin y pueden realizar estas acciones [6].",
+      "timestamp": "2025-10-22T22:49:15.738663",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.85,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:49:15.738912"
+}

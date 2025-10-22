@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo gestiona Darwin el código CNAE en las contrataciones pymes?",
+      "assistant_response": "Darwin gestiona el código CNAE (Clasificación Nacional de Actividades Económicas) de la siguiente forma en las contrataciones de pymes [2][4][6]:\n\n- Para contrataciones de pymes en Naturgy Iberia (NI), el sistema obtiene el CNAE a partir de la consulta de datos técnicos realizada en el Paso 3 del proceso de contratación [4]. El CNAE se muestra en blanco y editable en el frontal para que pueda ser modificado por el usuario si es necesario [6].\n\n- Para contrataciones de pymes en Naturgy Clientes (NC), el CNAE solo se aplica en la contratación de productos de energía, no en la contratación de otros servicios [6]. En este caso, el CNAE no se muestra editable, sino que se toma directamente de la información técnica consultada.\n\nNota: En el caso de contrataciones duales de luz y gas, para NI el sistema prevalece el CNAE de la parte de electricidad sobre el de gas a nivel de pedido [2].",
+      "timestamp": "2025-10-22T22:55:47.903741",
+      "entities": [
+        "Clientes",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Clientes": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:55:47.904030"
+}

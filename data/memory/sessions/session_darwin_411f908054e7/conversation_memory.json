@@ -1,0 +1,47 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es darwin ?",
+      "assistant_response": "Darwin es un sistema desarrollado por Naturgy para la contratación de servicios de energía y hogar. Según la información disponible en los documentos, Darwin ofrece las siguientes funcionalidades principales [2][4][6]:\n\n- Gestión de la contratación de servicios de electricidad, gas y otros servicios del hogar (Servielectric, Servigas, Servihogar, Solar) a través de diferentes canales: presencial, telefónica, online y portabilidad [2][4][6].\n- Integración con diversos sistemas externos como Siebel, Salesforce, MuleSoft, Aviva y SIPS para sincronizar información de clientes, contratos y facturación [2][4][6].\n- Módulos funcionales para scoring, gestión de alianzas, locución y gestión de fallidos [6].\n- Soporte multi-idioma (castellano, catalán, gallego) mediante el gestor de literales Loco [6].\n- Configuración y administración de productos, canales, agencias y usuarios a través de la interfaz de Darwin [6][7].",
+      "timestamp": "2025-10-22T22:26:15.820128",
+      "entities": [
+        "darwin",
+        "Darwin",
+        "clientes"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "quiero saber mas sobre \"Gestión de la contratación de servicios de electricidad2",
+      "assistant_response": "Los documentos proporcionados no contienen información específica sobre la 'Gestión de la contratación de servicios de electricidad'. La información más relevante encontrada es:\n\nEl documento [2] menciona una funcionalidad llamada 'NU_11 – Gestión Fallidos' que permite a los usuarios con el rol 'ROLE_FAILED_MGMT' gestionar una lista de fallidos editables con información necesaria para la gestión de fallidos Docout [2].\n\nEl documento [4] hace referencia a una 'Limitar cambio producto' que se aplica en contratación de servicios cuando no se ha recuperado la tenencia, sin entrar en más detalles [4].\n\nLos demás documentos se enfocan en aspectos relacionados con el alta de agencias y la integración con sistemas externos, pero no abordan específicamente la gestión de la contratación de servicios de electricidad [1][3][5][6][7][8].",
+      "timestamp": "2025-10-22T22:28:40.454888",
+      "entities": [],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.7,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "darwin": 1,
+    "Darwin": 1,
+    "clientes": 1
+  },
+  "recurring_topics": {
+    "documentación": 2
+  },
+  "saved_at": "2025-10-22T22:28:40.455173"
+}

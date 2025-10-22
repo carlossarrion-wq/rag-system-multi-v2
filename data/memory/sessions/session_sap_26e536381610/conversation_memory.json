@@ -1,0 +1,33 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es sap ?",
+      "assistant_response": "SAP (también referido como Sap o sap) es un sistema de gestión empresarial integral que abarca múltiples áreas como finanzas, logística, producción, recursos humanos, entre otras. Es uno de los sistemas de información más utilizados a nivel mundial por empresas de diversos sectores. [1]\n\nSAP proporciona módulos y funcionalidades específicas para gestionar los principales procesos de negocio de una organización. Algunos de los módulos SAP más comunes son: FI-CA (Facturación y Cobros), IS-U (Utilities), FI (Finanzas), CO (Controlling), MM (Gestión de Materiales), SD (Ventas y Distribución), HR (Recursos Humanos), entre otros. [2]",
+      "timestamp": "2025-10-22T21:54:29.802035",
+      "entities": [
+        "sap",
+        "SAP",
+        "Sap"
+      ],
+      "topics": [
+        "finanzas"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "sap": 1,
+    "SAP": 1,
+    "Sap": 1
+  },
+  "recurring_topics": {
+    "finanzas": 1
+  },
+  "saved_at": "2025-10-22T21:54:29.802440"
+}

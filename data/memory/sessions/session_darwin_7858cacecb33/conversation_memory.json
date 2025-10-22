@@ -1,0 +1,63 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son los módulos principales?",
+      "assistant_response": "The input documents do not provide specific information about the main modules of the Darwin system. The documents mention some functional areas and components of Darwin, such as the Información Técnica (NU_07) module for consulting technical data [6], and references to integration with external systems like Siebel, Salesforce, and MuleSoft [2][4][6]. However, the documents do not list or describe the main functional modules of the Darwin system in a comprehensive way. Additional information from other sources would be needed to provide a complete answer to this question.",
+      "timestamp": "2025-10-22T21:20:04.851420",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.7,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "¿Cómo se gestionan los proveedores?",
+      "assistant_response": "The provided documents do not contain any information about how providers are managed in the DARWIN system. The documents focus on the onboarding process for new sales agencies, including tasks such as setting up SFTP access, providing technical documentation, and coordinating meetings. There are no mentions of provider management functionality or processes within DARWIN. [1][2][3]",
+      "timestamp": "2025-10-22T21:20:15.702564",
+      "entities": [
+        "DARWIN",
+        "proveedores"
+      ],
+      "topics": [
+        "compras"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "¿Qué documentación técnica existe?",
+      "assistant_response": "The available technical documentation for the DARWIN system covers a wide range of topics [2][3]:\n\n1) Integrations with external systems: The documentation describes the integration of DARWIN with systems like Siebel, Salesforce, MuleSoft, Aviva, and SIPS. It specifies the purpose of each integration, the data exchange direction (DARWIN to/from external system), and the integration protocols used (e.g. REST, SFTP) [2].\n\n2) Functional modules: There are documents covering the different functional modules in DARWIN, such as scoring, alliances, audio recording, and failed management [2].\n\n3) Sales processes: The documentation details the various sales flows supported, including assisted sales, unassisted sales, telephone sales, in-person sales, and online sales [2].\n\n4) Technical and operational documentation: This includes configuration procedures, administration guides, and documentation on the AWS infrastructure and system architecture [2].\n\n5) Contractual and product documentation: There are documents describing the Frontal Único de Ventas (FUV) of Naturgy, the energy and service contracting processes, and the configuration of channels, agencies, and products [2].",
+      "timestamp": "2025-10-22T21:20:29.295845",
+      "entities": [
+        "DARWIN"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "DARWIN": 2,
+    "proveedores": 1
+  },
+  "recurring_topics": {
+    "compras": 1,
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T21:20:29.296428"
+}

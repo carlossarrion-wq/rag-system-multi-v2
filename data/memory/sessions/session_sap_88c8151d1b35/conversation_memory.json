@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es SAP ?",
+      "assistant_response": "SAP (Systems, Applications, and Products in Data Processing) is a comprehensive enterprise resource planning (ERP) software system developed by the German company SAP SE. It is widely used by organizations across various industries to manage their business processes, including finance, human resources, supply chain, and more. [1] [2]\n\nThe SAP system is composed of different functional modules, such as Financial Accounting (FI), Controlling (CO), Materials Management (MM), Sales and Distribution (SD), and Human Resources (HR), among others. These modules are designed to integrate and automate various business operations, enabling organizations to streamline their processes and improve efficiency. [2]",
+      "timestamp": "2025-10-22T21:44:07.552108",
+      "entities": [
+        "SAP"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "SAP": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T21:44:07.552512"
+}

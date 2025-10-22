@@ -109,12 +109,12 @@ class HybridRetrieverFixed:
                 top_k
             )
 
-            logger.info(f"Hybrid search returned {len(results)} results")
+            logger.debug(f"Hybrid search returned {len(results)} results")
             
-            # Log image results for debugging
+            # Log image results only if found
             image_results = [r for r in results if r['metadata'].get('has_image')]
             if image_results:
-                logger.info(f"Found {len(image_results)} results with image data for LLM processing")
+                logger.debug(f"Found {len(image_results)} results with image data")
             
             return results
 
@@ -172,9 +172,30 @@ class HybridRetrieverFixed:
                 metadata['image_base64'] = source['image_base64']
                 metadata['image_id'] = source.get('chunk_id', 'unknown')
                 metadata['image_context'] = f"Visual content from {source.get('file_name', 'unknown file')}"
-                logger.info(f"Including image data for {source.get('file_name', 'unknown')} in search results")
             else:
                 metadata['has_image'] = False
+
+            # FIXED: Extract title and filename from available data with fallback chain
+            # Try to get filename from multiple sources
+            filename = (
+                source.get('file_name') or
+                source.get('title') or
+                metadata.get('file_name') or
+                metadata.get('title') or
+                metadata.get('source_file') or
+                f"document_{doc_id}"  # Last resort
+            )
+            
+            # Try to get title from multiple sources
+            title = (
+                source.get('title') or
+                source.get('file_name') or
+                metadata.get('title') or
+                metadata.get('file_name') or
+                metadata.get('source_file') or
+                filename  # Use filename as title if nothing else
+            )
+
 
             result = {
                 'chunk_id': source.get('chunk_id', ''),
@@ -183,8 +204,9 @@ class HybridRetrieverFixed:
                 'score': float(hit['_score']),
                 'rrf_score': float(rrf_score),
                 'retrieval_method': 'hybrid_rrf',
-                'source_file': source.get('file_name', ''),
-                'title': source.get('title', ''),
+                'source_file': filename,  # Use extracted filename
+                'title': title,          # Use extracted title
+                'file_name': filename,   # Add explicit file_name field
                 'doc_id': doc_id
             }
             results.append(result)
@@ -227,14 +249,36 @@ class HybridRetrieverFixed:
             else:
                 metadata['has_image'] = False
                 
+            # FIXED: Extract title and filename from available data with fallback chain (same as hybrid search)
+            # Try to get filename from multiple sources
+            filename = (
+                source.get('file_name') or
+                source.get('title') or
+                metadata.get('file_name') or
+                metadata.get('title') or
+                metadata.get('source_file') or
+                f"document_{hit['_id']}"  # Last resort
+            )
+            
+            # Try to get title from multiple sources
+            title = (
+                source.get('title') or
+                source.get('file_name') or
+                metadata.get('title') or
+                metadata.get('file_name') or
+                metadata.get('source_file') or
+                filename  # Use filename as title if nothing else
+            )
+
             result = {
                 'chunk_id': source.get('chunk_id', ''),
                 'text': source.get('content', ''),
                 'metadata': metadata,
                 'score': float(hit['_score']),
                 'retrieval_method': 'text_fallback',
-                'source_file': source.get('file_name', ''),
-                'title': source.get('title', ''),
+                'source_file': filename,  # Use extracted filename
+                'title': title,          # Use extracted title
+                'file_name': filename,   # Add explicit file_name field
                 'doc_id': hit['_id']
             }
             results.append(result)

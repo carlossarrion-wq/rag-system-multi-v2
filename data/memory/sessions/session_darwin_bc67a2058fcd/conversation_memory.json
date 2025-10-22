@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué información de trazabilidad guarda Darwin para analítica posterior en NAPAI?",
+      "assistant_response": "Según los documentos proporcionados, Darwin guarda información de trazabilidad para analítica posterior en NAPAI a través de las siguientes funcionalidades [2][4]:\n\n1. Validaciones de direcciones: Al mostrarse una modal de aviso o de bloqueo durante la validación de direcciones, Darwin guarda un nuevo campo en la tabla 'orders' llamado 'dual_address_message' para indicar si se mostró la modal de aviso o la de bloqueo [2].\n\n2. Trazas NAPAI (NU_12): Darwin proporciona una funcionalidad específica para generar trazas que permiten un análisis posterior en el sistema NAPAI [2][4].",
+      "timestamp": "2025-10-22T22:56:36.238875",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:56:36.239093"
+}

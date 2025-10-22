@@ -30,7 +30,7 @@ from src.utils.multi_app_config_manager import MultiAppConfigManager
 class OpenSearchChunkAnalyzer:
     """Analyzes chunks stored in OpenSearch and generates detailed statistics."""
     
-    def __init__(self, config_path: str = "config/multi_app_config.yaml", app_name: str = "gadea"):
+    def __init__(self, config_path: str = "config/multi_app_config.yaml", app_name: str = "sap"):
         """Initialize the analyzer with configuration."""
         self.config_path = config_path
         self.app_name = app_name
@@ -480,8 +480,8 @@ def main():
                        default='config/multi_app_config.yaml',
                        help='Path to multi-application configuration file')
     parser.add_argument('--app', '-a',
-                       default='gadea',
-                       help='Application name (gadea, pds, etc.)')
+                       default='sap',
+                       help='Application name (sap, darwin, etc.)')
     parser.add_argument('--output', '-o',
                        help='Output file for JSON report')
     parser.add_argument('--verbose', '-v', 

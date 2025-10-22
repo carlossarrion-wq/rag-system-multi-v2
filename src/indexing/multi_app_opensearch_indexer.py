@@ -87,11 +87,7 @@ class MultiAppOpenSearchIndexer:
             chunk_overlap=self.chunk_overlap
         )
         
-        logger.info(f"MultiAppOpenSearchIndexer initialized for application: {self.application_info['name']}")
-        logger.info(f"Index: {self.index_name}")
-        logger.info(f"S3 Bucket: {self.s3_config['bucket']}")
-        logger.info(f"Chunk size: {self.chunk_size}, Overlap: {self.chunk_overlap}")
-        logger.info(f"Semantic chunking with table preservation: ENABLED")
+        logger.info(f"MultiAppOpenSearchIndexer initialized for {self.application_info['name']} - Index: {self.index_name}")
         
     def create_index(self) -> bool:
         """Create the application-specific OpenSearch index with proper mapping"""
@@ -193,13 +189,11 @@ class MultiAppOpenSearchIndexer:
                     "inputText": text,
                     "inputImage": image_base64
                 })
-                logger.debug(f"Generating multimodal embedding (text + image) for {self.app_name}")
             else:
                 # Text-only embedding
                 body = json.dumps({
                     "inputText": text
                 })
-                logger.debug(f"Generating text-only embedding for {self.app_name}")
             
             response = self.bedrock_client.invoke_model(
                 modelId=self.app_config['bedrock']['embedding_model'],
@@ -287,7 +281,6 @@ class MultiAppOpenSearchIndexer:
             
             if is_image_document and has_images:
                 # For image documents, create a single chunk with multimodal embedding
-                logger.info(f"Processing image document for {self.app_name}: {document['file_name']}")
                 
                 chunk_id = f"{self.app_name}_{document['file_hash']}_img_0"
                 image_data = document['images'][0]['data']  # Get base64 image data
@@ -348,7 +341,6 @@ class MultiAppOpenSearchIndexer:
                     document['content'], 
                     document_metadata
                 )
-                logger.info(f"Created {len(semantic_chunks)} semantic chunks for {document['file_name']} in {self.app_name}")
                 
                 # Index each semantic chunk
                 for i, semantic_chunk in enumerate(semantic_chunks):
@@ -408,19 +400,14 @@ class MultiAppOpenSearchIndexer:
                     if semantic_chunk.get('chunk_type') == 'table':
                         table_info = chunk_metadata.get('table_rows_count', 0)
                         codes_count = len(chunk_metadata.get('technical_codes', []))
-                        logger.info(f"Indexed TABLE chunk {i} for {document['file_name']} in {self.app_name}: {table_info} rows, {codes_count} codes")
-                    else:
-                        logger.debug(f"Indexed semantic chunk {i} for {document['file_name']} in {self.app_name}: {response['result']}")
+                        logger.debug(f"Indexed table chunk {i}: {table_info} rows, {codes_count} codes")
                 
                 # Log summary of chunk types
                 table_chunks = sum(1 for chunk in semantic_chunks if chunk.get('chunk_type') == 'table')
                 text_chunks = len(semantic_chunks) - table_chunks
                 total_codes = sum(len(chunk['metadata'].get('technical_codes', [])) for chunk in semantic_chunks)
                 
-                logger.info(f"Successfully indexed {len(semantic_chunks)} semantic chunks for {document['file_name']} in {self.app_name}")
-                logger.info(f"  - {table_chunks} table chunks (preserved intact)")
-                logger.info(f"  - {text_chunks} text chunks")
-                logger.info(f"  - {total_codes} technical codes detected")
+                logger.info(f"Indexed {document['file_name']}: {len(semantic_chunks)} chunks ({table_chunks} tables, {total_codes} codes)")
                 return True
             
         except Exception as e:

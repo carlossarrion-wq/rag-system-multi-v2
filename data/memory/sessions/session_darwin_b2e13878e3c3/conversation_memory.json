@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo gestiona Darwin las sesiones de usuario y qué medidas de seguridad implementa?",
+      "assistant_response": "La información disponible en los documentos proporcionados no contiene detalles específicos sobre cómo gestiona Darwin las sesiones de usuario ni las medidas de seguridad implementadas. Los documentos se enfocan principalmente en la integración de agencias y la configuración técnica del sistema, sin entrar en aspectos de gestión de usuarios y seguridad. [1][2][3][4][5][6][7][8]",
+      "timestamp": "2025-10-22T22:54:11.091108",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.6,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:54:11.091287"
+}

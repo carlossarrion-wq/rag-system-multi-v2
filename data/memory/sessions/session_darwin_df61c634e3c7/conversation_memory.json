@@ -1,0 +1,64 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué es el sistema ECOFI?",
+      "assistant_response": "The documents provided do not contain any information about the ECOFI system. The documents are focused on the DARWIN system and processes related to onboarding new sales agencies, and there are no references to ECOFI or any related systems.",
+      "timestamp": "2025-10-22T21:20:03.432105",
+      "entities": [
+        "DARWIN",
+        "ECOFI?",
+        "ECOFI"
+      ],
+      "topics": [],
+      "confidence_score": 0.8,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "¿Cómo se integra con SAP?",
+      "assistant_response": "The available documents do not contain specific information about how Darwin integrates with SAP. The only mention is a brief reference to the \"New TP calculation for Naturgy Clients (with the implementation of SAP)\" [2]. This suggests that there is some integration between Darwin and SAP for the calculation of Tarifa Plana (Flat Rate) for Naturgy Clients, but the details of this integration are not provided in the documents. The documents do not mention any other integration points or processes between Darwin and SAP.",
+      "timestamp": "2025-10-22T21:20:12.293186",
+      "entities": [
+        "SAP",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.7,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "¿Cuáles son los requisitos técnicos?",
+      "assistant_response": "Los principales requisitos técnicos mencionados en los documentos recuperados son los siguientes:\n\n1. Requisitos de rendimiento y complejidad [2]: \nLos tiempos de respuesta para diferentes tipos de procesos (online, batch, offline) varían según la complejidad del proceso, desde 10 segundos para procesos de muy alta complejidad hasta 0.5 segundos para procesos de muy baja complejidad [2].\n\n2. Integración con agencias [3]:\nEl sistema Darwin debe habilitar una estructura de carpetas SFTP para que las agencias puedan acceder y almacenar contratos y audios. Además, se debe crear un usuario de acceso a esta carpeta por cada agencia [3].\n\n3. Actualización de infraestructura [3]:\nSe requiere una actualización de Terraform y promoción en entornos Darwin para habilitar la nueva estructura de carpetas en el SFTP [3].\n\n4. Entrega de documentación a agencias [3]:\nEl equipo Darwin debe entregar a las agencias los documentos técnicos facilitados en Jira, y convocar reuniones para aclarar dudas y acordar planificación [3].",
+      "timestamp": "2025-10-22T21:20:23.469858",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 3,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "DARWIN": 1,
+    "ECOFI?": 1,
+    "ECOFI": 1,
+    "SAP": 1,
+    "Darwin": 2
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T21:20:23.470432"
+}

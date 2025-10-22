@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo funciona la limitación por código postal en los servicios de Darwin?",
+      "assistant_response": "La limitación por código postal en Darwin se realiza en el Paso 4 del proceso de contratación [6]. En la Administración de servicios hay un apartado donde se definen los códigos postales restringidos [6].\n\nAl salir del Paso 4, Darwin valida si el código postal del punto de suministro cumple con la restricción [6]. En caso de ser uno de los códigos postales restringidos, se muestra una modal bloqueante [4].\n\nEn el caso de que no se haya contratado ningún producto de energía y se llegue al Paso 4 sin dirección de suministro, esta comprobación se realiza en el Paso 5, una vez se haya completado la dirección de facturación [6]. Al aceptar la modal, Darwin vuelve al Paso 4 con el servicio deseleccionado [6].",
+      "timestamp": "2025-10-22T22:56:24.431804",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:56:24.432062"
+}

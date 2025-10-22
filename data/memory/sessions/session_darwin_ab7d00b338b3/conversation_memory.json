@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué códigos de resultado maneja Darwin para la validación de CUPS de electricidad y gas?",
+      "assistant_response": "Los documentos proporcionados no contienen información específica sobre los códigos de resultado que maneja Darwin para la validación de CUPS de electricidad y gas. Los documentos mencionan algunos tipos de códigos y estados relacionados con la contratación, pero no proporcionan detalles sobre los códigos de validación de CUPS. [2][4][6]",
+      "timestamp": "2025-10-22T22:55:21.709338",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.7,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:55:21.709517"
+}

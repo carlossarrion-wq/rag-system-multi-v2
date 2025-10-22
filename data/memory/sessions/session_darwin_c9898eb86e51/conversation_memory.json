@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué validación de consumo máximo realiza Darwin para contrataciones pymes?",
+      "assistant_response": "Darwin realiza una validación de consumo máximo para las contrataciones de pymes [2][6]. Cuando el consumo de luz o gas de un cliente pyme supera el límite máximo configurado en el sistema, Darwin muestra un modal bloqueante que impide continuar con la contratación [2]. \n\nEsta validación de consumo máximo aplica a todas las contrataciones de pymes, excepto para el canal de Contratación Especial [2].",
+      "timestamp": "2025-10-22T22:56:11.072642",
+      "entities": [
+        "Darwin",
+        "cliente"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:56:11.072840"
+}

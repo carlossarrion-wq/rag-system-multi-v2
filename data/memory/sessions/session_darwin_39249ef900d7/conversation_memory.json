@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué motivos de rechazo de scoring existen en Darwin y qué acciones se toman para cada uno?",
+      "assistant_response": "Los documentos recuperados ([1]) no contienen información específica sobre los motivos de rechazo de scoring en Darwin y las acciones correspondientes. El documento menciona aspectos relacionados con el alta de agencias, pero no aborda la funcionalidad de scoring y sus rechazos.",
+      "timestamp": "2025-10-22T22:47:20.386319",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.6,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:47:20.386484"
+}

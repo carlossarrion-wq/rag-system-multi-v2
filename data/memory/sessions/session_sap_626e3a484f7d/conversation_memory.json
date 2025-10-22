@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "hablame de los procesos de ventas",
+      "assistant_response": "De acuerdo a la información presente en los documentos proporcionados, los principales aspectos relacionados con los procesos de ventas en el sistema SAP son los siguientes:\n\nConfiguración SD (Sales and Distribution)\nPara dar cobertura a la facturación de conceptos de SD será necesario configurar una estructura organizativa de ventas básica en el sistema SAP [2]. Esto incluye:\n\n1) Área de ventas: Se deberá definir un área de ventas por cada sociedad configurada en el sistema [2].\n2) Organización de ventas: Se creará una organización de ventas por cada sociedad para facilitar el mantenimiento de materiales, pedidos y demás elementos de facturación SD [2].\n3) Canal de distribución: Se creará un único canal de distribución [2].\n4) Sector de productos: Se considera crear únicamente un sector [2].\n\nPedidos SD\nPara los documentos de ventas de conceptos especiales, se utilizará una clase de pedido Z* con las siguientes características [2]:\n\n- En este pedido se indicará la organización de ventas, canal y sector correspondiente, el cliente y por cada posición el material de prestación de servicios del concepto a facturar.\n- Estos pedidos Z* están asociados al módulo SD (Sales and Distribution) de SAP.",
+      "timestamp": "2025-10-22T22:13:17.729493",
+      "entities": [
+        "SAP",
+        "cliente"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "SAP": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:13:17.730092"
+}

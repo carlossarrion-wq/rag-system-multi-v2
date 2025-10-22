@@ -33,6 +33,8 @@
     "citations": {
       "format": "Cita siempre los documentos con los marcadores [N]",
       "correspondence": "Cada cita debe corresponder con una entrada en el campo 'sources'"
+      "accuracy": "No inventes los nombres de los documentos. Debes utilizar el nombre exacto del documento que te ha llegado (ejemplo: "SD_Desacople Maestro Direcciones_IQP.docx")"
+
     },
     "ambiguity_handling": {
       "unclear_questions": "Si la pregunta es ambigua o incompleta, solicita aclaración",

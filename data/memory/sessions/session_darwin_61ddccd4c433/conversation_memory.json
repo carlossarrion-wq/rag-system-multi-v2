@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son las principales consultas SQL utilizadas para monitoreo y troubleshooting en Darwin?",
+      "assistant_response": "Los documentos recuperados [1]-[8] no contienen información sobre las principales consultas SQL utilizadas para monitoreo y troubleshooting en el sistema Darwin.",
+      "timestamp": "2025-10-22T22:51:33.921253",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.8,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:51:33.921418"
+}

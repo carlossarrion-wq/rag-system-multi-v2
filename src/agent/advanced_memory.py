@@ -53,6 +53,8 @@ class AdvancedMemory:
     """
     Sistema de memoria avanzado que mantiene contexto conversacional
     con capacidades de resumen y extracción de entidades.
+    
+    MODIFICADO: Ahora soporta sesiones para conversaciones concurrentes.
     """
     
     def __init__(
@@ -60,7 +62,8 @@ class AdvancedMemory:
         llm_client,
         max_short_term_turns: int = 10,
         max_long_term_turns: int = 100,
-        memory_file: Optional[str] = None
+        memory_file: Optional[str] = None,
+        session_id: Optional[str] = None
     ):
         """
         Inicializa el sistema de memoria.
@@ -70,10 +73,12 @@ class AdvancedMemory:
             max_short_term_turns: Máximo turnos en memoria a corto plazo
             max_long_term_turns: Máximo turnos en memoria a largo plazo
             memory_file: Archivo para persistir memoria (opcional)
+            session_id: ID de sesión para aislamiento de conversaciones (opcional)
         """
         self.llm_client = llm_client
         self.max_short_term_turns = max_short_term_turns
         self.max_long_term_turns = max_long_term_turns
+        self.session_id = session_id
         
         # Memoria a corto plazo (turnos recientes)
         self.short_term_memory: List[ConversationTurn] = []
@@ -90,12 +95,13 @@ class AdvancedMemory:
         # Temas recurrentes
         self.recurring_topics: Dict[str, int] = {}  # tema -> frecuencia
         
-        # Archivo de persistencia
-        self.memory_file = memory_file
+        # Archivo de persistencia (modificado para sesiones)
+        self.memory_file = self._resolve_memory_file(memory_file, session_id)
         if self.memory_file:
             self._load_memory()
         
-        logger.info(f"AdvancedMemory initialized with {max_short_term_turns} short-term, {max_long_term_turns} long-term turns")
+        session_info = f" (Session: {session_id})" if session_id else ""
+        logger.info(f"AdvancedMemory initialized with {max_short_term_turns} short-term, {max_long_term_turns} long-term turns{session_info}")
     
     def add_conversation_turn(
         self,
@@ -199,11 +205,11 @@ class AdvancedMemory:
         
         entities = []
         
-        # Patrones para documentos GADEA
+        # Patrones para documentos del sistema
         import re
         
-        # Documentos DF_Gadea
-        df_pattern = r'DF_Gadea\d+\.\d+[^,\.\s]*'
+        # Documentos del sistema
+        df_pattern = r'DF_\w+\d+\.\d+[^,\.\s]*'
         entities.extend(re.findall(df_pattern, text, re.IGNORECASE))
         
         # Códigos numéricos
@@ -218,7 +224,7 @@ class AdvancedMemory:
         business_patterns = [
             r'\b(?:compras?|aprovisionamiento|tesorería|contabilidad|activos?)\b',
             r'\b(?:proveedores?|clientes?|facturas?|pagos?)\b',
-            r'\b(?:CFIN|SMART|Gadea)\b'
+            r'\b(?:CFIN|SMART|SAP|DARWIN)\b'
         ]
         
         for pattern in business_patterns:
@@ -616,3 +622,30 @@ class AdvancedMemory:
             self._save_memory()
         
         logger.info("Memory cleared")
+    
+    def _resolve_memory_file(self, memory_file: Optional[str], session_id: Optional[str]) -> Optional[str]:
+        """
+        Resuelve la ruta del archivo de memoria considerando sesiones.
+        
+        Args:
+            memory_file: Archivo de memoria base
+            session_id: ID de sesión (opcional)
+            
+        Returns:
+            Ruta del archivo de memoria o None
+        """
+        if not memory_file:
+            return None
+        
+        # Si hay session_id, usar el gestor de sesiones
+        if session_id:
+            try:
+                from .session_manager import get_session_manager
+                session_manager = get_session_manager()
+                return session_manager.get_memory_file_path(session_id)
+            except ImportError:
+                logger.warning("SessionManager not available, using legacy memory file")
+                return memory_file
+        
+        # Sin sesión, usar archivo tradicional
+        return memory_file

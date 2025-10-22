@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué tipos de blacklist maneja Darwin y cómo funcionan?",
+      "assistant_response": "Darwin maneja dos tipos principales de blacklists de CUPS [2][4][6]:\n\n1. Blacklist de CUPS: Sección en Darwin para gestionar una lista de CUPS que estarán bloqueados y no podrán ser contratados. El proceso de contratación en Darwin impedirá la contratación con cualquier CUPS que pertenezca a esta blacklist [6].\n\n2. Exportar CUPS: Darwin permite exportar el listado completo de CUPS de la blacklist a un archivo Excel llamado 'exportedDataCUPS.xlsx' [6].",
+      "timestamp": "2025-10-22T22:50:03.114906",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:50:03.115120"
+}

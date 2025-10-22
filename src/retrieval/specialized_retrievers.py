@@ -48,7 +48,6 @@ class SemanticRetriever(BaseRetriever):
             hybrid_retriever: Instancia de HybridRetriever (OpenSearch)
         """
         self.hybrid_retriever = hybrid_retriever
-        logger.info("SemanticRetriever initialized (OpenSearch EC2 version)")
     
     def retrieve(self, query: str, top_k: int = 5, **kwargs) -> List[Dict[str, Any]]:
         """
@@ -62,8 +61,6 @@ class SemanticRetriever(BaseRetriever):
         Returns:
             Lista de documentos ordenados por similitud semántica
         """
-        logger.info(f"SemanticRetriever: Searching for '{query[:50]}...'")
-        
         # Usar HybridRetriever con énfasis en búsqueda vectorial
         results = self.hybrid_retriever.search(query, top_k=top_k * 2)
         
@@ -74,8 +71,6 @@ class SemanticRetriever(BaseRetriever):
         
         # Limitar a top_k
         results = results[:top_k]
-        
-        logger.info(f"SemanticRetriever: Found {len(results)} documents")
         return results
     
     def search(self, query: str, top_k: int = 5, **kwargs) -> List[Dict[str, Any]]:
@@ -100,7 +95,6 @@ class KeywordRetriever(BaseRetriever):
             hybrid_retriever: Instancia de HybridRetriever (OpenSearch)
         """
         self.hybrid_retriever = hybrid_retriever
-        logger.info("KeywordRetriever initialized (OpenSearch EC2 version)")
     
     def retrieve(self, query: str, top_k: int = 10, **kwargs) -> List[Dict[str, Any]]:
         """
@@ -114,12 +108,8 @@ class KeywordRetriever(BaseRetriever):
         Returns:
             Lista de documentos ordenados por relevancia BM25
         """
-        logger.info(f"KeywordRetriever: Searching for '{query[:50]}...'")
-        
         # Usar HybridRetriever con énfasis en búsqueda léxica
         results = self.hybrid_retriever.search(query, top_k=top_k)
-        
-        logger.info(f"KeywordRetriever: Found {len(results)} documents")
         return results
     
     def search(self, query: str, top_k: int = 10, **kwargs) -> List[Dict[str, Any]]:
@@ -144,7 +134,6 @@ class MetadataRetriever(BaseRetriever):
             hybrid_retriever: Instancia de HybridRetriever (OpenSearch)
         """
         self.hybrid_retriever = hybrid_retriever
-        logger.info("MetadataRetriever initialized (OpenSearch EC2 version)")
     
     def retrieve(self, query: str, top_k: int = 5, **kwargs) -> List[Dict[str, Any]]:
         """
@@ -158,7 +147,7 @@ class MetadataRetriever(BaseRetriever):
         Returns:
             Lista de documentos filtrados por metadatos
         """
-        logger.info(f"MetadataRetriever: Searching with filters: {kwargs}")
+        logger.debug(f"MetadataRetriever: Searching with filters: {kwargs}")
         
         # Si hay filtro de documento específico, usar estrategia diferente
         has_doc_filter = 'doc_title' in kwargs or 'doc_title_contains' in kwargs
@@ -200,7 +189,7 @@ class MetadataRetriever(BaseRetriever):
         # Limitar a top_k
         filtered_results = filtered_results[:top_k]
         
-        logger.info(f"MetadataRetriever: Found {len(filtered_results)} chunks from document '{doc_filter}'")
+        logger.debug(f"MetadataRetriever: Found {len(filtered_results)} chunks from document '{doc_filter}'")
         return filtered_results
     
     def _retrieve_with_general_filters(
@@ -232,7 +221,7 @@ class MetadataRetriever(BaseRetriever):
         # Limitar a top_k
         filtered_results = filtered_results[:top_k]
         
-        logger.info(f"MetadataRetriever: Found {len(filtered_results)} documents after filtering")
+        logger.debug(f"MetadataRetriever: Found {len(filtered_results)} documents after filtering")
         return filtered_results
     
     def _matches_filters(self, doc: Dict[str, Any], filters: Dict[str, Any]) -> bool:
@@ -316,7 +305,6 @@ class HybridRetrieverWrapper(BaseRetriever):
             hybrid_retriever: Instancia de HybridRetriever (OpenSearch)
         """
         self.hybrid_retriever = hybrid_retriever
-        logger.info("HybridRetrieverWrapper initialized (OpenSearch EC2)")
     
     def retrieve(self, query: str, top_k: int = 5, **kwargs) -> List[Dict[str, Any]]:
         """
@@ -330,11 +318,7 @@ class HybridRetrieverWrapper(BaseRetriever):
         Returns:
             Lista de documentos con fusión RRF
         """
-        logger.info(f"HybridRetriever: Searching for '{query[:50]}...'")
-        
         results = self.hybrid_retriever.search(query, top_k=top_k)
-        
-        logger.info(f"HybridRetriever: Found {len(results)} documents")
         return results
     
     def search(self, query: str, top_k: int = 5, **kwargs) -> List[Dict[str, Any]]:
@@ -359,7 +343,6 @@ class GraphRetriever(BaseRetriever):
             hybrid_retriever: Instancia de HybridRetriever (para fallback)
         """
         self.hybrid_retriever = hybrid_retriever
-        logger.info("GraphRetriever initialized (OpenSearch EC2 - fallback mode)")
     
     def retrieve(self, query: str, top_k: int = 5, **kwargs) -> List[Dict[str, Any]]:
         """
@@ -373,7 +356,7 @@ class GraphRetriever(BaseRetriever):
         Returns:
             Lista de documentos relacionados
         """
-        logger.warning("GraphRetriever: Using fallback to hybrid search (graph not implemented)")
+        logger.debug("GraphRetriever: Using fallback to hybrid search (graph not implemented)")
         
         # Fallback a búsqueda híbrida
         results = self.hybrid_retriever.search(query, top_k=top_k)
@@ -408,8 +391,6 @@ class RetrieverFactory:
         Returns:
             Diccionario con todos los retrievers disponibles
         """
-        logger.info("Creating specialized retrievers for OpenSearch EC2")
-        
         retrievers = {
             'semantic_search': SemanticRetriever(hybrid_retriever),
             'keyword_search': KeywordRetriever(hybrid_retriever),
@@ -419,8 +400,6 @@ class RetrieverFactory:
             'document_search': MetadataRetriever(hybrid_retriever),  # Alias
             'section_search': MetadataRetriever(hybrid_retriever),   # Alias
         }
-        
-        logger.info(f"Created {len(retrievers)} specialized retrievers for OpenSearch")
         return retrievers
 
 
@@ -428,33 +407,143 @@ class RetrieverFactory:
     def create_semantic_retriever(config_path: str = "config/aws_config_production.yaml"):
         """Crea un retriever semántico usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        hr = HybridRetriever(config_path)
+        from ..utils.multi_app_config_manager import MultiAppConfigManager
+        import tempfile
+        import yaml
+        import os
+        
+        # Create legacy config if using multi-app config
+        if 'multi_app_config' in config_path:
+            config_manager = MultiAppConfigManager(config_path)
+            # Try to determine app from context or use default
+            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
+            legacy_config = config_manager.create_legacy_config(app_name)
+            
+            # Create temporary config file
+            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
+            yaml.dump(legacy_config, temp_file, default_flow_style=False)
+            temp_file.close()
+            
+            hr = HybridRetriever(temp_file.name)
+            
+            # Clean up temp file
+            os.unlink(temp_file.name)
+        else:
+            hr = HybridRetriever(config_path)
         return SemanticRetriever(hr)
-    
+
     @staticmethod
     def create_hybrid_retriever(config_path: str = "config/aws_config_production.yaml"):
         """Crea un retriever híbrido usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        hybrid_retriever = HybridRetriever(config_path)
+        from ..utils.multi_app_config_manager import MultiAppConfigManager
+        import tempfile
+        import yaml
+        import os
+        
+        # Create legacy config if using multi-app config
+        if 'multi_app_config' in config_path:
+            config_manager = MultiAppConfigManager(config_path)
+            # Try to determine app from context or use default
+            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
+            legacy_config = config_manager.create_legacy_config(app_name)
+            
+            # Create temporary config file
+            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
+            yaml.dump(legacy_config, temp_file, default_flow_style=False)
+            temp_file.close()
+            
+            hybrid_retriever = HybridRetriever(temp_file.name)
+            
+            # Clean up temp file
+            os.unlink(temp_file.name)
+        else:
+            hybrid_retriever = HybridRetriever(config_path)
         return HybridRetrieverWrapper(hybrid_retriever)
-    
+
     @staticmethod
     def create_keyword_retriever(config_path: str = "config/aws_config_production.yaml"):
         """Crea un retriever de palabras clave usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        hr = HybridRetriever(config_path)
+        from ..utils.multi_app_config_manager import MultiAppConfigManager
+        import tempfile
+        import yaml
+        import os
+        
+        # Create legacy config if using multi-app config
+        if 'multi_app_config' in config_path:
+            config_manager = MultiAppConfigManager(config_path)
+            # Try to determine app from context or use default
+            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
+            legacy_config = config_manager.create_legacy_config(app_name)
+            
+            # Create temporary config file
+            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
+            yaml.dump(legacy_config, temp_file, default_flow_style=False)
+            temp_file.close()
+            
+            hr = HybridRetriever(temp_file.name)
+            
+            # Clean up temp file
+            os.unlink(temp_file.name)
+        else:
+            hr = HybridRetriever(config_path)
         return KeywordRetriever(hr)
 
     @staticmethod
     def create_metadata_retriever(config_path: str = "config/aws_config_production.yaml"):
         """Crea un retriever de metadatos usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        hybrid_retriever = HybridRetriever(config_path)
+        from ..utils.multi_app_config_manager import MultiAppConfigManager
+        import tempfile
+        import yaml
+        import os
+        
+        # Create legacy config if using multi-app config
+        if 'multi_app_config' in config_path:
+            config_manager = MultiAppConfigManager(config_path)
+            # Try to determine app from context or use default
+            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
+            legacy_config = config_manager.create_legacy_config(app_name)
+            
+            # Create temporary config file
+            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
+            yaml.dump(legacy_config, temp_file, default_flow_style=False)
+            temp_file.close()
+            
+            hybrid_retriever = HybridRetriever(temp_file.name)
+            
+            # Clean up temp file
+            os.unlink(temp_file.name)
+        else:
+            hybrid_retriever = HybridRetriever(config_path)
         return MetadataRetriever(hybrid_retriever)
 
     @staticmethod
     def create_graph_retriever(config_path: str = "config/aws_config_production.yaml"):
         """Crea un retriever de grafos usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        hybrid_retriever = HybridRetriever(config_path)
+        from ..utils.multi_app_config_manager import MultiAppConfigManager
+        import tempfile
+        import yaml
+        import os
+        
+        # Create legacy config if using multi-app config
+        if 'multi_app_config' in config_path:
+            config_manager = MultiAppConfigManager(config_path)
+            # Try to determine app from context or use default
+            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
+            legacy_config = config_manager.create_legacy_config(app_name)
+            
+            # Create temporary config file
+            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
+            yaml.dump(legacy_config, temp_file, default_flow_style=False)
+            temp_file.close()
+            
+            hybrid_retriever = HybridRetriever(temp_file.name)
+            
+            # Clean up temp file
+            os.unlink(temp_file.name)
+        else:
+            hybrid_retriever = HybridRetriever(config_path)
         return GraphRetriever(hybrid_retriever)

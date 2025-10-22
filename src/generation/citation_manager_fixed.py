@@ -40,7 +40,7 @@ class FixedCitationManager:
         """Inicializa el gestor de citas"""
         self.citations: List[Citation] = []
         self.sources: Dict[str, Dict[str, Any]] = {}
-        logger.info("FixedCitationManager initialized - preserves image data")
+        logger.debug("FixedCitationManager initialized - preserves image data")
 
     def process_sources(self, sources: List[Dict[str, Any]], answer: str = None) -> List[Dict[str, Any]]:
         """
@@ -65,6 +65,7 @@ class FixedCitationManager:
                 'score': source.get('rrf_score', source.get('score', 0.0)),
                 'source': self._extract_title(source)
             }
+
             
             # MODIFICACIÓN CRÍTICA: Preservar datos de imagen
             if self._has_image_data(source):

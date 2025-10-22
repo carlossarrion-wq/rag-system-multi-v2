@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué idiomas soporta Darwin y cómo se gestiona la internacionalización?",
+      "assistant_response": "Darwin es un sistema multi-idioma que soporta tres idiomas: castellano, catalán y gallego [6]. La gestión de la internacionalización se realiza a través de Loco, el gestor de literales multi-idioma donde están almacenados todos los textos de la aplicación [6]. Los usuarios pueden seleccionar su idioma de preferencia, y toda la interfaz se adapta automáticamente: mensajes del sistema, comunicaciones (emails y SMS), documentación legal, contratos, mensajes de error y validación [6]. Esta localización abarca tanto la interfaz de usuario visible para agentes y clientes como las comunicaciones automáticas generadas por el sistema [6]. Los precios de energía también se cargan desde literales de Loco en el frontal, lo que permite mantener consistencia en la presentación de información comercial en todos los idiomas soportados [2].",
+      "timestamp": "2025-10-22T22:53:59.305987",
+      "entities": [
+        "Darwin",
+        "clientes"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "clientes": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:53:59.306304"
+}

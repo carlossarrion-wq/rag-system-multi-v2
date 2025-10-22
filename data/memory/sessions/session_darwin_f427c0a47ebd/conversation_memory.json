@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué significa Darwin en el contexto de Naturgy y cuál es su función principal?",
+      "assistant_response": "Darwin (también referido como Frontal Único de Ventas o FUV) es el sistema desarrollado por Naturgy para gestionar los procesos de venta a través de todos los canales, tanto contratación asistida como no asistida [4]. Su función principal es centralizar y unificar los flujos de venta, permitiendo a Naturgy ofrecer una experiencia de contratación homogénea a través de diferentes canales como oficinas, servicio telefónico, autoservicio online, etc. [4]\n\nDarwin da soporte a los principales procesos de venta y contratación de servicios energéticos (electricidad y gas) y productos complementarios de Naturgy Iberia y Naturgy Clientes [4]. Entre sus funcionalidades clave se incluyen la gestión de scoring, alianzas, locución, fallidos y otros módulos que permiten una venta unificada [2][6].",
+      "timestamp": "2025-10-22T22:44:24.457663",
+      "entities": [
+        "Clientes",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Clientes": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:44:24.457925"
+}

@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "Procesos de contratación y switching hablame sobre ellos",
+      "assistant_response": "Los documentos recuperados no contienen información específica sobre los procesos de contratación y switching en el sistema Darwin. Sin embargo, se menciona que Darwin gestiona diversos tipos de contratación y canales de venta [1].\n\nLos documentos indican que Darwin soporta los siguientes tipos de contratación [1][6]:\n\n1) Contratación asistida: Realizada con la intervención de un agente, ya sea de forma presencial o telefónica [6]. \n2) Contratación no asistida: Proceso de autocontratación online sin intervención de agente [6].\n\nAdemás, Darwin también permite la contratación a través de los siguientes canales de venta [1][6]:\n\n- Portabilidad: Cambio de comercializadora manteniendo el mismo CUPS [6]\n- Nuevo alta: Contratación de nuevos servicios [6]\n- Cambio de titularidad: Cambio de cliente en un CUPS existente [6]\n\nLos documentos mencionan que Darwin realiza integraciones con otros sistemas como Siebel y Salesforce para gestionar los procesos de contratación y switching [6][8]. Sin embargo, no se proporcionan detalles específicos sobre cómo se implementan estos flujos.\n\nEn resumen, si bien se confirma que Darwin soporta diferentes tipos de contratación y canales, los documentos recuperados no contienen información detallada sobre los procesos específicos de contratación y switching. Es posible que esta información se encuentre en otros documentos no proporcionados en este contexto.",
+      "timestamp": "2025-10-22T22:01:09.893416",
+      "entities": [
+        "Darwin",
+        "cliente"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.7,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:01:09.894099"
+}

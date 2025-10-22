@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuántos flags de GDPR maneja Darwin y cuáles son editables por el usuario?",
+      "assistant_response": "Según los documentos proporcionados, Darwin maneja un total de 8 flags de GDPR [4]. De estos 8 flags, los 3 primeros son editables por el usuario y se pueden informar a través de SMS o en el propio formulario de contratación [4]. Los 3 flags editables son:\n\n- aceptaPerfilado\n- aceptoPublicidad\n- aceptaCesionDatos\n\nLos otros 5 flags de GDPR no son editables por el usuario [4].",
+      "timestamp": "2025-10-22T22:47:31.423564",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:47:31.423758"
+}

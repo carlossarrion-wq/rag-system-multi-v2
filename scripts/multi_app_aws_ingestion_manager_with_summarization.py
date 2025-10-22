@@ -1720,30 +1720,30 @@ LISTAR APLICACIONES:
 
 INDEXACIÓN CON RESÚMENES:
   # Escanear e indexar documentos con generación de resúmenes
-  python multi_app_aws_ingestion_manager_with_summarization.py --app gadea scan
+  python multi_app_aws_ingestion_manager_with_summarization.py --app sap scan
   
   # Escanear sin generar resúmenes
-  python multi_app_aws_ingestion_manager_with_summarization.py --app gadea scan --no-summarization
+  python multi_app_aws_ingestion_manager_with_summarization.py --app sap scan --no-summarization
   
   # Escanear ruta específica con resúmenes
-  python multi_app_aws_ingestion_manager_with_summarization.py --app pds scan --path documents/nuevos/
+  python multi_app_aws_ingestion_manager_with_summarization.py --app darwin scan --path documents/nuevos/
   
   # Modo dry-run para ver qué se indexaría
-  python multi_app_aws_ingestion_manager_with_summarization.py --app gadea scan --dry-run
+  python multi_app_aws_ingestion_manager_with_summarization.py --app sap scan --dry-run
 
 GESTIÓN DE INVENTARIO:
   # Actualizar inventario de documentos
-  python multi_app_aws_ingestion_manager_with_summarization.py --app gadea update-inventory
+  python multi_app_aws_ingestion_manager_with_summarization.py --app sap update-inventory
 
 FUNCIONES HEREDADAS:
   # Limpiar chunks huérfanos
-  python multi_app_aws_ingestion_manager_with_summarization.py --app gadea clean
+  python multi_app_aws_ingestion_manager_with_summarization.py --app sap clean
   
   # Eliminar documentos por ruta
-  python multi_app_aws_ingestion_manager_with_summarization.py --app gadea remove --path documents/old/
+  python multi_app_aws_ingestion_manager_with_summarization.py --app sap remove --path documents/old/
   
   # Ver estado completo de documentos
-  python multi_app_aws_ingestion_manager_with_summarization.py --app gadea list
+  python multi_app_aws_ingestion_manager_with_summarization.py --app sap list
         """
     )
     
@@ -1850,4 +1850,3 @@ FUNCIONES HEREDADAS:
 
 if __name__ == "__main__":
     sys.exit(main())
-

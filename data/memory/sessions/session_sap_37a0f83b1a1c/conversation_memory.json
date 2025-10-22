@@ -1,0 +1,37 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "What is SAP?",
+      "assistant_response": "SAP (también referido como Sap o sap) es un sistema empresarial integrado que se utiliza en múltiples áreas funcionales como finanzas, contabilidad, recursos humanos, producción, ventas, distribución, entre otros. De acuerdo a los documentos proporcionados, SAP es el sistema central que se va a integrar con un sistema CRM externo (Salesforce) para la nueva solución de los sistemas de Naturgy. [1] [2]",
+      "timestamp": "2025-10-22T22:25:06.950897",
+      "entities": [
+        "Sap",
+        "sap",
+        "SAP",
+        "contabilidad"
+      ],
+      "topics": [
+        "finanzas",
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Sap": 1,
+    "sap": 1,
+    "SAP": 1,
+    "contabilidad": 1
+  },
+  "recurring_topics": {
+    "finanzas": 1,
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:25:06.951192"
+}

@@ -11,7 +11,6 @@ fusión de resultados y optimización de consultas.
 import logging
 from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass
-import asyncio
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 

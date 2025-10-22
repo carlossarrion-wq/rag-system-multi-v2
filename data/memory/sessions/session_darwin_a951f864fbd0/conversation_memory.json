@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo funciona el proceso de oferta de alianzas en Darwin para Newco?",
+      "assistant_response": "Según la información disponible en los documentos, el proceso de oferta de alianzas en Darwin para Newco se realiza de la siguiente manera [5]:\n\nEn el proceso de contratación de Darwin para Newco se ofrecerán Alianzas con terceros según el siguiente flujo [5]:\n\nNo se proporciona más detalles sobre este flujo de alianzas en los documentos recuperados.",
+      "timestamp": "2025-10-22T22:52:10.717767",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.5,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "hybrid_search"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:52:10.717948"
+}

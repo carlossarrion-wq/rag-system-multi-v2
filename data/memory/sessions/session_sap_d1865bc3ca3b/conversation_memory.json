@@ -1,0 +1,66 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es sap newco ?",
+      "assistant_response": "NEWCO es el nombre de código utilizado para referirse a la nueva solución de los sistemas de Naturgy con el nuevo sistema facturador en SAP. Esta nueva solución implica la integración de un CRM externo en Salesforce con el sistema SAP en el back-end. [2]\n\nLos principales aspectos de la solución NEWCO son: \n1) Existirá un proceso de sincronización entre los datos maestros de Salesforce y SAP para garantizar que la información esté actualizada y sea veraz. [1]\n2) En SAP se crearán servicios específicos para la actualización de las entidades SAP relacionadas con cada proceso funcional, como servicios para la creación y actualización de clientes, contratos, puntos de suministro, etc. [3]\n3) El modelo de datos maestros de NEWCO incluirá diferentes sectores de suministro (gas, electricidad, servicios, etc.) y podrá tener N instalaciones por punto de suministro. [2]",
+      "timestamp": "2025-10-22T21:59:00.197808",
+      "entities": [
+        "sap",
+        "clientes",
+        "SAP"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "Quiero información adicional sobre: \"Integración Salesforce-SAP\"",
+      "assistant_response": "La integración entre Salesforce y SAP se basa en un modelo de sincronización donde SAP ofrecerá servicios web para la actualización de sus datos maestros, que serán llamados por Mulesoft (el middleware) en función de los procesos funcionales generados en Salesforce. [1]\n\nLos servicios SAP que se crearán para esta integración son: [3]\n\n1) Servicio de Punto de Suministro, para la creación y actualización de la estructura técnica.\n2) Servicio de Cliente, para la creación y actualización de los clientes y sus datos asociados (direcciones, cuentas bancarias, contactos, etc.). [3, 5]\n3) Servicio de Cuenta Contrato, para la creación y actualización de la Cuenta Contrato y los datos de pago. [4]\n4) Servicio de Contrato Energía, para la creación y actualización de los contratos y las líneas de contrato de los contratos energéticos (Gas, Electricidad). [4]\n5) Servicio de Contrato SVA, para la creación y actualización de los contratos de servicios asociados a un suministro. [4]\n6) Servicio de Contrato SD, para la creación y actualización de los contratos no-energéticos no vinculados a un punto de suministro. [4]\n\nEstos servicios serán capaces de recibir información de Salesforce a través de Mulesoft y devolver confirmación de la correcta ejecución o informar de errores. [3, 5]",
+      "timestamp": "2025-10-22T21:59:51.856420",
+      "entities": [
+        "pago",
+        "Cliente",
+        "clientes",
+        "SAP"
+      ],
+      "topics": [],
+      "confidence_score": 0.95,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "Quiero información adicional sobre \"Procesos de contratación y switching\"",
+      "assistant_response": "Lo siento, los documentos recuperados [1] no contienen información específica sobre 'Procesos de contratación y switching'. El documento [1] trata sobre la sincronización de datos entre los sistemas CRM de Salesforce y SAP, pero no aborda detalles de los procesos de contratación y cambio de comercializador. Para obtener información sobre estos temas, sería necesario revisar documentación adicional relacionada con los módulos de Ventas y Distribución (SD) y Gestión de Contratos (CRM-CA) de SAP. [1]",
+      "timestamp": "2025-10-22T22:00:22.215718",
+      "entities": [
+        "SAP"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.7,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "sap": 1,
+    "clientes": 2,
+    "SAP": 3,
+    "pago": 1,
+    "Cliente": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:00:22.216060"
+}

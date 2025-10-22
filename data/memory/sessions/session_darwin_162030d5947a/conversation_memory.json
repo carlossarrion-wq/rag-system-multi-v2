@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo funciona la recuperación de tenencia en Darwin y qué información proporciona?",
+      "assistant_response": "Darwin utiliza un proceso de recuperación de tenencia para validar si un cliente es nuevo o existente antes de proceder con la contratación [6].\n\nEl proceso es el siguiente:\n\n1) En el paso 1 de la contratación, Darwin realiza una segunda llamada a Mulesoft para obtener los datos de tenencia del usuario por NIF (/middleware/tenure/user_data/) [6].\n\n2) Si no se permite la contratación para el cliente y canal seleccionados (por ejemplo, límite de CUPS), Darwin revisa si existen líneas activas o pendientes de activar para ese cliente [6].\n\n3) Si no existe ninguna línea activa, se considera que el cliente es un ex-cliente con contratos inactivos, y se permite continuar con la contratación como un nuevo cliente [6].\n\n4) Si existe alguna línea activa o pendiente, se trata de un cliente existente. En este caso, Darwin devuelve un código de error específico para mostrar un mensaje indicando que es un cliente existente [6].",
+      "timestamp": "2025-10-22T22:51:46.046808",
+      "entities": [
+        "Darwin",
+        "cliente"
+      ],
+      "topics": [
+        "activos"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {
+    "activos": 1
+  },
+  "saved_at": "2025-10-22T22:51:46.047161"
+}

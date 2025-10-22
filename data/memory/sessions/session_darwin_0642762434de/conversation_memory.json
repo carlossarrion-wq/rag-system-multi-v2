@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son los principales roles de usuario en Darwin y qué permisos tienen?",
+      "assistant_response": "Los principales roles de usuario en Darwin y sus permisos son [2][4]:\n\nAgente (ROLE_SALES_AGENT): Puede acceder a las funcionalidades del sistema para realizar la venta y contratación de servicios a clientes.\n\nAdministrador (ROLE_ADMIN): Tiene acceso al menú de Administración, lo que le permite corregir scoring rechazados, exportar usuarios, y otras tareas de gestión y configuración del sistema [4].\n\nAdicionalmente, existen otros roles complementarios como ROLE_ADMIN_ACCESS_PRODUCTS que permiten acceder a módulos específicos de administración de productos [4].",
+      "timestamp": "2025-10-22T22:49:26.754635",
+      "entities": [
+        "clientes",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "clientes": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:49:26.754853"
+}

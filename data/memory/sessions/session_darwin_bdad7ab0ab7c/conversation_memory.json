@@ -1,0 +1,31 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué opciones de firma de contrato ofrece Darwin según el tipo de venta?",
+      "assistant_response": "Según la información proporcionada en los documentos, Darwin ofrece las siguientes opciones de firma de contrato según el tipo de venta [2][4]:\n\n1. Para venta telefónica (VT), venta en remoto, digital call center y digital partner: el cliente puede responder 'SÍ' para firmar sin necesidad de pinchar en un enlace [4].\n\n2. Para el resto de canales (presencial, online, etc.): se requiere la firma tradicional del contrato por parte del cliente [2].\n\nEl sistema Darwin también permite adjuntar documentación opcional que se anexará como página final del contrato [2][4].",
+      "timestamp": "2025-10-22T22:48:36.422264",
+      "entities": [
+        "Darwin",
+        "cliente"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:48:36.422505"
+}

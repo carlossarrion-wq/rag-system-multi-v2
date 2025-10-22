@@ -437,8 +437,6 @@ class SemanticChunker:
         
         # Module indicators
         modules = {
-            'GADEA': ['GADEA', 'SISTEMA GADEA'],
-            'PDS': ['PDS', 'PLATAFORMA DIGITAL', 'UFD'],
             'DARWIN': ['DARWIN', 'SISTEMA DARWIN'],
             'SAP': ['SAP', 'SISTEMA SAP', 'ERP']
         }

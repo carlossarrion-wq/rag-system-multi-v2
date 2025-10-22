@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "que es darwin ?",
+      "assistant_response": "Darwin is the name of the core system that manages the sales and contracting processes for Naturgy's energy products and services. Based on the information provided in the documents, Darwin is a multi-functional system with the following key capabilities [2][4][6]:\n\n1) Sales and contracting processes: Darwin supports different sales channels (assisted, unassisted, telephone, in-person, online) and manages the entire sales and contracting flow, including validations, scoring, and activation [4].\n\n2) Integration with external systems: Darwin integrates with various external systems such as Siebel, Salesforce, MuleSoft, Aviva, and SIPS to exchange data and synchronize information [2][6].\n\n3) Functional modules: Darwin includes modules for scoring, alliances, audio recording, and failed contract management [6].\n\n4) Multilingual support: The system supports three languages: Spanish, Catalan, and Galician, with all user interface elements and communications localized accordingly [6].\n\n5) Configuration and administration: Darwin allows configuring various parameters such as sales channels, agencies, products, and permissions through its administration functionalities [2][7].\n\nOverall, Darwin is a key component of Naturgy's sales and contracting infrastructure, providing a centralized and integrated platform to manage the full customer journey across different energy products and services [2][4][6].",
+      "timestamp": "2025-10-22T21:26:52.188938",
+      "entities": [
+        "Darwin",
+        "darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1,
+    "darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T21:26:52.189579"
+}

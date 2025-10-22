@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cuáles son los principales estados de un pedido en Darwin y qué significan?",
+      "assistant_response": "Según la información de los documentos proporcionados, los principales estados de un pedido en Darwin son [2][6]:\n\n- draft (borrador, no firmado)\n- signed (firmado, pendiente)\n- submitted (enviado)\n- succeeded (aceptado)\n- failed (fallido)\n\nEl estado draft indica que el pedido está en borrador y no ha sido firmado todavía. El estado signed significa que el pedido ha sido firmado y está pendiente de procesamiento. El estado submitted indica que el pedido ha sido enviado al sistema. El estado succeeded significa que el pedido ha sido aceptado y aprobado. Finalmente, el estado failed indica que el pedido ha fallado en alguna parte del proceso [2][6].",
+      "timestamp": "2025-10-22T22:48:24.610786",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:48:24.611018"
+}

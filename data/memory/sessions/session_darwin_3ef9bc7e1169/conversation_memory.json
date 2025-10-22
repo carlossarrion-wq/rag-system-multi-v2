@@ -1,0 +1,27 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué fuentes consulta Darwin para obtener datos técnicos y qué validaciones realiza?",
+      "assistant_response": "Según el documento [1], Darwin utiliza dos fuentes principales para obtener datos técnicos de los puntos de suministro: \n\n1. SIPS (Sistema de Información de Puntos de Suministro): Darwin consulta la base de datos Elastic de SIPS para obtener información técnica del CUPS, como consumos anuales, potencias contratadas por periodo, tarifa de acceso (ATR), distribuidora responsable y datos del titular [1].\n\n2. Sistemas de facturación P0 (electricidad) y A5_29 (gas): Darwin también consulta estos sistemas para recuperar datos técnicos adicionales necesarios para la gestión comercial [1].\n\nEl objetivo del módulo de Información Técnica (NU_07) en Darwin es centralizar todos estos datos técnicos dispersos en diferentes sistemas, permitiendo a los agentes consultar la información relevante durante el proceso de contratación o en tareas de soporte al cliente [1]. Por motivos de seguridad y protección de datos, el CUPS se muestra ofuscado en la interfaz de usuario [1].",
+      "timestamp": "2025-10-22T22:47:58.504951",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 1,
+        "search_strategy": "multi_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 1,
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:47:58.505260"
+}

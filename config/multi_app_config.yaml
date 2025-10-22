@@ -52,75 +52,6 @@ postgresql:
 
 # Application-specific configurations
 applications:
-  gadea:
-    name: "GADEA System"
-    description: "Sistema de gestión empresarial GADEA"
-    
-    # S3 Configuration for GADEA
-    s3:
-      bucket: "rag-system-gadea-eu-west-1"
-      documents_prefix: "applications/gadea/documents/"
-      backups_prefix: "applications/gadea/backups/"
-      logs_prefix: "applications/gadea/logs/"
-    
-    # OpenSearch Index for GADEA
-    opensearch:
-      index_name: "rag-documents-gadea"
-      
-    # RAG System Configuration for GADEA
-    rag_system:
-      chunking:
-        chunk_size: 1500
-        chunk_overlap: 225
-        separators: ["\n\n", "\n", " ", ""]
-      search:
-        similarity_threshold: 0.75
-        max_results: 8
-        hybrid_search: true
-      generation:
-        context_window: 3000
-        max_response_tokens: 1000
-        include_sources: true
-    
-    # Custom System Prompt for GADEA
-    system_prompt_file: "system_prompts/gadea_system_prompt.json"
-
-
-  # PDS - Plataforma Digital de Servicios de UFD
-  pds:
-    name: "PDS - Plataforma Digital de Servicios UFD"
-    description: "Plataforma Digital de Servicios de UFD (Unión Fenosa Distribución) - Canal digital de clientes"
-    
-    # S3 Configuration for PDS
-    s3:
-      bucket: "rag-system-pds-ufd-eu-west-1"  # Different bucket for PDS
-      documents_prefix: "applications/pds/documents/"
-      backups_prefix: "backups/"
-      logs_prefix: "logs/"
-    
-    # OpenSearch Index for PDS
-    opensearch:
-      index_name: "rag-documents-pds"
-      
-    # RAG System Configuration for PDS
-    rag_system:
-      chunking:
-        chunk_size: 1300
-        chunk_overlap: 200
-        separators: ["\n\n", "\n", " ", ""]
-      search:
-        similarity_threshold: 0.70
-        max_results: 6
-        hybrid_search: true
-      generation:
-        context_window: 2800
-        max_response_tokens: 900
-        include_sources: true
-    
-    # Custom System Prompt for PDS
-    system_prompt_file: "system_prompts/pds_system_prompt.json"
-
-
   # DARWIN - Sistema de Gestión Darwin
   darwin:
     name: "DARWIN System"
@@ -192,7 +123,7 @@ applications:
     system_prompt_file: "system_prompts/sap_system_prompt.json"
 
 # Default application (if none specified)
-default_application: "gadea"
+default_application: "sap"
 
 # Global logging configuration
 logging:

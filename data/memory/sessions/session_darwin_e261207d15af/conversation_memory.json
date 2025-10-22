@@ -1,0 +1,29 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué elementos se pueden configurar desde el módulo de Administración de Darwin?",
+      "assistant_response": "Según la información disponible en los documentos, desde el módulo de Administración de Darwin se pueden configurar los siguientes elementos [2][4][6]:\n\n1) Roles de usuario y permisos:\n- ROLE_ADMIN_ACCESS: Rol de administrador con acceso al menú de Administración [2]\n- ROLE_ADMIN_ACCESS_PRODUCTS: Rol de administrador con acceso a la configuración de productos [2]\n\n2) Usuarios:\n- Dar de alta nuevos usuarios en la base de datos de Darwin, asignándoles el rol y grupo de usuarios correspondiente [4][6]\n\n3) Estructura de carpetas SFTP:\n- Crear la estructura de carpetas en el SFTP (Contratos, Audios) para que las agencias puedan subir la documentación [3][5]\n- Crear usuarios de acceso a estas carpetas SFTP por cada agencia [3][5]\n\n4) Endpoints y conexiones:\n- Configurar los endpoints de los servicios web para que las agencias puedan realizar inserciones en la base de datos de Darwin, tanto en entornos PRE como PRO [7]",
+      "timestamp": "2025-10-22T22:53:19.651916",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:53:19.652218"
+}

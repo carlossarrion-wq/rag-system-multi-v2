@@ -1,0 +1,33 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo gestiona Darwin la factura online (FOL) en el proceso de contratación?",
+      "assistant_response": "Darwin gestiona la factura online (FOL) en el proceso de contratación de la siguiente manera [2][4]:\n\nEn contratación no asistida, la FOL se marca siempre por defecto y no se muestra esa sección al usuario, ya que se da por hecho que el cliente quiere recibir la factura de forma online [2].\n\nEn contratación asistida, la sección de FOL es editable, por lo que el usuario podrá desmarcarlo si lo desea [2]. Se pueden dar varios casos:\n\n1. Cliente con FOL contratada en la dirección existente: Se muestra un texto informativo indicando que ya se dispone de Factura online en esa dirección [4].\n\n2. Cliente sin email informado: Al finalizar el paso 5, Darwin detecta que la FOL está marcada pero no hay email, y muestra un modal que permite informar un email o bien indicar \"No tengo email\", lo cual desmarcará la Factura online [4].\n\n3. Tenencia de otro servicio (SVA) en la dirección de contratación: Al aceptar el paso 5, Darwin lanza una validación para comprobar si en esa dirección ya existe un servicio contratado de la misma familia, y en ese caso mostrará una validación [4].",
+      "timestamp": "2025-10-22T22:55:00.986914",
+      "entities": [
+        "factura",
+        "cliente",
+        "Cliente",
+        "Darwin",
+        "Factura"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "factura": 1,
+    "cliente": 1,
+    "Cliente": 1,
+    "Darwin": 1,
+    "Factura": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:55:00.987262"
+}

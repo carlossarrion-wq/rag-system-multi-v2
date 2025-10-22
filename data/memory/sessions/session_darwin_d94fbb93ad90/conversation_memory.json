@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué funcionalidad ofrece el módulo de Información Técnica de Darwin?",
+      "assistant_response": "El módulo de Información Técnica (NU_07) es una herramienta de consulta que permite a los agentes obtener datos técnicos detallados a partir de un CUPS de luz o gas [3][5]. El sistema consulta tres fuentes principales de información: SIPS (base de datos Elastic), P0 para electricidad, y A5_29 para gas [8]. La información mostrada incluye: consumos anuales, potencias contratadas por periodo, tarifa de acceso (ATR), distribuidora responsable del punto de suministro, datos del titular según la distribuidora, y otra información técnica relevante para la gestión comercial [8]. Por motivos de seguridad y protección de datos, el CUPS se muestra ofuscado en la interfaz [3].",
+      "timestamp": "2025-10-22T22:53:32.343728",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:53:32.343974"
+}

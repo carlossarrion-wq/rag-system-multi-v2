@@ -1,0 +1,50 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "hablame de los procesos del frontal de ventas",
+      "assistant_response": "Según la información disponible en los documentos proporcionados, el Frontal Único de Ventas (FUV) o Darwin es el sistema utilizado por los agentes de venta telefónica (VT) para realizar la contratación de servicios de Naturgy. \n\nEl proceso de Venta Telefónica en Darwin sería el siguiente [4][6]:\n1) El agente de VT accede a Darwin (Frontal Único de Ventas) y realiza la contratación con los datos del cliente [4].\n2) Darwin integra con otros sistemas como SIRCA para comprobar la morosidad del cliente [6].\n\nAdemás, Darwin permite a las agencias de venta integrar su propio sistema mediante un endpoint web service, tanto en entorno de pruebas (PRE) como en producción (PRO) [7]. Para ello, Darwin debe dar de alta la agencia vinculando el nuevo endpoint y asociándola al canal requerido [7].\n\nLos documentos también mencionan que Darwin gestiona una estructura de carpetas SFTP para que las agencias puedan almacenar los contratos y audios de las ventas [3][5].",
+      "timestamp": "2025-10-22T22:14:00.442916",
+      "entities": [
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    },
+    {
+      "user_message": "hablame de los procesos de contratación en darwin",
+      "assistant_response": "Los documentos proporcionados describen los principales procesos de contratación que soporta el sistema Darwin de Naturgy. Darwin permite gestionar tanto la contratación asistida (con la intervención de un agente) como la contratación no asistida (a través de canales de autoservicio sin agente) [2].\n\nLos principales tipos de contratación que maneja Darwin son [2][6]:\n- Contratación Eléctrica (CUPS electricidad)\n- Contratación de Gas (CUPS gas)\n- Contratación Dual (CUPS electricidad y gas)\n- Contratación Multipunto (varios CUPS pymes)\n\nLos canales de contratación soportados incluyen [2][6]:\n- Venta Presencial en Oficinas\n- Venta Telefónica\n- Venta Online (autoservicio)\n- Venta en Remoto (VT)\n\nEl proceso de contratación en Darwin consta de los siguientes pasos principales [4][6][8]:\n1) Validación de datos técnicos del cliente y punto de suministro (CUPS, dirección, distribuidora)\n2) Cálculo de la tarifa y precio aplicable\n3) Validación de la situación crediticia del cliente (scoring)\n4) Generación de la propuesta/presupuesto\n5) Firma del contrato por el cliente\n6) Activación del servicio en los sistemas transaccionales (Siebel, Salesforce)\n\nDurante el proceso se realizan diversas validaciones técnicas y de cumplimiento normativo, como verificación de CUPS, límites de CUPS por cliente, aplicación de flags GDPR, etc. [4][6]\n\nLos estados de un pedido en Darwin son: draft (borrador), signed (firmado), submitted (enviado), succeeded (activado) y failed (fallido) [2][6].",
+      "timestamp": "2025-10-22T22:14:43.995633",
+      "entities": [
+        "darwin",
+        "cliente",
+        "Darwin"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "cliente": 2,
+    "Darwin": 2,
+    "darwin": 1
+  },
+  "recurring_topics": {
+    "documentación": 2
+  },
+  "saved_at": "2025-10-22T22:14:43.996347"
+}

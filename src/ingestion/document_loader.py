@@ -56,7 +56,7 @@ class DocumentLoader:
             elif file_extension == '.xml':  # NUEVO: Soporte XML
                 document = self._load_xml(file_path, document)
 
-            logger.info(f"Successfully loaded document: {file_path}")
+            logger.debug(f"Successfully loaded document: {file_path}")
             return document
 
         except Exception as e:
@@ -240,7 +240,7 @@ class DocumentLoader:
                             })
                         pix = None
                     except Exception as e:
-                        logger.warning(f"Error extracting image from page {page_num + 1}: {e}")
+                        logger.debug(f"Error extracting image from page {page_num + 1}: {e}")
 
             document['content'] = '\n\n'.join(text_content)
             document['images'] = images
@@ -319,7 +319,7 @@ Esta es una imagen que contiene información visual importante. El archivo se ll
 La imagen tiene unas dimensiones de {width} píxeles de ancho por {height} píxeles de alto.
 
 Contenido visual: Esta imagen puede contener diagramas, gráficos, esquemas, flujos de proceso, interfaces de usuario,
-capturas de pantalla, o cualquier otro tipo de información visual relevante para el sistema GADEA.
+capturas de pantalla, o cualquier otro tipo de información visual relevante para el sistema.
 
 Para análisis detallado del contenido visual, se requiere procesamiento con modelos de visión artificial."""
 
@@ -393,7 +393,7 @@ Para análisis detallado del contenido visual, se requiere procesamiento con mod
                 'has_structured_content': table_count > 0
             })
             
-            logger.info(f"Successfully extracted DOCX content: {paragraph_count} paragraphs, {table_count} tables from {file_path}")
+            logger.debug(f"Successfully extracted DOCX content: {paragraph_count} paragraphs, {table_count} tables from {file_path}")
             return document
             
         except Exception as e:

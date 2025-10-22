@@ -1,0 +1,33 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Cómo funciona la consulta de estado de contratación para clientes en Darwin?",
+      "assistant_response": "Según la información disponible en los documentos proporcionados, Darwin permite consultar el estado de contratación de clientes a través de los siguientes pasos [6][8]:\n\n1) El agente accede al módulo de Información Técnica (NU_07) en Darwin [6].\n2) En este módulo, el agente ingresa el CUPS del cliente, ya sea de luz o gas [6][8].\n3) Darwin consulta las siguientes fuentes de información para obtener los datos técnicos del cliente:\n   - SIPS (base de datos Elastic) [8]\n   - P0 para electricidad [8]\n   - A5_29 para gas [8]\n4) La información mostrada incluye: consumos anuales, potencias contratadas por periodo, tarifa de acceso (ATR), distribuidora responsable del punto de suministro, datos del titular según la distribuidora, y otra información técnica relevante [8].\n5) Por motivos de seguridad y protección de datos, el CUPS se muestra ofuscado en la interfaz [6].\n6) Este módulo es especialmente útil para los agentes que necesitan verificar información técnica durante el proceso de contratación o en tareas de soporte al cliente, ya que centraliza datos dispersos en múltiples sistemas [6][8].",
+      "timestamp": "2025-10-22T22:52:54.327450",
+      "entities": [
+        "clientes",
+        "Darwin",
+        "cliente"
+      ],
+      "topics": [
+        "documentación"
+      ],
+      "confidence_score": 0.9,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "clientes": 1,
+    "Darwin": 1,
+    "cliente": 1
+  },
+  "recurring_topics": {
+    "documentación": 1
+  },
+  "saved_at": "2025-10-22T22:52:54.327798"
+}

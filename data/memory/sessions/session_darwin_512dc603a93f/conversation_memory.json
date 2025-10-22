@@ -1,0 +1,25 @@
+{
+  "short_term_memory": [
+    {
+      "user_message": "¿Qué información proporciona el cuadro de mando de Darwin y quién puede acceder?",
+      "assistant_response": "El cuadro de mando de Darwin [2][4][6] permite visualizar el funnel de contratación, mostrando por defecto los datos del último mes. Esta sección del sistema solo es accesible para los usuarios con los roles de canal (ROLE_CHANNEL) y administrador (ROLE_ADMIN) [2]. \n\nEl cuadro de mando redirige al usuario a la herramienta QuickSight [2], donde se centraliza la información de seguimiento y análisis. La URL de acceso a QuickSight es: https://adn-naturgy.awsapps.com/start/#/saml/default/dlakeservi%20quicksight%20reader%20AD%20PRO/ins-43a24d9688d7f879 [2].\n\nEste cuadro de mando no contempla los estados de pedido 'FAILED_MANAGED' [6].",
+      "timestamp": "2025-10-22T22:53:45.618442",
+      "entities": [
+        "Darwin"
+      ],
+      "topics": [],
+      "confidence_score": 0.85,
+      "metadata": {
+        "sources_count": 8,
+        "search_strategy": "single_stage"
+      }
+    }
+  ],
+  "long_term_memory": [],
+  "conversation_summaries": [],
+  "accumulated_entities": {
+    "Darwin": 1
+  },
+  "recurring_topics": {},
+  "saved_at": "2025-10-22T22:53:45.618756"
+}
