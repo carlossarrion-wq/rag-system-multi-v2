@@ -1,0 +1,210 @@
+# Multi-Application RAG Configuration
+# This configuration supports multiple applications with separate S3 buckets, indices, and system prompts
+
+# Global AWS Configuration
+aws:
+  region: eu-west-1
+  profile: default
+  
+bedrock:
+  region: eu-west-1
+  embedding_model: amazon.titan-embed-image-v1
+  embedding_dimension: 1024
+  batch_size: 10
+  multimodal:
+    enabled: true
+    max_image_size_mb: 2
+    target_image_size: 1024
+    image_quality: 85
+  llm_model: eu.anthropic.claude-3-haiku-20240307-v1:0 
+  max_tokens: 4096  # Output tokens (response)
+  max_input_tokens: 180000  # Input tokens (context + images) - Claude 3 Haiku supports up to 200K
+  temperature: 0.7
+  top_p: 0.9
+  retry:
+    max_attempts: 3
+    backoff_multiplier: 2
+    initial_delay: 1
+  prompt_caching:
+    enabled: true
+    default_ttl: "5m"
+    cache_system_prompt: true
+    cache_context_documents: true
+    min_tokens_to_cache: 2048
+    track_metrics: true
+
+# Global OpenSearch Configuration
+opensearch:
+  endpoint: "vpc-rag-opensearch-clean-qodnaopeuroal2f6intbz7i5xy.eu-west-1.es.amazonaws.com"
+  use_ssl: true
+  verify_certs: true
+  connection_class: "RequestsHttpConnection"
+  vpc_access: true
+  timeout: 30
+
+# PostgreSQL Configuration (shared across applications)
+postgresql:
+  enabled: true
+  host: "rag-postgres.czuimyk2qu10.eu-west-1.rds.amazonaws.com"
+  port: 5432
+  database: "ragdb"
+  user: "raguser"
+
+# Application-specific configurations
+applications:
+  gadea:
+    name: "GADEA System"
+    description: "Sistema de gestión empresarial GADEA"
+    
+    # S3 Configuration for GADEA
+    s3:
+      bucket: "rag-system-gadea-eu-west-1"
+      documents_prefix: "applications/gadea/documents/"
+      backups_prefix: "applications/gadea/backups/"
+      logs_prefix: "applications/gadea/logs/"
+    
+    # OpenSearch Index for GADEA
+    opensearch:
+      index_name: "rag-documents-gadea"
+      
+    # RAG System Configuration for GADEA
+    rag_system:
+      chunking:
+        chunk_size: 1500
+        chunk_overlap: 225
+        separators: ["\n\n", "\n", " ", ""]
+      search:
+        similarity_threshold: 0.75
+        max_results: 8
+        hybrid_search: true
+      generation:
+        context_window: 3000
+        max_response_tokens: 1000
+        include_sources: true
+    
+    # Custom System Prompt for GADEA
+    system_prompt_file: "system_prompts/gadea_system_prompt.json"
+
+
+  # PDS - Plataforma Digital de Servicios de UFD
+  pds:
+    name: "PDS - Plataforma Digital de Servicios UFD"
+    description: "Plataforma Digital de Servicios de UFD (Unión Fenosa Distribución) - Canal digital de clientes"
+    
+    # S3 Configuration for PDS
+    s3:
+      bucket: "rag-system-pds-ufd-eu-west-1"  # Different bucket for PDS
+      documents_prefix: "applications/pds/documents/"
+      backups_prefix: "backups/"
+      logs_prefix: "logs/"
+    
+    # OpenSearch Index for PDS
+    opensearch:
+      index_name: "rag-documents-pds"
+      
+    # RAG System Configuration for PDS
+    rag_system:
+      chunking:
+        chunk_size: 1300
+        chunk_overlap: 200
+        separators: ["\n\n", "\n", " ", ""]
+      search:
+        similarity_threshold: 0.70
+        max_results: 6
+        hybrid_search: true
+      generation:
+        context_window: 2800
+        max_response_tokens: 900
+        include_sources: true
+    
+    # Custom System Prompt for PDS
+    system_prompt_file: "system_prompts/pds_system_prompt.json"
+
+
+  # DARWIN - Sistema de Gestión Darwin
+  darwin:
+    name: "DARWIN System"
+    description: "Sistema de gestión empresarial DARWIN - Plataforma integral de procesos"
+    
+    # S3 Configuration for DARWIN
+    s3:
+      bucket: "rag-system-darwin-eu-west-1"
+      documents_prefix: "applications/darwin/documents/"
+      backups_prefix: "applications/darwin/backups/"
+      logs_prefix: "applications/darwin/logs/"
+    
+    # OpenSearch Index for DARWIN
+    opensearch:
+      index_name: "rag-documents-darwin"
+      
+    # RAG System Configuration for DARWIN
+    rag_system:
+      chunking:
+        chunk_size: 1500
+        chunk_overlap: 225
+        separators: ["\n\n", "\n", " ", ""]
+      search:
+        similarity_threshold: 0.75
+        max_results: 8
+        hybrid_search: true
+      generation:
+        context_window: 3000
+        max_response_tokens: 1000
+        include_sources: true
+    
+    # Custom System Prompt for DARWIN
+    system_prompt_file: "system_prompts/darwin_system_prompt.json"
+
+
+
+  # SAP - Sistema SAP Empresarial
+  sap:
+    name: "SAP System"
+    description: "Sistema SAP empresarial - Plataforma ERP integral"
+    
+    # S3 Configuration for SAP
+    s3:
+      bucket: "rag-system-sap-eu-west-1"
+      documents_prefix: "applications/sap/documents/"
+      backups_prefix: "applications/sap/backups/"
+      logs_prefix: "applications/sap/logs/"
+    
+    # OpenSearch Index for SAP
+    opensearch:
+      index_name: "rag-documents-sap"
+      
+    # RAG System Configuration for SAP
+    rag_system:
+      chunking:
+        chunk_size: 1500
+        chunk_overlap: 225
+        separators: ["\n\n", "\n", " ", ""]
+      search:
+        similarity_threshold: 0.75
+        max_results: 8
+        hybrid_search: true
+      generation:
+        context_window: 3000
+        max_response_tokens: 1000
+        include_sources: true
+        
+    # Custom System Prompt for SAP
+    system_prompt_file: "system_prompts/sap_system_prompt.json"
+
+# Default application (if none specified)
+default_application: "gadea"
+
+# Global logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "/home/ec2-user/rag-system/logs/rag_system.log"
+  max_file_size: "10MB"
+  backup_count: 5
+
+# Global environment configuration
+environment:
+  name: "production"
+  debug: false
+  max_concurrent_requests: 10
+  request_timeout: 30

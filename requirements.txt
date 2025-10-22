@@ -1,0 +1,43 @@
+# RAG Multi-Application System Dependencies - Python 3.7 Compatible
+# Core Python packages
+boto3>=1.26.0,<1.35.0
+botocore>=1.29.0,<1.35.0
+pyyaml>=5.4.0,<7.0.0
+python-dotenv>=0.19.0
+
+# OpenSearch and Elasticsearch
+opensearch-py>=1.1.0,<3.0.0
+elasticsearch>=7.17.0,<8.0.0
+
+# Database
+psycopg2-binary>=2.8.6
+
+# AWS Authentication
+aws-requests-auth>=0.4.3
+
+# Document Processing
+PyMuPDF>=1.20.0,<1.24.0  # fitz
+python-docx>=0.8.11
+pandas>=1.3.0,<2.0.0
+Pillow>=8.0.0,<10.0.0
+
+# Logging
+loguru>=0.6.0
+
+# Data Processing
+numpy>=1.21.0,<1.25.0
+scikit-learn>=1.0.0,<1.4.0
+
+# Web and HTTP
+requests>=2.25.0
+
+# Text Processing
+regex>=2021.10.0
+
+# Type hints and validation
+typing-extensions>=3.10.0
+
+# Development and testing (optional)
+pytest>=6.2.0
+black>=21.0.0
+flake8>=3.9.0

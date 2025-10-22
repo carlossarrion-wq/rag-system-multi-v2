@@ -1,0 +1,1982 @@
+{
+  "total_files": 87,
+  "successful_parses": 11,
+  "failed_parses": 0,
+  "fallback_parses": 76,
+  "detailed_results": [
+    {
+      "filename": "llm_response_20251019_194109_051.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4061,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_194907_033.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4901,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_195410_683.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 6237,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_195837_852.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 5427,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "filename": "llm_response_20251019_195946_749.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 5299,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "filename": "llm_response_20251019_201443_962.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 3393,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "filename": "llm_response_20251019_201848_359.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 3215,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "filename": "llm_response_20251019_202131_891.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 3840,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "filename": "llm_response_20251019_202406_037.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 4331,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "filename": "llm_response_20251019_202758_596.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 3564,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "filename": "llm_response_20251019_203147_174.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 3155,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "filename": "llm_response_20251019_203510_446.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2261,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_203540_380.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2629,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_203745_402.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3227,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_204147_613.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2958,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_204247_504.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2841,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_204421_167.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3477,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_204631_096.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4133,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_204703_267.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3219,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_205049_765.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3451,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_205225_235.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2988,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_205517_902.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3253,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_205730_950.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4330,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_205951_036.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3368,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_210259_385.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4151,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_210321_037.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 1829,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_210334_983.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2160,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_211040_607.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3132,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_211334_383.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2771,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_211357_507.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2943,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_211427_949.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2039,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_211941_492.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3372,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_211956_797.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 1803,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_212310_160.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3160,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_212332_474.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3757,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_212403_059.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3430,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_212555_022.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 1791,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_212634_542.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4308,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_212947_943.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4530,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_213106_804.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3061,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_213332_215.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4893,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_213628_731.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4200,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_213715_623.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 1836,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214144_811.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3573,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214200_495.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2419,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214224_250.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3427,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214254_838.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4045,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214345_182.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4319,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214411_544.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4118,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214458_191.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 5264,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214901_278.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3443,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_214937_658.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3402,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215032_076.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3901,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped quotes around paths/endpoints"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215124_469.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4338,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215144_725.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 1854,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215228_670.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2932,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215455_813.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3748,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215517_444.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3420,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215605_740.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2729,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215645_150.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2101,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215721_007.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3076,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215803_586.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3199,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215824_968.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3248,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215904_308.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3053,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215926_624.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2208,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_215949_049.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3965,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_220249_376.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3685,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_220257_312.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2629,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Mismatched braces (incomplete JSON)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_220306_275.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2998,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_220333_870.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4389,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_220620_987.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3688,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_220656_840.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2545,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_220729_936.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2540,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_220902_911.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2577,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221045_914.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3669,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221121_431.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3363,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221242_915.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 4013,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221308_181.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 1678,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221332_716.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3428,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221656_157.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3490,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221720_110.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2838,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221748_216.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2836,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_221809_062.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 850,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_222027_514.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 2764,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_222053_773.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 969,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_222247_219.txt",
+      "status": "fallback",
+      "is_structured": false,
+      "error": null,
+      "content_length": 3724,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    },
+    {
+      "filename": "llm_response_20251019_222301_793.txt",
+      "status": "success",
+      "is_structured": true,
+      "error": null,
+      "content_length": 887,
+      "json_issues": [
+        "JSON Error: Expecting value: line 1 column 1 (char 0)",
+        "Issue: Likely unescaped newlines in strings"
+      ],
+      "parsed_keys": [
+        "response_type",
+        "answer",
+        "confidence",
+        "sources",
+        "key_points",
+        "metadata",
+        "follow_up_questions",
+        "related_topics",
+        "warnings"
+      ],
+      "confidence_score": 0.7
+    }
+  ]
+}
