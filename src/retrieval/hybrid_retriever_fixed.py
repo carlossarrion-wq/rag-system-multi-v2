@@ -7,30 +7,117 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from ..indexing.opensearch_indexer import OpenSearchIndexer
-from ..utils.connection_manager import ConnectionManager
-from ..utils.stop_words_manager import get_stop_words_manager
 import json
 from typing import List, Dict, Any
 from loguru import logger
 
+try:
+    from ..indexing.opensearch_indexer import OpenSearchIndexer
+    from ..utils.connection_manager import ConnectionManager
+    from ..utils.stop_words_manager import get_stop_words_manager
+except ImportError as e:
+    logger.error(f"Import error in hybrid_retriever_fixed: {e}")
+    raise
+
 class HybridRetrieverFixed:
-    def __init__(self, config_path: str = "config/aws_config_production.yaml"):
-        self.config_path = config_path
-        self.connection_manager = ConnectionManager(config_path)
-        self.opensearch_client = self.connection_manager.get_opensearch_client()
-        self.bedrock_client = self.connection_manager.get_bedrock_client()
-
-        # Load config
-        import yaml
-        with open(config_path, 'r') as f:
-            self.config = yaml.safe_load(f)
-
-        self.index_name = self.config['services']['opensearch']['index_name']
-        self.embedding_model = self.config['bedrock']['embedding_model']
+    def __init__(self, config_path: str = "config/multi_app_config.yaml", application: str = "darwin"):
+        logger.info(f"HybridRetrieverFixed.__init__ called with:")
+        logger.info(f"  - config_path: {config_path}")
+        logger.info(f"  - application: {application}")
         
-        # Initialize stop words manager
-        self.stop_words_manager = get_stop_words_manager()
+        self.config_path = config_path
+        self.application = application
+        
+        try:
+            # Load config
+            logger.debug("Loading YAML configuration...")
+            import yaml
+            with open(config_path, 'r') as f:
+                self.config = yaml.safe_load(f)
+            logger.debug("YAML configuration loaded successfully")
+            
+            # Validate config structure
+            logger.debug("Validating configuration structure...")
+            if 'opensearch' not in self.config:
+                raise KeyError("'opensearch' key not found in configuration")
+            if 'applications' not in self.config:
+                raise KeyError("'applications' key not found in configuration")
+            if application not in self.config['applications']:
+                raise KeyError(f"Application '{application}' not found in configuration")
+            
+            logger.debug("Configuration structure validated")
+            
+            # Create a compatible config structure for ConnectionManager
+            # The ConnectionManager expects the endpoint WITHOUT https:// prefix
+            logger.debug("Processing OpenSearch endpoint...")
+            opensearch_endpoint = self.config['opensearch']['endpoint']
+            logger.debug(f"Original endpoint: {opensearch_endpoint}")
+            
+            if opensearch_endpoint.startswith('https://'):
+                opensearch_endpoint = opensearch_endpoint.replace('https://', '')
+            elif opensearch_endpoint.startswith('http://'):
+                opensearch_endpoint = opensearch_endpoint.replace('http://', '')
+            
+            logger.debug(f"Processed endpoint: {opensearch_endpoint}")
+            
+            logger.debug("Building compatible configuration...")
+            compatible_config = {
+                'aws': self.config['aws'],
+                'bedrock': self.config['bedrock'],
+                'services': {
+                    'opensearch': {
+                        'endpoint': f"https://{opensearch_endpoint}",
+                        'use_ssl': self.config['opensearch'].get('use_ssl', True),
+                        'verify_certs': self.config['opensearch'].get('verify_certs', True),
+                        'connection_class': self.config['opensearch'].get('connection_class', 'RequestsHttpConnection'),
+                        'vpc_access': self.config['opensearch'].get('vpc_access', True),
+                        'timeout': self.config['opensearch'].get('timeout', 30)
+                    },
+                    'postgresql': self.config.get('postgresql', {}),
+                    's3': {
+                        'bucket': self.config['applications'][application]['s3']['bucket']
+                    }
+                }
+            }
+            
+            # Debug logging to help troubleshoot
+            logger.info(f"Compatible config created:")
+            logger.info(f"  - OpenSearch endpoint: {compatible_config['services']['opensearch']['endpoint']}")
+            logger.info(f"  - AWS region: {compatible_config['aws']['region']}")
+            logger.info(f"  - S3 bucket: {compatible_config['services']['s3']['bucket']}")
+            
+            logger.debug("Creating ConnectionManager...")
+            self.connection_manager = ConnectionManager(config_dict=compatible_config)
+            logger.debug("ConnectionManager created successfully")
+            
+            logger.debug("Getting OpenSearch client...")
+            self.opensearch_client = self.connection_manager.get_opensearch_client()
+            logger.debug("OpenSearch client obtained successfully")
+            
+            logger.debug("Getting Bedrock client...")
+            self.bedrock_client = self.connection_manager.get_bedrock_client()
+            logger.debug("Bedrock client obtained successfully")
+
+            logger.debug("Setting index name and embedding model...")
+            self.index_name = self.config['applications'][application]['opensearch']['index_name']
+            self.embedding_model = self.config['bedrock']['embedding_model']
+            logger.info(f"Index name: {self.index_name}")
+            logger.info(f"Embedding model: {self.embedding_model}")
+            
+            # Initialize stop words manager
+            logger.debug("Initializing stop words manager...")
+            self.stop_words_manager = get_stop_words_manager()
+            logger.debug("Stop words manager initialized successfully")
+            
+            logger.info("HybridRetrieverFixed initialization completed successfully")
+            
+        except Exception as e:
+            logger.error(f"Error in HybridRetrieverFixed.__init__: {e}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            logger.error(f"Exception args: {e.args}")
+            import traceback
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+            raise
 
     def _get_embedding(self, text: str) -> List[float]:
         """Generate embedding for text using Bedrock"""

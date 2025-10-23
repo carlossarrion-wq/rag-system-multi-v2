@@ -26,9 +26,19 @@ class ConnectionManager:
     def get_opensearch_client(self):
         if self.opensearch_client is None:
             try:
+                # Check if opensearchpy is available
+                try:
+                    from opensearchpy import OpenSearch, RequestsHttpConnection
+                except ImportError as import_error:
+                    logger.error(f"opensearchpy module not found: {import_error}")
+                    raise ImportError("opensearchpy is required but not installed. Please install it with: pip install opensearch-py")
+                
                 region = self.config['aws']['region']
                 service = 'es'
                 credentials = boto3.Session().get_credentials()
+                
+                if not credentials:
+                    raise ValueError("AWS credentials not found. Please configure your AWS credentials.")
                 
                 # CORRECCIÓN: Usar la sintaxis correcta para AWSRequestsAuth
                 host = self.config['services']['opensearch']['endpoint'].replace('https://', '')

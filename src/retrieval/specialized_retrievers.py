@@ -404,146 +404,64 @@ class RetrieverFactory:
 
 
     @staticmethod
-    def create_semantic_retriever(config_path: str = "config/aws_config_production.yaml"):
+    def create_semantic_retriever(config_path: str = "config/multi_app_config.yaml", application: str = "darwin"):
         """Crea un retriever semántico usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        from ..utils.multi_app_config_manager import MultiAppConfigManager
-        import tempfile
-        import yaml
-        import os
         
-        # Create legacy config if using multi-app config
-        if 'multi_app_config' in config_path:
-            config_manager = MultiAppConfigManager(config_path)
-            # Try to determine app from context or use default
-            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
-            legacy_config = config_manager.create_legacy_config(app_name)
-            
-            # Create temporary config file
-            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
-            yaml.dump(legacy_config, temp_file, default_flow_style=False)
-            temp_file.close()
-            
-            hr = HybridRetriever(temp_file.name)
-            
-            # Clean up temp file
-            os.unlink(temp_file.name)
-        else:
-            hr = HybridRetriever(config_path)
+        hr = HybridRetriever(config_path=config_path, application=application)
         return SemanticRetriever(hr)
 
     @staticmethod
-    def create_hybrid_retriever(config_path: str = "config/aws_config_production.yaml"):
+    def create_hybrid_retriever(config_path: str = "config/multi_app_config.yaml", application: str = "darwin"):
         """Crea un retriever híbrido usando OpenSearch"""
-        from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        from ..utils.multi_app_config_manager import MultiAppConfigManager
-        import tempfile
-        import yaml
-        import os
+        import logging
+        logger = logging.getLogger(__name__)
         
-        # Create legacy config if using multi-app config
-        if 'multi_app_config' in config_path:
-            config_manager = MultiAppConfigManager(config_path)
-            # Try to determine app from context or use default
-            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
-            legacy_config = config_manager.create_legacy_config(app_name)
+        logger.info(f"RetrieverFactory.create_hybrid_retriever called with:")
+        logger.info(f"  - config_path: {config_path}")
+        logger.info(f"  - application: {application}")
+        
+        try:
+            logger.debug("Importing HybridRetrieverFixed...")
+            from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
             
-            # Create temporary config file
-            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
-            yaml.dump(legacy_config, temp_file, default_flow_style=False)
-            temp_file.close()
+            logger.debug("Creating HybridRetrieverFixed instance...")
+            hybrid_retriever = HybridRetriever(config_path=config_path, application=application)
             
-            hybrid_retriever = HybridRetriever(temp_file.name)
+            logger.debug("Creating HybridRetrieverWrapper...")
+            wrapper = HybridRetrieverWrapper(hybrid_retriever)
             
-            # Clean up temp file
-            os.unlink(temp_file.name)
-        else:
-            hybrid_retriever = HybridRetriever(config_path)
-        return HybridRetrieverWrapper(hybrid_retriever)
+            logger.info("Hybrid retriever created successfully")
+            return wrapper
+            
+        except Exception as e:
+            logger.error(f"Error in create_hybrid_retriever: {e}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            logger.error(f"Exception args: {e.args}")
+            import traceback
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+            raise
 
     @staticmethod
-    def create_keyword_retriever(config_path: str = "config/aws_config_production.yaml"):
+    def create_keyword_retriever(config_path: str = "config/multi_app_config.yaml", application: str = "darwin"):
         """Crea un retriever de palabras clave usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        from ..utils.multi_app_config_manager import MultiAppConfigManager
-        import tempfile
-        import yaml
-        import os
         
-        # Create legacy config if using multi-app config
-        if 'multi_app_config' in config_path:
-            config_manager = MultiAppConfigManager(config_path)
-            # Try to determine app from context or use default
-            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
-            legacy_config = config_manager.create_legacy_config(app_name)
-            
-            # Create temporary config file
-            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
-            yaml.dump(legacy_config, temp_file, default_flow_style=False)
-            temp_file.close()
-            
-            hr = HybridRetriever(temp_file.name)
-            
-            # Clean up temp file
-            os.unlink(temp_file.name)
-        else:
-            hr = HybridRetriever(config_path)
+        hr = HybridRetriever(config_path=config_path, application=application)
         return KeywordRetriever(hr)
 
     @staticmethod
-    def create_metadata_retriever(config_path: str = "config/aws_config_production.yaml"):
+    def create_metadata_retriever(config_path: str = "config/multi_app_config.yaml", application: str = "darwin"):
         """Crea un retriever de metadatos usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        from ..utils.multi_app_config_manager import MultiAppConfigManager
-        import tempfile
-        import yaml
-        import os
         
-        # Create legacy config if using multi-app config
-        if 'multi_app_config' in config_path:
-            config_manager = MultiAppConfigManager(config_path)
-            # Try to determine app from context or use default
-            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
-            legacy_config = config_manager.create_legacy_config(app_name)
-            
-            # Create temporary config file
-            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
-            yaml.dump(legacy_config, temp_file, default_flow_style=False)
-            temp_file.close()
-            
-            hybrid_retriever = HybridRetriever(temp_file.name)
-            
-            # Clean up temp file
-            os.unlink(temp_file.name)
-        else:
-            hybrid_retriever = HybridRetriever(config_path)
+        hybrid_retriever = HybridRetriever(config_path=config_path, application=application)
         return MetadataRetriever(hybrid_retriever)
 
     @staticmethod
-    def create_graph_retriever(config_path: str = "config/aws_config_production.yaml"):
+    def create_graph_retriever(config_path: str = "config/multi_app_config.yaml", application: str = "darwin"):
         """Crea un retriever de grafos usando OpenSearch"""
         from ..retrieval.hybrid_retriever_fixed import HybridRetrieverFixed as HybridRetriever
-        from ..utils.multi_app_config_manager import MultiAppConfigManager
-        import tempfile
-        import yaml
-        import os
         
-        # Create legacy config if using multi-app config
-        if 'multi_app_config' in config_path:
-            config_manager = MultiAppConfigManager(config_path)
-            # Try to determine app from context or use default
-            app_name = getattr(config_manager, '_current_app', config_manager.default_app)
-            legacy_config = config_manager.create_legacy_config(app_name)
-            
-            # Create temporary config file
-            temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False)
-            yaml.dump(legacy_config, temp_file, default_flow_style=False)
-            temp_file.close()
-            
-            hybrid_retriever = HybridRetriever(temp_file.name)
-            
-            # Clean up temp file
-            os.unlink(temp_file.name)
-        else:
-            hybrid_retriever = HybridRetriever(config_path)
+        hybrid_retriever = HybridRetriever(config_path=config_path, application=application)
         return GraphRetriever(hybrid_retriever)

@@ -34,7 +34,7 @@ class LLMClient:
     - Full compatibility with EC2 infrastructure
     """
 
-    def __init__(self, config_path: str = "config/aws_config_production.yaml"):
+    def __init__(self, config_path: str = "config/multi_app_config.yaml"):
         """
         Initialize LLM Client.
 

@@ -53,7 +53,8 @@ class ToolOrchestrator:
     def __init__(
         self,
         retriever_factory: RetrieverFactory,
-        config_path: str = "config/aws_config_production.yaml",
+        config_path: str = "config/multi_app_config.yaml",
+        application: str = "darwin",
         max_workers: int = 3,
         timeout_seconds: int = 30
     ):
@@ -62,11 +63,14 @@ class ToolOrchestrator:
         
         Args:
             retriever_factory: Factory para crear retrievers
+            config_path: Path to configuration file
+            application: Application name for context
             max_workers: Máximo número de workers paralelos
             timeout_seconds: Timeout para ejecución de herramientas
         """
         self.retriever_factory = retriever_factory
         self.config_path = config_path
+        self.application = application
         self.max_workers = max_workers
         self.timeout_seconds = timeout_seconds
         
@@ -382,19 +386,36 @@ class ToolOrchestrator:
     def _create_retriever(self, tool_name: str):
         """Crea un retriever basado en el nombre de la herramienta"""
         
-        if tool_name == "semantic_search":
-            return self.retriever_factory.create_semantic_retriever(self.config_path)
-        elif tool_name == "keyword_search":
-            return self.retriever_factory.create_keyword_retriever(self.config_path)
-        elif tool_name == "hybrid_search":
-            return self.retriever_factory.create_hybrid_retriever(self.config_path)
-        elif tool_name == "metadata_search":
-            return self.retriever_factory.create_metadata_retriever(self.config_path)
-        elif tool_name == "graph_search":
-            return self.retriever_factory.create_graph_retriever(self.config_path)
-        else:
-            logger.warning(f"Unknown tool {tool_name}, using hybrid_search")
-            return self.retriever_factory.create_hybrid_retriever(self.config_path)
+        logger.info(f"Creating retriever for tool: {tool_name}")
+        logger.info(f"Config path: {self.config_path}")
+        logger.info(f"Application: {self.application}")
+        
+        try:
+            if tool_name == "semantic_search":
+                logger.debug("Creating semantic retriever...")
+                return self.retriever_factory.create_semantic_retriever(self.config_path, self.application)
+            elif tool_name == "keyword_search":
+                logger.debug("Creating keyword retriever...")
+                return self.retriever_factory.create_keyword_retriever(self.config_path, self.application)
+            elif tool_name == "hybrid_search":
+                logger.debug("Creating hybrid retriever...")
+                return self.retriever_factory.create_hybrid_retriever(self.config_path, self.application)
+            elif tool_name == "metadata_search":
+                logger.debug("Creating metadata retriever...")
+                return self.retriever_factory.create_metadata_retriever(self.config_path, self.application)
+            elif tool_name == "graph_search":
+                logger.debug("Creating graph retriever...")
+                return self.retriever_factory.create_graph_retriever(self.config_path, self.application)
+            else:
+                logger.warning(f"Unknown tool {tool_name}, using hybrid_search")
+                return self.retriever_factory.create_hybrid_retriever(self.config_path, self.application)
+        except Exception as e:
+            logger.error(f"Error creating retriever for tool '{tool_name}': {e}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            logger.error(f"Exception args: {e.args}")
+            import traceback
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+            raise
     
     def _fuse_results_rrf(
         self,

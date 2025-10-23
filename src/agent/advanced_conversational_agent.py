@@ -51,7 +51,8 @@ class AdvancedConversationalAgent:
         citation_manager: CitationManager,
         memory_file: Optional[str] = None,
         acronym_dict_path: Optional[str] = None,
-        config_path: str = "config/aws_config_production.yaml",
+        config_path: str = "config/multi_app_config.yaml",
+        application: str = "darwin",
         session_id: Optional[str] = None
     ):
         """
@@ -64,11 +65,13 @@ class AdvancedConversationalAgent:
             memory_file: Archivo para persistir memoria
             acronym_dict_path: Ruta al diccionario de acrónimos
             config_path: Ruta al archivo de configuración
+            application: Application name for context
             session_id: ID de sesión para aislamiento de conversaciones (opcional)
         """
         self.llm_client = llm_client
         self.citation_manager = citation_manager
         self.session_id = session_id
+        self.application = application
         
         # Inicializar componentes
         self.reasoning_agent = FixedReasoningAgent(
@@ -79,6 +82,7 @@ class AdvancedConversationalAgent:
         self.tool_orchestrator = ToolOrchestrator(
             retriever_factory=retriever_factory,
             config_path=config_path,
+            application=application,
             max_workers=3,
             timeout_seconds=30
         )

@@ -306,6 +306,24 @@ class MultiAppConfigManager:
         legacy_config = {
             'aws': app_config['aws'],
             'bedrock': app_config['bedrock'],
+            # Add opensearch at root level for HybridRetrieverFixed compatibility
+            'opensearch': {
+                'endpoint': app_config['opensearch']['endpoint'],
+                'use_ssl': app_config['opensearch']['use_ssl'],
+                'verify_certs': app_config['opensearch']['verify_certs'],
+                'connection_class': app_config['opensearch']['connection_class'],
+                'vpc_access': app_config['opensearch']['vpc_access'],
+                'timeout': app_config['opensearch']['timeout']
+            },
+            # Add applications section for HybridRetrieverFixed compatibility
+            'applications': {
+                app_name: {
+                    'opensearch': {
+                        'index_name': app_config['services']['opensearch']['index_name']
+                    },
+                    's3': app_config['services']['s3']
+                }
+            },
             'services': {
                 'opensearch': {
                     'enabled': True,

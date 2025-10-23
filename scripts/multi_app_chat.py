@@ -91,8 +91,45 @@ class SessionAwareMultiAppAgent(AdvancedConversationalAgent):
         # Initialize components with correct parameters
         llm_client = LLMClient(config_path=self.temp_config_file)
         
-        # RetrieverFactory is a static class, just pass the class itself
-        retriever_factory = RetrieverFactory
+        # Create a custom retriever factory that uses the correct application
+        class AppSpecificRetrieverFactory:
+            def __init__(self, app_name: str, config_path: str, original_config_path: str):
+                self.app_name = app_name
+                self.config_path = config_path
+                self.original_config_path = original_config_path  # Store the original multi-app config path
+            
+            def create_semantic_retriever(self, config_path: str = None, application: str = None):
+                return RetrieverFactory.create_semantic_retriever(
+                    config_path=config_path or self.original_config_path,
+                    application=application or self.app_name
+                )
+            
+            def create_hybrid_retriever(self, config_path: str = None, application: str = None):
+                return RetrieverFactory.create_hybrid_retriever(
+                    config_path=config_path or self.original_config_path,
+                    application=application or self.app_name
+                )
+            
+            def create_keyword_retriever(self, config_path: str = None, application: str = None):
+                return RetrieverFactory.create_keyword_retriever(
+                    config_path=config_path or self.original_config_path,
+                    application=application or self.app_name
+                )
+            
+            def create_metadata_retriever(self, config_path: str = None, application: str = None):
+                return RetrieverFactory.create_metadata_retriever(
+                    config_path=config_path or self.original_config_path,
+                    application=application or self.app_name
+                )
+            
+            def create_graph_retriever(self, config_path: str = None, application: str = None):
+                return RetrieverFactory.create_graph_retriever(
+                    config_path=config_path or self.original_config_path,
+                    application=application or self.app_name
+                )
+        
+        # Create app-specific retriever factory
+        retriever_factory = AppSpecificRetrieverFactory(self.app_name, self.temp_config_file, config_path)
         
         citation_manager = CitationManager()
         
@@ -125,6 +162,7 @@ class SessionAwareMultiAppAgent(AdvancedConversationalAgent):
             citation_manager=citation_manager,
             memory_file=session_memory_file,
             config_path=self.temp_config_file,
+            application=self.app_name,  # Pass application name for context
             session_id=self.session_id  # Pass session_id to AdvancedMemory
         )
         
