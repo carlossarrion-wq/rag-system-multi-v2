@@ -59,8 +59,11 @@ class HybridRetrieverFixed:
         Filter stop words from search query to improve search precision
         """
         try:
-            # Get filtered query using stop words manager
-            filtered_query = self.stop_words_manager.filter_text(query)
+            # Get filtered words using stop words manager
+            filtered_words = self.stop_words_manager.filter_words(query)
+            
+            # Join the filtered words back into a query string
+            filtered_query = ' '.join(filtered_words)
             
             # Log the filtering for debugging
             if filtered_query != query:
