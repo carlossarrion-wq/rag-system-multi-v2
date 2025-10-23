@@ -37,6 +37,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.utils.multi_app_config_manager import MultiAppConfigManager
 from src.utils.connection_manager import ConnectionManager
+from src.utils.stop_words_manager import get_stop_words_manager
 from src.ingestion.document_loader import DocumentLoader
 from src.indexing.multi_app_opensearch_indexer import MultiAppOpenSearchIndexer
 from loguru import logger
@@ -91,27 +92,44 @@ class DocumentSummarizer:
         return int(len(text.split()) * 1.3)  # Rough approximation
     
     def extract_key_terms(self, text: str, max_terms: int = 10) -> List[str]:
-        """Extract key terms from text using simple frequency analysis."""
-        import re
-        from collections import Counter
-        
-        # Simple tokenization and filtering
-        words = re.findall(r'\b[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,}\b', text.lower())
-        
-        # Filter out common words (basic stop words)
-        stop_words = {
-            'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by',
-            'que', 'de', 'la', 'el', 'en', 'un', 'es', 'se', 'no', 'te', 'lo', 'le', 'da',
-            'su', 'por', 'son', 'con', 'una', 'las', 'los', 'del', 'al', 'como', 'pero',
-            'sus', 'fue', 'ser', 'han', 'más', 'para', 'está', 'hasta', 'todo', 'este',
-            'esta', 'estos', 'estas', 'ese', 'esa', 'esos', 'esas', 'aquel', 'aquella'
-        }
-        
-        filtered_words = [word for word in words if word not in stop_words and len(word) > 3]
-        
-        # Get most common terms
-        counter = Counter(filtered_words)
-        return [term for term, count in counter.most_common(max_terms)]
+        """Extract key terms from text using enhanced stop words filtering."""
+        try:
+            # Use the new stop words manager for better filtering
+            stop_words_manager = get_stop_words_manager()
+            key_terms = stop_words_manager.extract_key_terms(
+                text=text,
+                languages=['english', 'spanish'],
+                application=self.app_name,
+                max_terms=max_terms
+            )
+            
+            logger.debug(f"[{self.app_name}] Extracted {len(key_terms)} key terms using enhanced stop words filtering")
+            return key_terms
+            
+        except Exception as e:
+            logger.warning(f"[{self.app_name}] Error using enhanced stop words manager, falling back to basic method: {e}")
+            
+            # Fallback to basic method if stop words manager fails
+            import re
+            from collections import Counter
+            
+            # Simple tokenization and filtering
+            words = re.findall(r'\b[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,}\b', text.lower())
+            
+            # Basic stop words (fallback)
+            basic_stop_words = {
+                'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by',
+                'que', 'de', 'la', 'el', 'en', 'un', 'es', 'se', 'no', 'te', 'lo', 'le', 'da',
+                'su', 'por', 'son', 'con', 'una', 'las', 'los', 'del', 'al', 'como', 'pero',
+                'sus', 'fue', 'ser', 'han', 'más', 'para', 'está', 'hasta', 'todo', 'este',
+                'esta', 'estos', 'estas', 'ese', 'esa', 'esos', 'esas', 'aquel', 'aquella'
+            }
+            
+            filtered_words = [word for word in words if word not in basic_stop_words and len(word) > 3]
+            
+            # Get most common terms
+            counter = Counter(filtered_words)
+            return [term for term, count in counter.most_common(max_terms)]
     
     def generate_summary(self, document: Dict[str, Any]) -> Dict[str, Any]:
         """
