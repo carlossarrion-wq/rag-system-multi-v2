@@ -14,7 +14,6 @@ from loguru import logger
 try:
     from ..indexing.opensearch_indexer import OpenSearchIndexer
     from ..utils.connection_manager import ConnectionManager
-    from ..utils.stop_words_manager import get_stop_words_manager
 except ImportError as e:
     logger.error(f"Import error in hybrid_retriever_fixed: {e}")
     raise
@@ -104,10 +103,6 @@ class HybridRetrieverFixed:
             logger.info(f"Index name: {self.index_name}")
             logger.info(f"Embedding model: {self.embedding_model}")
             
-            # Initialize stop words manager
-            logger.debug("Initializing stop words manager...")
-            self.stop_words_manager = get_stop_words_manager()
-            logger.debug("Stop words manager initialized successfully")
             
             logger.info("HybridRetrieverFixed initialization completed successfully")
             
@@ -141,34 +136,6 @@ class HybridRetrieverFixed:
             logger.error(f"Error generating embedding: {e}")
             raise
 
-    def _filter_search_query(self, query: str) -> str:
-        """
-        Filter stop words from search query to improve search precision
-        """
-        try:
-            # Split query into words first
-            words = query.split()
-            
-            # Get filtered words using stop words manager
-            filtered_words = self.stop_words_manager.filter_words(words)
-            
-            # Join the filtered words back into a query string
-            filtered_query = ' '.join(filtered_words)
-            
-            # Log the filtering for debugging
-            if filtered_query != query:
-                logger.debug(f"Query filtered: '{query}' -> '{filtered_query}'")
-            
-            # Return original query if filtering results in empty string
-            if not filtered_query.strip():
-                logger.debug(f"Filtered query is empty, using original: '{query}'")
-                return query
-                
-            return filtered_query
-            
-        except Exception as e:
-            logger.warning(f"Error filtering query, using original: {e}")
-            return query
 
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         """
@@ -176,11 +143,8 @@ class HybridRetrieverFixed:
         FIXED: Corrected kNN query structure for OpenSearch
         """
         try:
-            # Filter stop words from query for better search precision
-            filtered_query = self._filter_search_query(query)
-            
-            # Generate query embedding using filtered query
-            query_embedding = self._get_embedding(filtered_query)
+            # Generate query embedding using original query
+            query_embedding = self._get_embedding(query)
 
             # FIXED: Use proper hybrid search structure for OpenSearch
             # First, get vector results
@@ -205,12 +169,12 @@ class HybridRetrieverFixed:
                 body=vector_search_body
             )
 
-            # Then, get text results using filtered query
+            # Then, get text results using original query
             text_search_body = {
                 "size": top_k,
                 "query": {
                     "multi_match": {
-                        "query": filtered_query,
+                        "query": query,
                         "fields": ["content^2", "title", "file_name"],
                         "type": "best_fields"
                     }
@@ -243,10 +207,9 @@ class HybridRetrieverFixed:
 
         except Exception as e:
             logger.error(f"Error in hybrid search: {e}")
-            # Fallback to simple text search with filtered query
+            # Fallback to simple text search with original query
             try:
-                filtered_query = self._filter_search_query(query)
-                return self._fallback_text_search(filtered_query, top_k)
+                return self._fallback_text_search(query, top_k)
             except Exception as fallback_error:
                 logger.error(f"Fallback search also failed: {fallback_error}")
                 return []
