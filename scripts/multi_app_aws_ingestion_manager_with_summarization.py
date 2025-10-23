@@ -93,9 +93,15 @@ class DocumentSummarizer:
     
     def extract_key_terms(self, text: str, max_terms: int = 10) -> List[str]:
         """Extract key terms from text using enhanced stop words filtering."""
+        logger.info(f"[{self.app_name}] 🔍 TRACE: Starting key terms extraction for text ({len(text)} chars)")
+        
         try:
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Attempting to use StopWordsManager...")
+            
             # Use the new stop words manager for better filtering
             stop_words_manager = get_stop_words_manager()
+            logger.info(f"[{self.app_name}] 🔍 TRACE: StopWordsManager initialized successfully")
+            
             key_terms = stop_words_manager.extract_key_terms(
                 text=text,
                 languages=['english', 'spanish'],
@@ -103,18 +109,23 @@ class DocumentSummarizer:
                 max_terms=max_terms
             )
             
-            logger.debug(f"[{self.app_name}] Extracted {len(key_terms)} key terms using enhanced stop words filtering")
+            logger.info(f"[{self.app_name}] ✅ TRACE: Successfully extracted {len(key_terms)} key terms using StopWordsManager")
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Key terms from StopWordsManager: {key_terms}")
             return key_terms
             
         except Exception as e:
-            logger.warning(f"[{self.app_name}] Error using enhanced stop words manager, falling back to basic method: {e}")
+            logger.warning(f"[{self.app_name}] ❌ TRACE: Error using StopWordsManager, falling back to basic method: {e}")
+            logger.warning(f"[{self.app_name}] 🔍 TRACE: Exception details: {type(e).__name__}: {str(e)}")
             
             # Fallback to basic method if stop words manager fails
             import re
             from collections import Counter
             
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Using FALLBACK method for key terms extraction")
+            
             # Simple tokenization and filtering
             words = re.findall(r'\b[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3,}\b', text.lower())
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Fallback tokenized {len(words)} words")
             
             # Basic stop words (fallback)
             basic_stop_words = {
@@ -126,10 +137,14 @@ class DocumentSummarizer:
             }
             
             filtered_words = [word for word in words if word not in basic_stop_words and len(word) > 3]
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Fallback filtered to {len(filtered_words)} words after removing {len(basic_stop_words)} stop words")
             
             # Get most common terms
             counter = Counter(filtered_words)
-            return [term for term, count in counter.most_common(max_terms)]
+            fallback_terms = [term for term, count in counter.most_common(max_terms)]
+            logger.info(f"[{self.app_name}] ⚠️ TRACE: Fallback method extracted {len(fallback_terms)} key terms: {fallback_terms}")
+            
+            return fallback_terms
     
     def generate_summary(self, document: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -297,41 +312,204 @@ RELEVANCIA: [Puntuación de relevancia del 1-10 para el sistema {self.app_name.u
     
     def _parse_ai_response(self, ai_response: str, file_name: str) -> Dict[str, Any]:
         """Parse structured AI response into summary data."""
+        logger.info(f"[{self.app_name}] 🔍 TRACE: Starting _parse_ai_response for {file_name}")
+        logger.info(f"[{self.app_name}] 🔍 TRACE: AI response length: {len(ai_response)} chars")
+        
         try:
             # Extract sections using regex
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Extracting sections with regex...")
             summary_match = re.search(r'RESUMEN:\s*(.*?)(?=\n\n|\nTEMAS|$)', ai_response, re.DOTALL)
             topics_match = re.search(r'TEMAS PRINCIPALES:\s*(.*?)(?=\n\n|\nTÉRMINOS|$)', ai_response, re.DOTALL)
             terms_match = re.search(r'TÉRMINOS CLAVE:\s*(.*?)(?=\n\n|\nRELEVANCIA|$)', ai_response, re.DOTALL)
             relevance_match = re.search(r'RELEVANCIA:\s*(\d+)', ai_response)
             
-            summary = summary_match.group(1).strip() if summary_match else ai_response[:500]
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Regex matches - summary: {bool(summary_match)}, topics: {bool(topics_match)}, terms: {bool(terms_match)}, relevance: {bool(relevance_match)}")
             
-            # Parse topics
+            summary = summary_match.group(1).strip() if summary_match else ai_response[:500]
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Extracted summary length: {len(summary)} chars")
+            
+            # Parse topics and clean them with stop words filtering
             topics = []
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Processing topics...")
             if topics_match:
                 topics_text = topics_match.group(1).strip()
-                topics = [topic.strip('- ').strip() for topic in topics_text.split('\n') if topic.strip()]
+                logger.info(f"[{self.app_name}] 🔍 TRACE: Raw topics text: {topics_text[:200]}...")
+                raw_topics = [topic.strip('- ').strip() for topic in topics_text.split('\n') if topic.strip()]
+                
+                # Clean topics by removing numbers and applying stop words filtering
+                logger.info(f"[{self.app_name}] 🔍 TRACE: Processing {len(raw_topics)} raw topics, removing numbers and applying stop words...")
+                for topic in raw_topics:
+                    clean_topic = re.sub(r'^\d+\.\s*', '', topic.strip())
+                    if clean_topic:
+                        # Apply stop words filtering to each topic
+                        try:
+                            logger.info(f"[{self.app_name}] 🔍 TRACE: Filtering topic: '{clean_topic}'")
+                            filtered_topic_terms = self.extract_key_terms(clean_topic, max_terms=5)
+                            if filtered_topic_terms:
+                                # Reconstruct topic from filtered terms
+                                filtered_topic = ' '.join(filtered_topic_terms)
+                                topics.append(filtered_topic)
+                                logger.info(f"[{self.app_name}] ✅ TRACE: Topic filtered: '{clean_topic}' -> '{filtered_topic}'")
+                            else:
+                                # Keep original if filtering returns empty
+                                topics.append(clean_topic)
+                                logger.info(f"[{self.app_name}] ⚠️ TRACE: Topic kept original (empty after filtering): '{clean_topic}'")
+                        except Exception as e:
+                            logger.warning(f"[{self.app_name}] ❌ TRACE: Error filtering topic '{clean_topic}': {e}")
+                            topics.append(clean_topic)  # Fallback to original
+                            
+                logger.info(f"[{self.app_name}] ✅ TRACE: Final filtered topics: {topics}")
+            else:
+                logger.info(f"[{self.app_name}] ❌ TRACE: No topics found in AI response")
             
             # Parse terms
             terms = []
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Processing terms...")
             if terms_match:
                 terms_text = terms_match.group(1).strip()
+                logger.info(f"[{self.app_name}] 🔍 TRACE: Raw terms text: {terms_text[:200]}...")
                 terms = [term.strip('- ').strip() for term in terms_text.split('\n') if term.strip()]
+                logger.info(f"[{self.app_name}] 🔍 TRACE: Extracted {len(terms)} raw terms: {terms}")
+            else:
+                logger.info(f"[{self.app_name}] ❌ TRACE: No terms found in AI response")
             
             # Parse relevance
             relevance = float(relevance_match.group(1)) if relevance_match else 5.0
             
-            # Fallback key terms extraction if not provided
-            if not terms:
-                terms = self.extract_key_terms(summary)
+            # ALWAYS process key terms through StopWordsManager for proper filtering
+            logger.info(f"[{self.app_name}] 🔍 TRACE: CRITICAL POINT - Processing {len(terms)} raw terms from AI through StopWordsManager...")
             
-            return {
+            if terms:
+                # Clean the AI-provided terms by removing numbers and applying stop words filtering
+                cleaned_terms = []
+                logger.info(f"[{self.app_name}] 🔍 TRACE: Cleaning terms by removing numbers...")
+                for term in terms:
+                    # Remove leading numbers like "1. ", "2. ", etc.
+                    clean_term = re.sub(r'^\d+\.\s*', '', term.strip())
+                    if clean_term:
+                        cleaned_terms.append(clean_term)
+                
+                logger.info(f"[{self.app_name}] 🔍 TRACE: Cleaned {len(cleaned_terms)} terms: {cleaned_terms}")
+                logger.info(f"[{self.app_name}] 🔍 TRACE: NOW CALLING extract_key_terms() - THIS SHOULD SHOW TRACES...")
+                
+                # Join terms and process through StopWordsManager
+                terms_text = ' '.join(cleaned_terms)
+                logger.info(f"[{self.app_name}] 🔍 TRACE: Terms text to process: '{terms_text}'")
+                
+                try:
+                    processed_terms = self.extract_key_terms(terms_text, max_terms=10)
+                    logger.info(f"[{self.app_name}] ✅ TRACE: StopWordsManager processed terms: {processed_terms}")
+                    terms = processed_terms
+                except Exception as e:
+                    logger.error(f"[{self.app_name}] ❌ TRACE: EXCEPTION in extract_key_terms: {type(e).__name__}: {str(e)}")
+                    logger.error(f"[{self.app_name}] ❌ TRACE: Keeping original cleaned terms: {cleaned_terms}")
+                    terms = cleaned_terms[:10]  # Fallback to cleaned terms
+                    
+            else:
+                # Fallback: extract from summary if no terms provided
+                logger.info(f"[{self.app_name}] 🔍 TRACE: No terms from AI, extracting from summary...")
+                logger.info(f"[{self.app_name}] 🔍 TRACE: CALLING extract_key_terms() with summary - THIS SHOULD SHOW TRACES...")
+                try:
+                    terms = self.extract_key_terms(summary)
+                    logger.info(f"[{self.app_name}] ✅ TRACE: Extracted terms from summary: {terms}")
+                except Exception as e:
+                    logger.error(f"[{self.app_name}] ❌ TRACE: EXCEPTION extracting from summary: {type(e).__name__}: {str(e)}")
+                    terms = []  # Empty fallback
+            
+            # ALSO process summary through StopWordsManager for better indexing AND filtering
+            logger.info(f"[{self.app_name}] 🔍 TRACE: Processing summary through StopWordsManager for enhanced indexing AND filtering...")
+            try:
+                # Extract key terms from summary for metadata
+                summary_key_terms = self.extract_key_terms(summary, max_terms=20)
+                logger.info(f"[{self.app_name}] ✅ TRACE: Summary key terms extracted: {len(summary_key_terms)} terms")
+                
+                # FILTER the summary text itself by removing stop words and reconstructing
+                logger.info(f"[{self.app_name}] 🔍 TRACE: FILTERING summary text by removing stop words...")
+                try:
+                    stop_words_manager = get_stop_words_manager()
+                    
+                    # Get stop words for filtering
+                    stop_words_set = set()
+                    stop_words_set.update(stop_words_manager.get_stop_words('english'))
+                    stop_words_set.update(stop_words_manager.get_stop_words('spanish'))
+                    stop_words_set.update(stop_words_manager.get_stop_words(self.app_name))
+                    
+                    logger.info(f"[{self.app_name}] 🔍 TRACE: Using {len(stop_words_set)} stop words for summary filtering")
+                    
+                    # Split summary into sentences to preserve structure
+                    import re
+                    sentences = re.split(r'[.!?]+', summary)
+                    filtered_sentences = []
+                    
+                    for sentence in sentences:
+                        if sentence.strip():
+                            # Split sentence into words and filter
+                            words = re.findall(r'\b\w+\b', sentence.lower())
+                            filtered_words = [word for word in words if word not in stop_words_set and len(word) > 2]
+                            
+                            if filtered_words:  # Only keep sentences with meaningful words
+                                # Reconstruct sentence maintaining original case for important words
+                                original_words = re.findall(r'\b\w+\b', sentence)
+                                filtered_sentence_words = []
+                                
+                                for orig_word in original_words:
+                                    if orig_word.lower() in [fw.lower() for fw in filtered_words]:
+                                        filtered_sentence_words.append(orig_word)
+                                
+                                if filtered_sentence_words:
+                                    filtered_sentences.append(' '.join(filtered_sentence_words))
+                    
+                    # Reconstruct summary from filtered sentences
+                    if filtered_sentences:
+                        filtered_summary = '. '.join(filtered_sentences) + '.'
+                        logger.info(f"[{self.app_name}] ✅ TRACE: Summary FILTERED - Original: {len(summary)} chars, Filtered: {len(filtered_summary)} chars")
+                        logger.info(f"[{self.app_name}] 🔍 TRACE: Original summary: {summary[:100]}...")
+                        logger.info(f"[{self.app_name}] 🔍 TRACE: Filtered summary: {filtered_summary[:100]}...")
+                        
+                        # Use filtered summary
+                        summary = filtered_summary
+                    else:
+                        logger.warning(f"[{self.app_name}] ⚠️ TRACE: Summary filtering resulted in empty text, keeping original")
+                    
+                    # Count words for metadata
+                    original_words = re.findall(r'\b\w+\b', summary.lower())
+                    filtered_word_count = len([word for word in original_words if word not in stop_words_set and len(word) > 2])
+                    
+                    logger.info(f"[{self.app_name}] ✅ TRACE: Summary processed - {len(original_words)} total words, {filtered_word_count} meaningful words")
+                    
+                except Exception as e:
+                    logger.warning(f"[{self.app_name}] ❌ TRACE: Error filtering summary text: {e}")
+                    filtered_word_count = 0
+                
+                # Add summary key terms to document metadata for enhanced search
+                summary_enhanced_metadata = {
+                    'summary_key_terms': summary_key_terms,
+                    'summary_processed': True,
+                    'summary_filtered_words': filtered_word_count,
+                    'summary_total_words': len(re.findall(r'\b\w+\b', summary.lower())) if summary else 0
+                }
+                logger.info(f"[{self.app_name}] 🔍 TRACE: Enhanced summary metadata created")
+                
+            except Exception as e:
+                logger.warning(f"[{self.app_name}] ❌ TRACE: Error processing summary through StopWordsManager: {e}")
+                summary_enhanced_metadata = {
+                    'summary_key_terms': [],
+                    'summary_processed': False
+                }
+            
+            result = {
                 'summary': summary,
                 'topics': topics[:5],  # Limit to 5 topics
                 'key_terms': terms[:10],  # Limit to 10 terms
                 'relevance_score': relevance,
                 'confidence_score': min(0.9, relevance / 10.0)  # Convert to 0-1 scale
             }
+            
+            # Add enhanced summary metadata if available
+            if 'summary_enhanced_metadata' in locals():
+                result.update(summary_enhanced_metadata)
+            
+            return result
             
         except Exception as e:
             logger.warning(f"[{self.app_name}] Error parsing AI response for {file_name}: {e}")
