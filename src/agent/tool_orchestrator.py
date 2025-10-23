@@ -525,12 +525,19 @@ class ToolOrchestrator:
         if not results:
             return []
         
-        # Deduplicar por ID o contenido
+        # Deduplicar por ID único más específico
         seen_ids = set()
         unique_results = []
         
         for doc in results:
-            doc_id = doc.get('id', doc.get('content', '')[:100])
+            # FIXED: Use more specific ID to avoid false duplicates
+            # Priority: doc_id > chunk_id > file_name + text hash > content hash
+            doc_id = (
+                doc.get('doc_id') or 
+                doc.get('chunk_id') or 
+                f"{doc.get('file_name', 'unknown')}_{hash(doc.get('text', doc.get('content', ''))[:200])}" or
+                doc.get('content', '')[:100]
+            )
             
             if doc_id not in seen_ids:
                 seen_ids.add(doc_id)
