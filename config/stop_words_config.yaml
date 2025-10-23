@@ -439,7 +439,7 @@ stop_words:
 
 # Application-specific stop words (can be extended per application)
 application_specific:
-  # Common technical terms that might not be relevant for key term extraction
+  # Common generic terms that might not be relevant for key term extraction
   technical:
     - "system"
     - "application"
@@ -461,13 +461,6 @@ application_specific:
     - "array"
     - "list"
     - "table"
-    - "database"
-    - "server"
-    - "client"
-    - "user"
-    - "admin"
-    - "config"
-    - "configuration"
     - "setting"
     - "option"
     - "default"
@@ -475,8 +468,6 @@ application_specific:
     - "sample"
     - "test"
     - "debug"
-    - "error"
-    - "warning"
     - "info"
     - "log"
     - "message"
