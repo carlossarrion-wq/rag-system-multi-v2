@@ -9,6 +9,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from ..indexing.opensearch_indexer import OpenSearchIndexer
 from ..utils.connection_manager import ConnectionManager
+from ..utils.stop_words_manager import get_stop_words_manager
 import json
 from typing import List, Dict, Any
 from loguru import logger
@@ -27,6 +28,9 @@ class HybridRetrieverFixed:
 
         self.index_name = self.config['services']['opensearch']['index_name']
         self.embedding_model = self.config['bedrock']['embedding_model']
+        
+        # Initialize stop words manager
+        self.stop_words_manager = get_stop_words_manager()
 
     def _get_embedding(self, text: str) -> List[float]:
         """Generate embedding for text using Bedrock"""
@@ -50,14 +54,40 @@ class HybridRetrieverFixed:
             logger.error(f"Error generating embedding: {e}")
             raise
 
+    def _filter_search_query(self, query: str) -> str:
+        """
+        Filter stop words from search query to improve search precision
+        """
+        try:
+            # Get filtered query using stop words manager
+            filtered_query = self.stop_words_manager.filter_text(query)
+            
+            # Log the filtering for debugging
+            if filtered_query != query:
+                logger.debug(f"Query filtered: '{query}' -> '{filtered_query}'")
+            
+            # Return original query if filtering results in empty string
+            if not filtered_query.strip():
+                logger.debug(f"Filtered query is empty, using original: '{query}'")
+                return query
+                
+            return filtered_query
+            
+        except Exception as e:
+            logger.warning(f"Error filtering query, using original: {e}")
+            return query
+
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         """
         Perform hybrid search combining vector and text search
         FIXED: Corrected kNN query structure for OpenSearch
         """
         try:
-            # Generate query embedding
-            query_embedding = self._get_embedding(query)
+            # Filter stop words from query for better search precision
+            filtered_query = self._filter_search_query(query)
+            
+            # Generate query embedding using filtered query
+            query_embedding = self._get_embedding(filtered_query)
 
             # FIXED: Use proper hybrid search structure for OpenSearch
             # First, get vector results
@@ -82,12 +112,12 @@ class HybridRetrieverFixed:
                 body=vector_search_body
             )
 
-            # Then, get text results
+            # Then, get text results using filtered query
             text_search_body = {
                 "size": top_k,
                 "query": {
                     "multi_match": {
-                        "query": query,
+                        "query": filtered_query,
                         "fields": ["content^2", "title", "file_name"],
                         "type": "best_fields"
                     }
@@ -120,9 +150,10 @@ class HybridRetrieverFixed:
 
         except Exception as e:
             logger.error(f"Error in hybrid search: {e}")
-            # Fallback to simple text search
+            # Fallback to simple text search with filtered query
             try:
-                return self._fallback_text_search(query, top_k)
+                filtered_query = self._filter_search_query(query)
+                return self._fallback_text_search(filtered_query, top_k)
             except Exception as fallback_error:
                 logger.error(f"Fallback search also failed: {fallback_error}")
                 return []
