@@ -508,57 +508,27 @@ Donde XX es un número entre 0 y 100 que representa tu confianza en la respuesta
     def _extract_images_from_results(self, expanded_results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """
         Extract and validate image data from search results.
-        ENHANCED: With increased input token limit (180K), we can process more images.
+        MODIFIED: Now returns empty list to prevent raw image sending during queries.
+        Images are processed during ingestion to generate detailed text descriptions.
         
         Args:
             expanded_results: Search results with metadata
             
         Returns:
-            List of validated image data dictionaries
+            Empty list - raw images are never sent during queries
         """
-        images_data = []
-        max_images = 5  # Increased limit with higher token capacity
-        total_size_limit = 8 * 1024 * 1024  # 8MB total limit (increased)
-        current_total_size = 0
-        
-        for i, result in enumerate(expanded_results, 1):
-            # Stop if we've reached the image limit
-            if len(images_data) >= max_images:
-                logger.info(f"Reached maximum image limit ({max_images}), skipping remaining images")
-                break
-                
+        # Count images for logging purposes
+        image_count = 0
+        for result in expanded_results:
             metadata = result.get('metadata', {})
             if metadata.get('has_image') and metadata.get('image_base64'):
-                source_id = f"[{i}]"
-                raw_image_data = {
-                    'source_id': source_id,
-                    'image_base64': metadata['image_base64'],
-                    'image_id': metadata.get('image_id', f'img_{i}'),
-                    'image_context': metadata.get('image_context', ''),
-                    'image_format': metadata.get('image_format', 'PNG')
-                }
-                
-                # Validar y corregir imagen
-                is_valid, validated_data, error_msg = self.image_validator.validate_and_fix_image(raw_image_data)
-                
-                if is_valid:
-                    image_size = validated_data.get('size_bytes', 0)
-                    
-                    # Check if adding this image would exceed total size limit
-                    if current_total_size + image_size > total_size_limit:
-                        logger.warning(f"Adding image {source_id} would exceed total size limit ({total_size_limit} bytes), skipping")
-                        continue
-                    
-                    images_data.append(validated_data)
-                    current_total_size += image_size
-                    logger.info(f"Found and validated image in source {source_id}: {validated_data.get('image_id')} ({image_size} bytes)")
-                else:
-                    logger.warning(f"Image validation failed for source {source_id}: {error_msg}")
+                image_count += 1
         
-        if images_data:
-            logger.info(f"Selected {len(images_data)} images with total size: {current_total_size} bytes (max input tokens: {self.max_input_tokens})")
+        if image_count > 0:
+            logger.info(f"Found {image_count} images in search results - using detailed descriptions generated during ingestion instead of raw images")
         
-        return images_data
+        # Return empty list - detailed descriptions from ingestion are already in document text
+        return []
 
     def _build_multimodal_content(self, prompt: str, images_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """

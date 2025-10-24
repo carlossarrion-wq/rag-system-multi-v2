@@ -40,6 +40,7 @@ from src.utils.connection_manager import ConnectionManager
 from src.utils.stop_words_manager import get_stop_words_manager
 from src.ingestion.document_loader import DocumentLoader
 from src.indexing.multi_app_opensearch_indexer import MultiAppOpenSearchIndexer
+from src.generation.image_description_generator import ImageDescriptionGenerator
 from loguru import logger
 
 import logging
@@ -911,6 +912,12 @@ class MultiAppAWSIngestionManagerWithSummarization:
         self.summarizer = DocumentSummarizer(app_name, self.config_manager)
         self.inventory_manager = DocumentInventoryManager(app_name, self.config_manager, self.conn_manager.s3_client)
         
+        # Initialize image description generator
+        self.image_description_generator = ImageDescriptionGenerator(
+            bedrock_client=self.conn_manager.get_bedrock_client(),
+            model_id=self.config_manager.get_bedrock_config().get('llm_model', 'anthropic.claude-3-haiku-20240307-v1:0')
+        )
+        
         # Ensure OpenSearch index exists
         if not self.indexer.create_index():
             logger.warning(f"[{app_name}] OpenSearch index creation returned False, but continuing...")
@@ -1072,15 +1079,75 @@ class MultiAppAWSIngestionManagerWithSummarization:
             is_image = file_ext in ['.jpg', '.jpeg', '.png']
             
             if is_image:
-                # For images, add descriptive content
-                if not document.get('content'):
-                    image_info = document.get('images', [{}])[0] if document.get('images') else {}
-                    image_format = image_info.get('format', 'unknown')
-                    image_size = image_info.get('size', (0, 0))
-                    
-                    document['content'] = f"Image: {filename}\nFormat: {image_format}\nSize: {image_size[0]}x{image_size[1]} pixels\nThis is a visual document that contains graphical information."
+                logger.info(f"[{self.app_name}] Processing image file: {filename}")
                 
-                # For images, create a single chunk with multimodal embedding
+                # Generate detailed description using ImageDescriptionGenerator
+                try:
+                    # Prepare document context for image description
+                    document_context = {
+                        'file_name': filename,
+                        'file_extension': file_ext,
+                        'application_context': self.app_name,
+                        'file_hash': document.get('file_hash', ''),
+                        'file_path': document.get('file_path', '')
+                    }
+                    
+                    # Get image data from document
+                    images_data = document.get('images', [])
+                    if images_data:
+                        logger.info(f"[{self.app_name}] Generating detailed description for image using Claude vision...")
+                        
+                        # Process all images in the document
+                        description_results = self.image_description_generator.process_multiple_images(
+                            images_data, document_context
+                        )
+                        
+                        # Combine all detailed descriptions
+                        detailed_descriptions = []
+                        for i, result in enumerate(description_results):
+                            if result.get('success', False):
+                                detailed_descriptions.append(f"IMAGEN {i+1}:\n{result['detailed_description']}")
+                                logger.info(f"[{self.app_name}] ✓ Generated detailed description for image {i+1} ({len(result['detailed_description'])} chars)")
+                            else:
+                                detailed_descriptions.append(f"IMAGEN {i+1}:\n{result['detailed_description']}")
+                                logger.warning(f"[{self.app_name}] ⚠ Used fallback description for image {i+1}")
+                        
+                        # Set the detailed description as document content
+                        combined_description = "\n\n".join(detailed_descriptions)
+                        document['content'] = combined_description
+                        
+                        # Add image processing metadata
+                        document['image_processing'] = {
+                            'processed_with_vision': True,
+                            'total_images': len(images_data),
+                            'successful_descriptions': sum(1 for r in description_results if r.get('success', False)),
+                            'description_length': len(combined_description),
+                            'processing_method': 'claude_vision_detailed'
+                        }
+                        
+                        logger.info(f"[{self.app_name}] ✓ Generated detailed descriptions for {len(images_data)} images, total length: {len(combined_description)} chars")
+                        
+                    else:
+                        # Fallback if no image data available
+                        logger.warning(f"[{self.app_name}] No image data found in document, using basic description")
+                        document['content'] = f"Imagen: {filename}\nFormato: {file_ext.upper()}\nEsta es una imagen que contiene información visual importante pero no pudo ser procesada automáticamente."
+                        document['image_processing'] = {
+                            'processed_with_vision': False,
+                            'processing_method': 'basic_fallback',
+                            'reason': 'no_image_data'
+                        }
+                        
+                except Exception as e:
+                    logger.error(f"[{self.app_name}] Error generating detailed image description for {filename}: {e}")
+                    # Fallback to basic description
+                    document['content'] = f"Imagen: {filename}\nFormato: {file_ext.upper()}\nError al procesar la imagen: {str(e)}\nEsta imagen contiene información visual que requiere revisión manual."
+                    document['image_processing'] = {
+                        'processed_with_vision': False,
+                        'processing_method': 'error_fallback',
+                        'error': str(e)
+                    }
+                
+                # For images, create a single chunk with the detailed description
                 chunk_id = f"{self.app_name}_{document['file_hash']}_img_0"
                 chunk_ids = [chunk_id]
             else:

@@ -122,6 +122,42 @@ applications:
     # Custom System Prompt for SAP
     system_prompt_file: "system_prompts/sap_system_prompt.json"
 
+
+
+  # MULESOFT - Middleware de Integración
+  mulesoft:
+    name: "MuleSoft System"
+    description: "Middleware de integración MuleSoft - Plataforma de conectividad e integración empresarial"
+    
+    # S3 Configuration for MULESOFT
+    s3:
+      bucket: "rag-system-mulesoft-eu-west-1"
+      documents_prefix: "applications/mulesoft/documents/"
+      backups_prefix: "applications/mulesoft/backups/"
+      logs_prefix: "applications/mulesoft/logs/"
+    
+    # OpenSearch Index for MULESOFT
+    opensearch:
+      index_name: "rag-documents-mulesoft"
+      
+    # RAG System Configuration for MULESOFT
+    rag_system:
+      chunking:
+        chunk_size: 1500
+        chunk_overlap: 225
+        separators: ["\n\n", "\n", " ", ""]
+      search:
+        similarity_threshold: 0.75
+        max_results: 8
+        hybrid_search: true
+      generation:
+        context_window: 3000
+        max_response_tokens: 1000
+        include_sources: true
+        
+    # Custom System Prompt for MULESOFT
+    system_prompt_file: "system_prompts/mulesoft_system_prompt.json"
+
 # Default application (if none specified)
 default_application: "sap"
 
